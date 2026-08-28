@@ -1,9 +1,9 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-primary bg-grid-pattern text-surface-sage pt-20 pb-10 border-t border-white/10">
+    <footer className="bg-primary text-surface-sage pt-20 pb-10 border-t border-white/10">
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           
@@ -37,28 +37,28 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-bold mb-6">Products</h4>
             <ul className="space-y-4 text-sm">
-              <li><Link href="#" className="text-link-muted hover:text-cta transition-colors">Term Life Insurance</Link></li>
-              <li><Link href="#" className="text-link-muted hover:text-cta transition-colors">Health Insurance</Link></li>
-              <li><Link href="#" className="text-link-muted hover:text-cta transition-colors">Corporate Plans</Link></li>
+              <li><Link href="#products" className="text-link-muted hover:text-cta transition-colors">Term Life Insurance</Link></li>
+              <li><Link href="#products" className="text-link-muted hover:text-cta transition-colors">Health Insurance</Link></li>
+              <li><Link href="#products" className="text-link-muted hover:text-cta transition-colors">Corporate Plans</Link></li>
             </ul>
           </div>
           
           <div>
             <h4 className="text-white font-bold mb-6">Company</h4>
             <ul className="space-y-4 text-sm">
-              <li><Link href="#" className="text-link-muted hover:text-cta transition-colors">About Us</Link></li>
-              <li><Link href="#" className="text-link-muted hover:text-cta transition-colors">Careers</Link></li>
-              <li><Link href="#" className="text-link-muted hover:text-cta transition-colors">Blog</Link></li>
-              <li><Link href="#" className="text-link-muted hover:text-cta transition-colors">Contact</Link></li>
+              <li><Link href="#team" className="text-link-muted hover:text-cta transition-colors">About Us</Link></li>
+              <li><Link href="#contact" className="text-link-muted hover:text-cta transition-colors">Careers</Link></li>
+              <li><Link href="#why-us" className="text-link-muted hover:text-cta transition-colors">Blog</Link></li>
+              <li><Link href="#contact" className="text-link-muted hover:text-cta transition-colors">Contact</Link></li>
             </ul>
           </div>
           
           <div>
             <h4 className="text-white font-bold mb-6">Legal</h4>
             <ul className="space-y-4 text-sm">
-              <li><Link href="#" className="text-link-muted hover:text-cta transition-colors">Privacy Policy</Link></li>
-              <li><Link href="#" className="text-link-muted hover:text-cta transition-colors">Terms of Service</Link></li>
-              <li><Link href="#" className="text-link-muted hover:text-cta transition-colors">Refund Policy</Link></li>
+              <li><Link href="#faq" className="text-link-muted hover:text-cta transition-colors">Privacy Policy</Link></li>
+              <li><Link href="#faq" className="text-link-muted hover:text-cta transition-colors">Terms of Service</Link></li>
+              <li><Link href="#faq" className="text-link-muted hover:text-cta transition-colors">Refund Policy</Link></li>
             </ul>
           </div>
           

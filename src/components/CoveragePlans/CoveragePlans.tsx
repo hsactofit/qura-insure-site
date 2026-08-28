@@ -91,14 +91,13 @@ export default function CoveragePlans() {
               <motion.div initial={{ opacity: 0, scale: .94, rotate: 2 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ duration: .45 }} className="relative">
                 <div className="absolute -inset-5 rounded-[2rem] border border-white/10" />
                 <div className="relative overflow-hidden rounded-[1.75rem] bg-[#f8f8f3] p-7 text-primary shadow-2xl md:p-9">
-                  <div className="flex items-center justify-between"><div><div className="text-xs font-bold uppercase tracking-[.18em] text-text-muted">Protection snapshot</div><div className="mt-2 text-sm font-semibold">Personalized by QURA</div></div><Sparkles className="text-accent" /></div>
+                  <div className="flex items-center justify-between"><div><div className="text-xs font-bold uppercase tracking-[.18em] text-text-muted">Protection snapshot</div><div className="mt-2 text-sm font-semibold">Personalized by QURA</div></div></div>
                   <div className="my-8 h-px bg-primary/10" />
                   <div className="text-5xl font-semibold tracking-[-.05em] md:text-6xl">{plan.figure}</div>
                   <div className="mt-2 text-sm text-text-muted">{plan.figureLabel}</div>
                   <div className="mt-9 rounded-2xl border border-primary/10 bg-white p-5"><div className="text-[10px] font-bold uppercase tracking-[.18em] text-text-muted">Ideal for</div><div className="mt-2 font-semibold leading-relaxed">{plan.idealFor}</div></div>
                   <div className="mt-7 flex items-end justify-between"><div><div className="text-[10px] font-bold uppercase tracking-[.18em] text-text-muted">Plan fit signal</div><div className="mt-1 text-2xl font-bold">{plan.signal}%</div></div><div className="h-2 w-40 overflow-hidden rounded-full bg-primary/10"><motion.div initial={{ width: 0 }} animate={{ width: `${plan.signal}%` }} transition={{ duration: .9, delay: .15 }} className="h-full rounded-full bg-cta" /></div></div>
                 </div>
-                <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 4, repeat: Infinity }} className="absolute -bottom-5 -left-5 rounded-2xl border border-white/20 bg-white/10 px-5 py-4 backdrop-blur-xl"><div className="text-xs font-bold text-cta">No spam. No pressure.</div><div className="mt-1 text-[11px] text-white/65">Just expert guidance.</div></motion.div>
               </motion.div>
             </motion.div>
           </AnimatePresence>
