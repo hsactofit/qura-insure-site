@@ -37,13 +37,13 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-6 max-w-7xl">
         <div className={cn("flex items-center justify-between rounded-full border px-4 md:px-6 transition-all duration-300", isScrolled ? "bg-white/92 backdrop-blur-xl border-white/80 shadow-[0_16px_45px_rgba(11,36,66,.14)] py-2.5" : "bg-white/90 backdrop-blur-md border-white/80 shadow-[0_10px_35px_rgba(11,36,66,.10)] py-3")}>
-          <Link href="/" className="relative z-50 transition-transform duration-300 hover:scale-[1.02] active:scale-95">
+          <Link href="/" className="relative z-50 flex items-center ml-2 md:ml-3 transition-transform duration-300 hover:scale-[1.02] active:scale-95">
             <Image
-              src="/logos/Colour Primary Logo.svg"
-              alt="Qura Insure Logo"
-              width={190}
-              height={64}
-              className="h-12 w-auto md:h-14 transition-all duration-300"
+              src="/logos/Colour Secondary Logo.svg"
+              alt="Qura Insure Horizontal Logo"
+              width={160}
+              height={46}
+              className="h-8 md:h-9 lg:h-10 w-auto transition-all duration-300"
               style={{ width: "auto" }}
               priority
             />
