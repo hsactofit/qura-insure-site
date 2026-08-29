@@ -9,6 +9,8 @@ import { BENEFITS, FAQS, PROCESS_STEPS, STATS, TESTIMONIALS } from "@/data/conte
 import AboutUs from "@/components/AboutUs/AboutUs";
 import CoveragePlans from "@/components/CoveragePlans/CoveragePlans";
 import CountUp from "@/components/Stats/CountUp";
+import BrandIdentity from "@/components/BrandIdentity/BrandIdentity";
+import QuraCornerBrackets from "@/components/Common/QuraCornerBrackets";
 
 const reveal = {
   initial: { opacity: 0, y: 36 },
@@ -123,6 +125,9 @@ export default function QuraLanding() {
               <div className="grid gap-5 sm:grid-cols-2 lg:pt-10">
                 <motion.div whileHover={{ scale: 1.015 }} className="group relative min-h-[520px] overflow-hidden rounded-[2rem] sm:col-span-2">
                   <Image src="/qura-advisor-consultation.png" alt="A Qura advisor guiding a couple" fill className="object-cover transition duration-700 group-hover:scale-105" />
+                  <div className="absolute top-6 right-6 z-10 drop-shadow-2xl">
+                    <Image src="/logos/Colour Logomark.svg" alt="QURA Logomark" width={96} height={96} className="h-20 w-20 md:h-24 md:w-24" />
+                  </div>
                   <div className="absolute bottom-6 left-6 rounded-2xl bg-white/90 px-5 py-4 shadow-xl backdrop-blur">
                     <div className="text-sm font-bold">Advice built around you</div>
                     <div className="mt-1 text-xs text-text-muted">Clear options. No sales pressure.</div>
@@ -146,10 +151,18 @@ export default function QuraLanding() {
 
       <section className="bg-white py-28 md:py-36">
         <div className="mx-auto grid max-w-7xl gap-14 px-6 md:px-10 lg:grid-cols-2 lg:items-center">
-          <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="group relative min-h-[560px] overflow-hidden rounded-[2rem]"><Image src="/qura-claims-support.png" alt="A family receiving claims support from Qura" fill className="object-cover transition duration-700 group-hover:scale-105" /><motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 4, repeat: Infinity }} className="absolute bottom-6 right-6 rounded-2xl border border-white/50 bg-white/90 p-5 shadow-2xl backdrop-blur"><div className="flex items-center gap-3"><div className="flex h-10 w-10 items-center justify-center rounded-full bg-cta"><CheckCircle2 size={21} /></div><div><div className="text-sm font-bold">Claims advocate connected</div><div className="text-xs text-text-muted">Here when it matters most</div></div></div></motion.div></motion.div>
+          <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="group relative min-h-[560px] overflow-hidden rounded-[2rem] shadow-2xl">
+            <Image src="/qura-claims-support.png" alt="A family receiving claims support from Qura" fill className="object-cover transition duration-700 group-hover:scale-105" />
+            <div className="absolute top-6 left-6 z-10 drop-shadow-2xl">
+              <Image src="/logos/Colour Logomark.svg" alt="QURA Logomark" width={96} height={96} className="h-20 w-20 md:h-24 md:w-24" />
+            </div>
+            <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 4, repeat: Infinity }} className="absolute bottom-6 right-6 rounded-2xl border border-white/50 bg-white/90 p-5 shadow-2xl backdrop-blur"><div className="flex items-center gap-3"><div className="flex h-10 w-10 items-center justify-center rounded-full bg-cta"><CheckCircle2 size={21} /></div><div><div className="text-sm font-bold">Claims advocate connected</div><div className="text-xs text-text-muted">Here when it matters most</div></div></div></motion.div>
+          </motion.div>
           <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}><span className="text-sm font-bold uppercase tracking-[.2em] text-accent">Support beyond the policy</span><h2 className="mt-5 text-4xl font-semibold leading-tight tracking-[-.04em] md:text-6xl">You&apos;re never alone during a <span className="font-editorial">claim.</span></h2><p className="mt-6 text-lg leading-relaxed text-text-muted">Buying the right plan is only the beginning. When you need to make a claim, your QURA advisor helps you understand the documents, coordinate with the insurer, and follow the case through to resolution.</p><div className="mt-8 space-y-4">{["A dedicated person who knows your policy", "Clear document and timeline guidance", "Escalation support when a case gets stuck"].map((item, index) => <motion.div key={`support-${index}-${item}`} whileHover={{ x: 8 }} className="flex items-center gap-3 rounded-xl border border-primary/10 bg-[#f8f8f5] px-5 py-4 font-semibold"><CheckCircle2 className="text-accent" size={20} />{item}</motion.div>)}</div></motion.div>
         </div>
       </section>
+
+      <BrandIdentity />
 
       <AboutUs />
 
@@ -200,7 +213,7 @@ export default function QuraLanding() {
         <div className="mx-auto grid max-w-7xl gap-14 px-6 md:px-10 lg:grid-cols-[.8fr_1.2fr]"><div><span className="text-sm font-bold uppercase tracking-[.2em] text-accent">Need to know</span><h2 className="mt-5 text-4xl font-semibold leading-tight tracking-[-.04em] md:text-6xl">Frequently asked <span className="font-editorial">questions</span></h2><p className="mt-6 text-lg leading-relaxed text-text-muted">Straight answers about advice, pricing, policy issuance, and the support you receive after buying.</p><motion.div whileHover={{ rotate: -1, scale: 1.015 }} className="group relative mt-10 aspect-[4/3] overflow-hidden rounded-[1.75rem]"><Image src="/qura-policy-guidance.png" alt="Simple policy comparison and guidance" fill className="object-cover transition duration-700 group-hover:scale-105" /></motion.div></div><div className="space-y-4">{FAQS.map((faq, index) => { const open = activeFaq === index; return <div key={faq.question} className="overflow-hidden rounded-[1.5rem] border border-primary/10 bg-white transition-shadow hover:shadow-lg"><button onClick={() => setActiveFaq(open ? -1 : index)} className="flex w-full items-center justify-between gap-6 p-6 text-left text-lg font-semibold md:p-7 md:text-xl"><span>{faq.question}</span><motion.span animate={{ rotate: open ? 180 : 0 }}>{open ? <Minus /> : <Plus />}</motion.span></button><AnimatePresence initial={false}>{open && <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}><p className="px-6 pb-7 leading-relaxed text-text-muted md:px-7">{faq.answer}</p></motion.div>}</AnimatePresence></div>; })}</div></div>
       </section>
 
-      <section id="contact" className="px-4 pb-5 sm:px-6"><div className="relative mx-auto max-w-[1500px] overflow-hidden rounded-[2rem] bg-primary px-6 py-24 text-white md:px-12 md:py-32"><div className="absolute inset-0 bg-grid-pattern opacity-20" /><div className="absolute -bottom-36 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-blue-600/30 blur-3xl" /><motion.div {...reveal} className="relative z-10 mx-auto max-w-4xl text-center"><h2 className="text-4xl font-semibold leading-tight tracking-[-.04em] md:text-7xl">We&apos;ll discover the perfect <span className="font-editorial text-cta">insurance for you</span></h2><p className="mx-auto mt-7 max-w-2xl text-lg text-white/70">Clear answers, thoughtful recommendations, and support whenever you need it.</p><Link href="#" className="mt-9 inline-flex items-center gap-2 rounded-full bg-cta px-8 py-4 font-bold text-primary">Book a free call <ArrowRight size={18} /></Link></motion.div></div></section>
+      <section id="contact" className="px-4 pb-5 sm:px-6"><div className="relative mx-auto max-w-[1500px] overflow-hidden rounded-[2rem] bg-primary px-6 py-24 text-white md:px-12 md:py-32"><div className="absolute inset-0 bg-grid-pattern opacity-20" /><div className="absolute -bottom-36 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-blue-600/30 blur-3xl" /><motion.div {...reveal} className="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center"><Image src="/logos/White Primary Logo.svg" alt="QURA INSURE Logo" width={160} height={140} className="mb-8 h-28 w-auto" /><h2 className="text-4xl font-semibold leading-tight tracking-[-.04em] md:text-7xl">We&apos;ll discover the perfect <span className="font-editorial text-cta">insurance for you</span></h2><p className="mx-auto mt-7 max-w-2xl text-lg text-white/70">Clear answers, thoughtful recommendations, and support whenever you need it.</p><Link href="#" className="mt-9 inline-flex items-center gap-2 rounded-full bg-cta px-8 py-4 font-bold text-primary">Book a free call <ArrowRight size={18} /></Link></motion.div></div></section>
     </div>
   );
 }

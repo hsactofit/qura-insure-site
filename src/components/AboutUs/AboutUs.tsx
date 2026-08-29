@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Award, Briefcase, Building2, CheckCircle2, ShieldCheck, UserCheck } from "lucide-react";
+import QuraCornerBrackets from "@/components/Common/QuraCornerBrackets";
 
 const promoter = {
   name: "Devendra Ghodnadikar",
@@ -107,7 +108,8 @@ export default function AboutUs() {
         </motion.div>
 
         {/* 1. Promoter & Founder Section */}
-        <motion.div {...reveal} className="mt-16 overflow-hidden rounded-[2.25rem] border border-cta/30 bg-white/[.07] p-8 backdrop-blur-md md:p-12 lg:p-14">
+        <motion.div {...reveal} className="relative mt-16 overflow-hidden rounded-none md:rounded-sm border border-cta/30 bg-white/[.07] p-8 backdrop-blur-md md:p-12 lg:p-14">
+          <QuraCornerBrackets color="lime" size="md" />
           <div className="grid gap-10 lg:grid-cols-[1.1fr_.9fr] lg:items-center">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full bg-cta/20 px-4 py-1.5 text-xs font-bold uppercase tracking-[.18em] text-cta">
@@ -156,8 +158,9 @@ export default function AboutUs() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ y: -6 }}
-                  className="rounded-[1.75rem] border border-white/10 bg-white/[.06] p-7 backdrop-blur-sm transition hover:border-cta/40 hover:bg-white/[.09]"
+                  className="relative overflow-hidden rounded-none md:rounded-sm border border-white/10 bg-white/[.06] p-7 backdrop-blur-sm transition hover:border-cta/40 hover:bg-white/[.09]"
                 >
+                  <QuraCornerBrackets color="lime" size="sm" />
                   <div className="flex items-center justify-between">
                     <span className="rounded-xl bg-cta/15 p-3 text-cta"><IconComp size={22} /></span>
                     <span className="text-xs font-bold uppercase tracking-[.14em] text-cta">{officer.designation}</span>
@@ -217,8 +220,9 @@ export default function AboutUs() {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -40 }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className="group grid min-h-[520px] overflow-hidden rounded-[2rem] border border-white/10 bg-white/[.06] backdrop-blur-sm lg:grid-cols-[.82fr_1.18fr]"
+                    className="group relative grid min-h-[520px] overflow-hidden rounded-none md:rounded-sm border border-white/10 bg-white/[.06] backdrop-blur-sm lg:grid-cols-[.82fr_1.18fr]"
                   >
+                    <QuraCornerBrackets color="lime" size="md" />
                     <div className="relative h-[460px] lg:h-full overflow-hidden bg-white">
                       <Image
                         src={person.image}
@@ -228,6 +232,9 @@ export default function AboutUs() {
                           person.name === "Jigar Maniar" ? "object-cover object-[center_10%] scale-105" : "object-contain object-bottom"
                         } transition duration-700 group-hover:scale-[1.07]`}
                       />
+                      <div className="absolute top-5 right-5 z-10 drop-shadow-xl">
+                        <Image src="/logos/Colour Logomark.svg" alt="QURA Logomark" width={64} height={64} className="h-14 w-14 md:h-16 md:w-16" />
+                      </div>
                       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-primary/40 to-transparent" />
                       <div className="absolute bottom-5 left-5 rounded-2xl bg-cta px-5 py-3 text-primary shadow-xl">
                         <div className="text-xs font-bold uppercase tracking-[.16em]">{person.role}</div>
