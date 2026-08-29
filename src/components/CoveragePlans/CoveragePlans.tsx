@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Building2, Check, HeartPulse, ShieldCheck, Sparkles } from "lucide-react";
+import QuraCornerBrackets from "@/components/Common/QuraCornerBrackets";
 
 const plans = [
   {
@@ -75,7 +76,8 @@ export default function CoveragePlans() {
           })}
         </div>
 
-        <div className="relative mt-6 min-h-[590px] overflow-hidden rounded-[2.25rem] bg-primary text-white shadow-[0_34px_90px_rgba(11,36,66,.18)]">
+        <div className="relative mt-6 min-h-[590px] overflow-hidden rounded-none md:rounded-sm bg-primary text-white shadow-[0_34px_90px_rgba(11,36,66,.18)]">
+          <QuraCornerBrackets color="lime" size="lg" />
           <div className="absolute inset-0 bg-grid-pattern opacity-[.08]" />
           <motion.div animate={{ x: [0, 35, 0], y: [0, -24, 0] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }} className="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-cta/15 blur-3xl" />
           <AnimatePresence mode="wait">
@@ -90,13 +92,14 @@ export default function CoveragePlans() {
 
               <motion.div initial={{ opacity: 0, scale: .94, rotate: 2 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ duration: .45 }} className="relative">
                 <div className="absolute -inset-5 rounded-[2rem] border border-white/10" />
-                <div className="relative overflow-hidden rounded-[1.75rem] bg-[#f8f8f3] p-7 text-primary shadow-2xl md:p-9">
+                <div className="relative overflow-hidden rounded-none md:rounded-sm bg-[#f8f8f3] p-7 text-primary shadow-2xl md:p-9">
+                  <QuraCornerBrackets color="navy" size="md" />
                   <div className="flex items-center justify-between"><div><div className="text-xs font-bold uppercase tracking-[.18em] text-text-muted">Protection snapshot</div><div className="mt-2 text-sm font-semibold">Personalized by QURA</div></div></div>
                   <div className="my-8 h-px bg-primary/10" />
                   <div className="text-5xl font-semibold tracking-[-.05em] md:text-6xl">{plan.figure}</div>
                   <div className="mt-2 text-sm text-text-muted">{plan.figureLabel}</div>
                   <div className="mt-9 rounded-2xl border border-primary/10 bg-white p-5"><div className="text-[10px] font-bold uppercase tracking-[.18em] text-text-muted">Ideal for</div><div className="mt-2 font-semibold leading-relaxed">{plan.idealFor}</div></div>
-                  <div className="mt-7 flex items-end justify-between"><div><div className="text-[10px] font-bold uppercase tracking-[.18em] text-text-muted">Plan fit signal</div><div className="mt-1 text-2xl font-bold">{plan.signal}%</div></div><div className="h-2 w-40 overflow-hidden rounded-full bg-primary/10"><motion.div initial={{ width: 0 }} animate={{ width: `${plan.signal}%` }} transition={{ duration: .9, delay: .15 }} className="h-full rounded-full bg-cta" /></div></div>
+                  <div className="mt-7"><div className="text-[10px] font-bold uppercase tracking-[.18em] text-text-muted">Plan fit signal</div><div className="mt-1 text-2xl font-bold">{plan.signal}%</div></div>
                 </div>
               </motion.div>
             </motion.div>

@@ -33,13 +33,18 @@
   --color-border-subtle: #C2C8D0;
 
   --font-sans: var(--font-inclusive-sans), "Inclusive Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-heading: "Zalando Sans Expanded", var(--font-heading-grotesk), "Space Grotesk", sans-serif;
 }
 
 @layer base {
   html { scroll-behavior: smooth; }
   body {
     @apply bg-bg-main text-text-main font-sans antialiased selection:bg-surface-sage selection:text-primary;
-    background-image: radial-gradient(circle at 15% 0%, rgba(192,218,111,.11), transparent 24rem);
+    background-image: radial-gradient(circle at 15% 0%, rgba(189,242,110,.11), transparent 24rem);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.03em;
   }
   a, button { outline-offset: 4px; }
   :focus-visible { outline: 3px solid #8BA637; }
