@@ -178,10 +178,11 @@ export default function BrandIdentity() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.12 }}
-                className="relative rounded-2xl border border-primary/10 bg-bg-main p-7 flex flex-col justify-between"
+                whileHover={{ y: -6, scale: 1.02 }}
+                className="relative rounded-2xl border border-primary/10 bg-bg-main p-7 flex flex-col justify-between shadow-sm transition-all duration-300 hover:border-cta hover:shadow-xl hover:bg-white cursor-pointer group/stage"
               >
                 <div>
-                  <div className="inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-bold text-primary mb-4">
+                  <div className="inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-bold text-primary mb-4 transition-colors group-hover/stage:bg-primary group-hover/stage:text-cta">
                     Stage 0{index + 1} • {item.step}
                   </div>
                   
@@ -194,7 +195,7 @@ export default function BrandIdentity() {
                     </div>
                   </div>
 
-                  <div className="my-5 flex justify-center text-primary/30">
+                  <div className="my-5 flex justify-center text-primary/30 transition-transform duration-300 group-hover/stage:translate-y-1 group-hover/stage:text-cta">
                     <ArrowRight className="w-5 h-5 rotate-90" />
                   </div>
 
@@ -226,7 +227,12 @@ export default function BrandIdentity() {
 
           <div className="mt-12 grid gap-8 md:grid-cols-2">
             {/* Chaos Pathway */}
-            <motion.div {...reveal} className="rounded-none bg-white p-8 md:p-10 border border-primary/10 shadow-lg relative overflow-hidden">
+            <motion.div
+              {...reveal}
+              whileHover={{ y: -6, scale: 1.01 }}
+              className="rounded-none bg-white p-8 md:p-10 border border-primary/10 shadow-lg relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-primary/30 group/card"
+            >
+              <QuraCornerBrackets color="navy" size="md" />
               <div className="text-xs font-bold uppercase tracking-[.2em] text-red-600">The Traditional Path</div>
               <h4 className="mt-3 text-2xl font-bold text-primary font-heading">Information Overload & Chaos</h4>
               <div className="mt-8 space-y-4">
@@ -237,19 +243,29 @@ export default function BrandIdentity() {
                   { title: "UNCERTAINTY", desc: "Fear of making a costly mistake" },
                   { title: "BAD DECISIONS", desc: "Buying the wrong plan under pressure" },
                 ].map((step, idx) => (
-                  <div key={step.title} className="flex items-center gap-4 p-3 rounded-xl bg-red-50/60 border border-red-100">
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-red-100 text-xs font-bold text-red-700">0{idx + 1}</span>
+                  <motion.div
+                    key={step.title}
+                    whileHover={{ x: 6, scale: 1.015 }}
+                    transition={{ duration: 0.2 }}
+                    className="flex items-center gap-4 p-3.5 rounded-xl bg-red-50/60 border border-red-100/80 transition-all duration-300 hover:bg-red-100/90 hover:border-red-300 hover:shadow-md cursor-pointer group/step"
+                  >
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-red-100 text-xs font-bold text-red-700 transition-all duration-300 group-hover/step:bg-red-600 group-hover/step:text-white group-hover/step:scale-110">0{idx + 1}</span>
                     <div>
-                      <div className="text-xs font-bold text-red-800 tracking-wider">{step.title}</div>
-                      <div className="text-sm text-red-900/80">{step.desc}</div>
+                      <div className="text-xs font-bold text-red-800 tracking-wider transition-colors group-hover/step:text-red-950">{step.title}</div>
+                      <div className="text-sm text-red-900/80 transition-colors group-hover/step:text-red-950">{step.desc}</div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
 
             {/* QURA Pathway */}
-            <motion.div {...reveal} transition={{ delay: 0.15 }} className="rounded-none bg-primary p-8 md:p-10 text-white shadow-xl relative overflow-hidden">
+            <motion.div
+              {...reveal}
+              transition={{ delay: 0.15 }}
+              whileHover={{ y: -6, scale: 1.01 }}
+              className="rounded-none bg-primary p-8 md:p-10 text-white shadow-xl relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-white/30 border border-transparent group/card"
+            >
               <QuraCornerBrackets color="white" size="md" />
               <div className="text-xs font-bold uppercase tracking-[.2em] text-cta">The QURA Way</div>
               <h4 className="mt-3 text-2xl font-bold text-white font-heading">Thoughtful Curation & Clarity</h4>
@@ -261,13 +277,18 @@ export default function BrandIdentity() {
                   { title: "GUIDANCE", desc: "Personalized advice tailored to your life stage" },
                   { title: "CONFIDENCE", desc: "Deciding with complete understanding" },
                 ].map((step, idx) => (
-                  <div key={step.title} className="flex items-center gap-4 p-3 rounded-xl bg-white/10 border border-white/15">
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cta text-xs font-bold text-primary">0{idx + 1}</span>
+                  <motion.div
+                    key={step.title}
+                    whileHover={{ x: 6, scale: 1.015 }}
+                    transition={{ duration: 0.2 }}
+                    className="flex items-center gap-4 p-3.5 rounded-xl bg-white/10 border border-white/15 transition-all duration-300 hover:bg-white/20 hover:border-cta/50 hover:shadow-lg hover:shadow-black/20 cursor-pointer group/step"
+                  >
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cta text-xs font-bold text-primary transition-all duration-300 group-hover/step:scale-110 group-hover/step:bg-cta-hover group-hover/step:shadow-md">0{idx + 1}</span>
                     <div>
-                      <div className="text-xs font-bold text-cta tracking-wider">{step.title}</div>
-                      <div className="text-sm text-white/90">{step.desc}</div>
+                      <div className="text-xs font-bold text-cta tracking-wider transition-colors group-hover/step:text-white">{step.title}</div>
+                      <div className="text-sm text-white/90 transition-colors group-hover/step:text-white">{step.desc}</div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
@@ -277,7 +298,12 @@ export default function BrandIdentity() {
         {/* 5. Purpose, Mission & Vision (Page 10 of Brand Book) */}
         <div className="mt-24">
           <div className="grid gap-6 md:grid-cols-3">
-            <motion.div {...reveal} className="rounded-none bg-white p-8 border border-primary/10 shadow-lg relative overflow-hidden">
+            <motion.div
+              {...reveal}
+              whileHover={{ y: -6, scale: 1.015 }}
+              className="rounded-none bg-white p-8 border border-primary/10 shadow-lg relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-primary/30 group"
+            >
+              <QuraCornerBrackets color="navy" size="sm" />
               <div className="text-xs font-bold uppercase tracking-[.2em] text-cta bg-primary px-2.5 py-1 rounded inline-block">Brand Purpose</div>
               <h4 className="mt-5 text-3xl font-bold text-primary font-heading">Purpose</h4>
               <p className="mt-4 leading-relaxed text-secondary text-base">
@@ -285,7 +311,12 @@ export default function BrandIdentity() {
               </p>
             </motion.div>
 
-            <motion.div {...reveal} transition={{ delay: 0.1 }} className="rounded-none bg-primary p-8 text-white shadow-xl relative overflow-hidden">
+            <motion.div
+              {...reveal}
+              transition={{ delay: 0.1 }}
+              whileHover={{ y: -6, scale: 1.015 }}
+              className="rounded-none bg-primary p-8 text-white shadow-xl relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-white/30 border border-transparent group"
+            >
               <QuraCornerBrackets color="white" size="sm" />
               <div className="text-xs font-bold uppercase tracking-[.2em] text-cta">Brand Mission</div>
               <h4 className="mt-5 text-3xl font-bold text-white font-heading">Mission</h4>
@@ -294,7 +325,12 @@ export default function BrandIdentity() {
               </p>
             </motion.div>
 
-            <motion.div {...reveal} transition={{ delay: 0.2 }} className="rounded-none bg-cta p-8 text-primary shadow-lg relative overflow-hidden">
+            <motion.div
+              {...reveal}
+              transition={{ delay: 0.2 }}
+              whileHover={{ y: -6, scale: 1.015 }}
+              className="rounded-none bg-cta p-8 text-primary shadow-lg relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-primary/30 border border-transparent group"
+            >
               <QuraCornerBrackets color="navy" size="sm" />
               <div className="text-xs font-bold uppercase tracking-[.2em] text-primary/70">Brand Vision</div>
               <h4 className="mt-5 text-3xl font-bold text-primary font-heading">Vision</h4>
@@ -367,15 +403,15 @@ export default function BrandIdentity() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  whileHover={{ y: -6 }}
-                  className="rounded-none border border-primary/10 bg-white p-7 shadow-lg flex flex-col justify-between transition hover:border-cta hover:shadow-xl relative overflow-hidden"
+                  whileHover={{ y: -8, scale: 1.015 }}
+                  className="rounded-none border border-primary/10 bg-white p-7 shadow-lg flex flex-col justify-between transition-all duration-300 hover:border-primary/30 hover:shadow-2xl relative overflow-hidden group/pillar cursor-pointer"
                 >
-                  <QuraCornerBrackets color="lime" size="sm" />
+                  <QuraCornerBrackets color="navy" size="sm" />
                   <div>
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-cta shadow-md">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-cta shadow-md transition-transform duration-300 group-hover/pillar:scale-110 group-hover/pillar:bg-cta group-hover/pillar:text-primary">
                       <IconComp className="w-6 h-6" />
                     </div>
-                    <h4 className="mt-6 text-2xl font-semibold text-primary font-heading">{pillar.title}</h4>
+                    <h4 className="mt-6 text-2xl font-semibold text-primary font-heading transition-colors group-hover/pillar:text-primary">{pillar.title}</h4>
                     <div className="mt-1 text-xs font-bold uppercase tracking-[.14em] text-secondary">{pillar.tagline}</div>
                     <p className="mt-4 text-sm leading-relaxed text-secondary">{pillar.desc}</p>
                   </div>

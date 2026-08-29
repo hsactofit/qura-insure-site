@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 
 interface QuraCornerBracketsProps {
-  color?: "lime" | "white" | "navy" | "current";
+  color?: "lime" | "white" | "navy" | "blue" | "current";
   size?: "sm" | "md" | "lg";
   className?: string;
 }
@@ -17,6 +17,7 @@ export default function QuraCornerBrackets({
     lime: "text-accent",
     white: "text-white",
     navy: "text-primary",
+    blue: "text-primary",
     current: "text-current",
   };
 
