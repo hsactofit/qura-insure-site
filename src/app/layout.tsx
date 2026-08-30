@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
-import { Inclusive_Sans, Space_Grotesk } from "next/font/google";
+import { Inclusive_Sans, Zalando_Sans_Expanded } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 
 const inclusiveSans = Inclusive_Sans({
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
   subsets: ["latin"],
   variable: "--font-inclusive-sans",
 });
 
-const spaceGrotesk = Space_Grotesk({
-  weight: ["400", "500", "600", "700"],
+const zalandoSansExpanded = Zalando_Sans_Expanded({
+  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
   subsets: ["latin"],
-  variable: "--font-heading-grotesk",
+  variable: "--font-zalando-sans-expanded",
 });
 
 export const metadata: Metadata = {
@@ -44,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inclusiveSans.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={`${inclusiveSans.variable} ${zalandoSansExpanded.variable}`}>
       <body className="font-sans min-h-screen flex flex-col overflow-x-hidden">
         <Navbar />
         <main className="flex-1">

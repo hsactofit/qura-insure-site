@@ -2,9 +2,8 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { Shield, HeartPulse, Building, Lock, PhoneOff, Scale, LifeBuoy, BadgeCheck } from "lucide-react";
+import { Shield, HeartPulse, Building, Lock, PhoneOff, Scale, LifeBuoy, BadgeCheck, User } from "lucide-react";
 import { BENEFITS } from "@/data/content";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 const iconMap = {
@@ -129,7 +128,7 @@ export default function Benefits() {
                        <div className="flex -space-x-3">
                           {[1,2,3,4].map((i) => (
                              <div key={i} className="w-10 h-10 rounded-full border-2 border-surface-mint bg-white flex items-center justify-center text-xs font-bold text-primary overflow-hidden">
-                               <Image src="/logos/Colour Logomark.svg" alt="User" width={20} height={20} className="opacity-50" />
+                               <User size={20} className="text-primary/50" />
                              </div>
                           ))}
                           <div className="w-10 h-10 rounded-full border-2 border-surface-mint bg-surface-sage flex items-center justify-center text-xs font-bold text-accent">+</div>
@@ -139,7 +138,7 @@ export default function Benefits() {
                           {/* Floating Advisor UI */}
                           <div className="animate-float-fast bg-surface p-4 rounded-xl shadow-xl border border-border-subtle flex items-center gap-3 w-max relative z-10">
                             <div className="w-10 h-10 rounded-full bg-accent border-2 border-surface flex items-center justify-center text-white shrink-0 overflow-hidden">
-                               <Image src="/logos/White Logomark.svg" alt="Advisor" width={16} height={16} />
+                               <User size={16} className="text-white" />
                             </div>
                             <div>
                                <div className="text-xs font-bold text-primary">Your Dedicated Advisor</div>

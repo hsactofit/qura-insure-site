@@ -1,9 +1,8 @@
 ﻿"use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Shield, Activity, Users } from "lucide-react";
+import { ArrowRight, Shield, Activity, Users, User } from "lucide-react";
 import { useRef } from "react";
 
 export default function Hero() {
@@ -49,7 +48,7 @@ export default function Hero() {
             <div className="flex -space-x-1.5">
                {[1,2,3].map(i => (
                   <div key={i} className="w-6 h-6 rounded-full border border-surface bg-surface-sage flex items-center justify-center overflow-hidden">
-                     <Image src={`/logos/Colour Logomark.svg`} alt="User" width={12} height={12} className="opacity-50" />
+                     <User size={12} className="text-primary/50" />
                   </div>
                ))}
             </div>
@@ -129,7 +128,7 @@ export default function Hero() {
           >
              <div className="relative">
                 <div className="w-12 h-12 rounded-full border-2 border-border-subtle bg-surface-sage flex items-center justify-center overflow-hidden">
-                   <Image src={`/logos/Colour Logomark.svg`} alt="Advisor" width={24} height={24} className="opacity-60" />
+                   <User size={24} className="text-primary/60" />
                 </div>
                 <div className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-accent border-2 border-surface" />
              </div>

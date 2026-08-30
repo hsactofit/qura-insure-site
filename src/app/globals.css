@@ -33,7 +33,7 @@
   --color-border-subtle: #C2C8D0;
 
   --font-sans: var(--font-inclusive-sans), "Inclusive Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-heading: "Zalando Sans Expanded", var(--font-heading-grotesk), "Space Grotesk", sans-serif;
+  --font-heading: var(--font-zalando-sans-expanded), "Zalando Sans Expanded", sans-serif;
 }
 
 @layer base {

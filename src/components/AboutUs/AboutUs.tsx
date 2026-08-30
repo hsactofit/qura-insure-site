@@ -209,7 +209,7 @@ export default function AboutUs() {
             </div>
           </motion.div>
 
-          <div className="relative min-h-[520px]">
+          <div className="relative min-h-[320px]">
             <AnimatePresence mode="wait">
               {(() => {
                 const person = operationalLeaders[activeLeader];
@@ -220,10 +220,10 @@ export default function AboutUs() {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -40 }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className="group relative grid min-h-[520px] overflow-hidden rounded-none md:rounded-sm border border-white/10 bg-white/[.06] backdrop-blur-sm lg:grid-cols-[.82fr_1.18fr]"
+                    className="group relative grid min-h-[320px] overflow-hidden rounded-none md:rounded-sm border border-white/10 bg-white/[.06] backdrop-blur-sm lg:grid-cols-[.82fr_1.18fr]"
                   >
                     <QuraCornerBrackets color="lime" size="md" />
-                    <div className="relative h-[460px] lg:h-full overflow-hidden bg-white">
+                    <div className="relative h-[260px] lg:h-full overflow-hidden bg-white">
                       <Image
                         src={person.image}
                         alt={person.name}
@@ -232,25 +232,25 @@ export default function AboutUs() {
                           person.name === "Jigar Maniar" ? "object-cover object-[center_10%] scale-105" : "object-contain object-bottom"
                         } transition duration-700 group-hover:scale-[1.07]`}
                       />
-                      <div className="absolute top-5 right-5 z-10 drop-shadow-xl">
-                        <Image src="/logos/Colour Logomark.svg" alt="QURA Logomark" width={64} height={64} className="h-14 w-14 md:h-16 md:w-16" />
+                      <div className="absolute top-3 right-3 z-10 drop-shadow-xl">
+                        <Image src="/logos/Colour Logomark.svg" alt="QURA Logomark" width={40} height={40} className="h-8 w-8 md:h-10 md:w-10" />
                       </div>
                       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-primary/40 to-transparent" />
-                      <div className="absolute bottom-5 left-5 rounded-2xl bg-cta px-5 py-3 text-primary shadow-xl">
-                        <div className="text-xs font-bold uppercase tracking-[.16em]">{person.role}</div>
+                      <div className="absolute bottom-3 left-3 rounded-2xl bg-cta px-3 py-1.5 text-primary shadow-xl">
+                        <div className="text-[11px] font-bold uppercase tracking-[.16em]">{person.role}</div>
                       </div>
                     </div>
 
-                    <div className="flex flex-col justify-between p-8 md:p-12 lg:p-14">
+                    <div className="flex flex-col justify-between p-5 md:p-6 lg:p-8">
                       <div>
-                        <div className="text-xs font-bold uppercase tracking-[.2em] text-cta">{person.role}</div>
-                        <h3 className="mt-4 text-4xl font-semibold tracking-[-.035em] md:text-5xl">{person.name}</h3>
-                        <p className="mt-6 text-xl leading-relaxed text-white/90">{person.intro}</p>
-                        <p className="mt-4 leading-relaxed text-white/62">{person.detail}</p>
+                        <div className="text-[11px] font-bold uppercase tracking-[.2em] text-cta">{person.role}</div>
+                        <h3 className="mt-2 text-2xl font-semibold tracking-[-.035em] md:text-3xl">{person.name}</h3>
+                        <p className="mt-3 text-base leading-relaxed text-white/90">{person.intro}</p>
+                        <p className="mt-2 text-xs leading-relaxed text-white/62">{person.detail}</p>
                       </div>
-                      <div className="mt-8 flex flex-wrap gap-3">
+                      <div className="mt-4 flex flex-wrap gap-2">
                         {person.strengths.map((strength) => (
-                          <span key={strength} className="rounded-full border border-white/15 bg-white/[.07] px-4 py-2 text-sm font-semibold text-white/80">
+                          <span key={strength} className="rounded-full border border-white/15 bg-white/[.07] px-2.5 py-1 text-[11px] font-semibold text-white/80">
                             {strength}
                           </span>
                         ))}
