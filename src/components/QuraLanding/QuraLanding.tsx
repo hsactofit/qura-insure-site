@@ -4,11 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, BadgeCheck, CheckCircle2, ChevronLeft, ChevronRight, HeartHandshake, LifeBuoy, Minus, Plus, Quote, ShieldCheck, Sparkles } from "lucide-react";
-import { BENEFITS, FAQS, PROCESS_STEPS, STATS, TESTIMONIALS } from "@/data/content";
+import { ArrowRight, BadgeCheck, CheckCircle2, ChevronLeft, ChevronRight, HeartHandshake, LifeBuoy, Minus, Plus, ShieldCheck, Sparkles } from "lucide-react";
+import { BENEFITS, FAQS, PROCESS_STEPS } from "@/data/content";
 import AboutUs from "@/components/AboutUs/AboutUs";
 import CoveragePlans from "@/components/CoveragePlans/CoveragePlans";
-import CountUp from "@/components/Stats/CountUp";
 import BrandIdentity from "@/components/BrandIdentity/BrandIdentity";
 import QuraCornerBrackets from "@/components/Common/QuraCornerBrackets";
 
@@ -21,11 +20,9 @@ const reveal = {
 
 export default function QuraLanding() {
   const [activeFaq, setActiveFaq] = useState(-1);
-  const [activeTestimonial, setActiveTestimonial] = useState(1);
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 900], [0, 110]);
   const heroScale = useTransform(scrollY, [0, 900], [1.04, 1.14]);
-  const moveTestimonial = (direction: number) => setActiveTestimonial((current) => (current + direction + TESTIMONIALS.length) % TESTIMONIALS.length);
 
   const whyUsRef = useRef<HTMLElement>(null);
   const { scrollYProgress: whyUsScroll } = useScroll({
@@ -54,29 +51,6 @@ export default function QuraLanding() {
               <Link href="#products" className="inline-flex items-center rounded-full border border-white/35 bg-white/10 px-7 py-4 font-semibold text-white backdrop-blur-md transition hover:bg-white/20">Explore coverage</Link>
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      <section className="border-y border-primary/10 py-24 md:py-32">
-        <div className="mx-auto max-w-7xl px-6 md:px-10">
-          <motion.p {...reveal} className="text-center text-3xl font-semibold md:text-4xl">Trusted by families, backed by <span className="font-editorial">clarity and care</span></motion.p>
-          <div className="mx-auto mt-16 grid max-w-5xl gap-6 md:grid-cols-3 md:items-stretch">
-            {STATS.slice(0, 3).map((stat, index) => (
-              <motion.div
-                key={`stat-${stat.label || index}`}
-                {...reveal}
-                whileHover={{ y: -10, scale: 1.025 }}
-                transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                className="qura-glow group flex min-h-[260px] cursor-pointer flex-col justify-between overflow-hidden rounded-[1.75rem] border border-primary/10 bg-white p-8 transition-all duration-300 hover:border-primary/25 hover:shadow-[0_22px_55px_rgba(10,35,66,0.13)]"
-              >
-                <div className="text-sm font-semibold text-text-muted transition-colors duration-300 group-hover:text-primary">{stat.label}</div>
-                <div className="my-auto text-center text-5xl font-semibold tracking-[-.05em] text-primary transition-transform duration-300 group-hover:scale-105 md:text-6xl">
-                  <CountUp value={stat.value} />
-                </div>
-                <p className="text-sm leading-relaxed text-text-muted">Reliable protection supported by expert guidance and transparent recommendations.</p>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -165,49 +139,6 @@ export default function QuraLanding() {
       <BrandIdentity />
 
       <AboutUs />
-
-      <section id="reviews" className="overflow-hidden bg-[#edf1f4] py-28 md:py-36">
-        <div className="mx-auto max-w-7xl px-6 md:px-10">
-          <div>
-            <span className="text-sm font-bold uppercase tracking-[.2em] text-accent">Client stories</span>
-            <h2 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight tracking-[-.04em] md:text-6xl">
-              Straight from the families <span className="font-editorial">we help every day</span>
-            </h2>
-          </div>
-          <div className="mt-16 grid gap-6 lg:grid-cols-3 lg:items-center">
-            {TESTIMONIALS.map((testimonial, index) => {
-              const selected = index === activeTestimonial;
-              return (
-                <motion.article
-                  key={`testimonial-${testimonial.name || index}`}
-                  onMouseEnter={() => setActiveTestimonial(index)}
-                  animate={{
-                    scale: selected ? 1.05 : 0.90,
-                    rotate: selected ? 0 : index < activeTestimonial ? -5 : 5,
-                    opacity: selected ? 1 : 0.52,
-                    y: selected ? -10 : 10,
-                  }}
-                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                  className={`relative cursor-pointer rounded-[1.75rem] border p-8 transition-all duration-300 ${
-                    selected
-                      ? "z-20 border-primary/20 bg-white shadow-[0_25px_60px_rgba(10,35,66,0.14)]"
-                      : "z-0 border-primary/10 bg-[#f8f6f1]/80 shadow-md"
-                  }`}
-                >
-                  <Quote className={selected ? "text-accent" : "text-accent/60"} size={38} />
-                  <p className={`mt-8 text-lg leading-relaxed transition-colors duration-300 ${selected ? "text-primary font-medium" : "text-text-muted"}`}>
-                    {testimonial.quote}
-                  </p>
-                  <div className="mt-9 border-t border-primary/10 pt-6">
-                    <div className="font-bold text-primary">{testimonial.name}</div>
-                    <div className="mt-1 text-sm text-text-muted">{testimonial.designation}</div>
-                  </div>
-                </motion.article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
 
       <section id="faq" className="py-28 md:py-36">
         <div className="mx-auto grid max-w-7xl gap-14 px-6 md:px-10 lg:grid-cols-[.8fr_1.2fr]"><div><span className="text-sm font-bold uppercase tracking-[.2em] text-accent">Need to know</span><h2 className="mt-5 text-4xl font-semibold leading-tight tracking-[-.04em] md:text-6xl">Frequently asked <span className="font-editorial">questions</span></h2><p className="mt-6 text-lg leading-relaxed text-text-muted">Straight answers about advice, pricing, policy issuance, and the support you receive after buying.</p><motion.div whileHover={{ rotate: -1, scale: 1.015 }} className="group relative mt-10 aspect-[4/3] overflow-hidden rounded-[1.75rem]"><Image src="/qura-policy-guidance.png" alt="Simple policy comparison and guidance" fill className="object-cover transition duration-700 group-hover:scale-105" /></motion.div></div><div className="space-y-4">{FAQS.map((faq, index) => { const open = activeFaq === index; return <div key={faq.question} className="overflow-hidden rounded-[1.5rem] border border-primary/10 bg-white transition-shadow hover:shadow-lg"><button onClick={() => setActiveFaq(open ? -1 : index)} className="flex w-full items-center justify-between gap-6 p-6 text-left text-lg font-semibold md:p-7 md:text-xl"><span>{faq.question}</span><motion.span animate={{ rotate: open ? 180 : 0 }}>{open ? <Minus /> : <Plus />}</motion.span></button><AnimatePresence initial={false}>{open && <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}><p className="px-6 pb-7 leading-relaxed text-text-muted md:px-7">{faq.answer}</p></motion.div>}</AnimatePresence></div>; })}</div></div>

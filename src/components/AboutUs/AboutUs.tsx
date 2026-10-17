@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Award, Briefcase, Building2, CheckCircle2, ShieldCheck, UserCheck } from "lucide-react";
 import QuraCornerBrackets from "@/components/Common/QuraCornerBrackets";
+import { IRDAI_REGISTRATION, isRegistrationComplete } from "@/data/content";
 
 const promoter = {
   name: "Devendra Ghodnadikar",
@@ -62,7 +63,6 @@ const operationalLeaders = [
 ];
 
 const certificates = [
-  { title: "IRDAI Brokerage / Agency License", desc: "Registered & approved insurance intermediary" },
   { title: "Principal Officer (PO) Certificate", desc: "IRDAI certified Principal Officer governance" },
   { title: "Specified Person (SP) Certifications", desc: "Certified advisors for transparent policy guidance" },
 ];
@@ -276,7 +276,33 @@ export default function AboutUs() {
             </div>
           </div>
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+          {isRegistrationComplete() && (
+            <div className="mt-8 grid gap-4 lg:grid-cols-[.9fr_1.1fr]">
+              <div className="rounded-2xl border border-cta/30 bg-primary/60 p-5">
+                <div className="text-sm font-bold text-white">IRDAI Corporate Agent Registration</div>
+                <dl className="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-xs">
+                  <dt className="text-white/60">Registration No.</dt>
+                  <dd className="font-semibold text-white">{IRDAI_REGISTRATION.registrationNumber}</dd>
+                  <dt className="text-white/60">Category</dt>
+                  <dd className="font-semibold text-white">Corporate Agent ({IRDAI_REGISTRATION.category})</dd>
+                  <dt className="text-white/60">Valid</dt>
+                  <dd className="font-semibold text-white">{IRDAI_REGISTRATION.validFrom} to {IRDAI_REGISTRATION.validTill}</dd>
+                </dl>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-primary/60 p-5">
+                <div className="text-sm font-bold text-white">Insurer Partners</div>
+                <ul className="mt-4 grid gap-2 text-xs sm:grid-cols-2">
+                  {IRDAI_REGISTRATION.insurerPartners.map((insurer) => (
+                    <li key={insurer.name} className="text-white/80">
+                      {insurer.name} <span className="text-white/50">({insurer.line})</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
+
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
             {certificates.map((cert) => (
               <div key={cert.title} className="rounded-2xl border border-white/10 bg-primary/60 p-5">
                 <div className="text-sm font-bold text-white">{cert.title}</div>

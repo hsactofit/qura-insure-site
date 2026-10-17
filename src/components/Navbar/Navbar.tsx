@@ -65,7 +65,7 @@ export default function Navbar() {
 
           <div className="hidden md:flex items-center gap-6">
             <Link
-              href="#login"
+              href="https://app.qurainsure.com"
               className="text-sm font-semibold text-text-muted hover:text-text-main transition-colors"
             >
               Log in
@@ -114,7 +114,7 @@ export default function Navbar() {
             <div className="h-px w-full bg-border-subtle my-2" />
             <div className="flex flex-col gap-4">
               <Link
-                href="#login"
+                href="https://app.qurainsure.com"
                 className="text-center py-3 text-base font-medium text-primary bg-surface-mint hover:bg-bg-main transition-colors rounded-lg"
                 onClick={() => setMobileMenuOpen(false)}
               >

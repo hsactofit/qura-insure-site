@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { IRDAI_REGISTRATION, isRegistrationComplete } from "@/data/content";
 
 export default function Footer() {
   return (
@@ -67,6 +68,8 @@ export default function Footer() {
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
           <p>&copy; {new Date().getFullYear()} Qura Insure. All rights reserved.</p>
           <p>
+            {isRegistrationComplete() &&
+              `IRDAI Corporate Agent (${IRDAI_REGISTRATION.category}) Reg. No. ${IRDAI_REGISTRATION.registrationNumber}, valid till ${IRDAI_REGISTRATION.validTill}. `}
             Qura Insure is a registered trademark. Insurance is the subject matter of solicitation.
           </p>
         </div>

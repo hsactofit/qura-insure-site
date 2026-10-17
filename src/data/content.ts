@@ -3,7 +3,6 @@ export const NAV_LINKS = [
   { name: "How it Works", href: "#how-it-works" },
   { name: "Why Us", href: "#why-us" },
   { name: "About Us", href: "#team" },
-  { name: "Reviews", href: "#reviews" },
   { name: "FAQ", href: "#faq" },
 ];
 
@@ -74,27 +73,6 @@ export const BENEFITS = [
   },
 ];
 
-export const TESTIMONIALS = [
-  {
-    quote: "Qura made buying insurance incredibly simple. Their advisors were patient and explained everything in detail.",
-    name: "Ananya Sharma",
-    designation: "Product Manager, Bengaluru",
-    rating: 5,
-  },
-  {
-    quote: "I was confused about which health policy to pick. Qura helped me compare and choose the right one without any pressure.",
-    name: "Rohan Mehta",
-    designation: "Software Engineer, Pune",
-    rating: 5,
-  },
-  {
-    quote: "The claims process was exactly as they promised. Smooth, fast, and completely hassle-free. Highly recommended!",
-    name: "Meera Iyer",
-    designation: "Business Owner, Chennai",
-    rating: 5,
-  },
-];
-
 export const FAQS = [
   {
     question: "Do you charge any advisory fees?",
@@ -114,9 +92,31 @@ export const FAQS = [
   },
 ];
 
-export const STATS = [
-  { value: "50K+", label: "Happy Customers" },
-  { value: "₹100Cr+", label: "Claims Settled" },
-  { value: "4.9/5", label: "Average Rating" },
-  { value: "24/7", label: "Expert Support" },
-];
+// IRDAI requires a corporate agent to display its registration number, category,
+// validity and the insurers it has tie-ups with. Fill these from the IRDAI
+// certificate of registration; the compliance block and footer line stay hidden
+// until every field is filled, so nothing incorrect is ever shown.
+export type CorporateAgentCategory = "Life" | "General" | "Health" | "Composite";
+
+export const IRDAI_REGISTRATION: {
+  registrationNumber: string;
+  category: CorporateAgentCategory | "";
+  validFrom: string;
+  validTill: string;
+  insurerPartners: { name: string; line: "Life" | "General" | "Health" }[];
+} = {
+  registrationNumber: "",
+  category: "",
+  validFrom: "",
+  validTill: "",
+  insurerPartners: [],
+};
+
+export const isRegistrationComplete = () =>
+  Boolean(
+    IRDAI_REGISTRATION.registrationNumber &&
+      IRDAI_REGISTRATION.category &&
+      IRDAI_REGISTRATION.validFrom &&
+      IRDAI_REGISTRATION.validTill &&
+      IRDAI_REGISTRATION.insurerPartners.length > 0,
+  );
