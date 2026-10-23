@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { ArrowRight, Briefcase, Building2, Handshake, User, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const CLIENT_APP_URL = process.env.NEXT_PUBLIC_CLIENT_APP_URL ?? "https://app.qurainsure.com";
+const CLIENT_APP_URL = process.env.NEXT_PUBLIC_CLIENT_APP_URL ?? "https://qura-client-panel.vercel.app";
 const CRM_APP_URL = process.env.NEXT_PUBLIC_CRM_APP_URL ?? "https://qura-crrm-panel.vercel.app";
 
 const OPTIONS = [
