@@ -22,11 +22,6 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
   title: "Qura Insure | Insurance that actually makes sense",
   description: "Get the best insurance coverage with expert advice and seamless experience.",
-  icons: {
-    icon: "/logos/Colour Logomark.svg",
-    shortcut: "/logos/Colour Logomark.svg",
-    apple: "/logos/Colour Logomark.svg",
-  },
   openGraph: {
     title: "Qura Insure | Insurance that actually makes sense",
     description: "Get the best insurance coverage with expert advice and seamless experience.",

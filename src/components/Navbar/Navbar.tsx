@@ -3,14 +3,16 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { LogIn, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NAV_LINKS } from "@/data/content";
 import { cn } from "@/lib/utils";
+import SignInDialog from "./SignInDialog";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [signInOpen, setSignInOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,19 +65,22 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-6">
-            <Link
-              href="https://app.qurainsure.com"
-              className="text-sm font-semibold text-text-muted hover:text-text-main transition-colors"
-            >
-              Log in
-            </Link>
+          <div className="hidden md:flex items-center gap-3">
             <Link
               href="#contact"
               className="px-6 py-3 bg-primary text-white hover:bg-dark text-sm font-semibold rounded-full transition-all duration-300 shadow-lg shadow-primary/15 hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98]"
             >
               Book a free call
             </Link>
+            <button
+              type="button"
+              onClick={() => setSignInOpen(true)}
+              aria-haspopup="dialog"
+              className="inline-flex items-center gap-2 px-5 py-3 bg-accent text-primary hover:bg-accent-hover text-sm font-semibold rounded-full transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98]"
+            >
+              <LogIn size={16} />
+              Sign in
+            </button>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -113,13 +118,18 @@ export default function Navbar() {
             </nav>
             <div className="h-px w-full bg-border-subtle my-2" />
             <div className="flex flex-col gap-4">
-              <Link
-                href="https://app.qurainsure.com"
-                className="text-center py-3 text-base font-medium text-primary bg-surface-mint hover:bg-bg-main transition-colors rounded-lg"
-                onClick={() => setMobileMenuOpen(false)}
+              <button
+                type="button"
+                aria-haspopup="dialog"
+                className="inline-flex items-center justify-center gap-2 py-3 text-base font-medium text-primary bg-bg-main hover:bg-surface-sage transition-colors rounded-lg"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setSignInOpen(true);
+                }}
               >
-                Log in
-              </Link>
+                <LogIn size={18} />
+                Sign in
+              </button>
               <Link
                 href="#contact"
                 className="text-center py-3 text-base font-medium text-text-inverse bg-cta hover:bg-cta-hover text-primary transition-colors rounded-lg shadow-sm"
@@ -131,6 +141,8 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <SignInDialog open={signInOpen} onClose={() => setSignInOpen(false)} />
     </motion.header>
   );
 }

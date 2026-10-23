@@ -37,7 +37,7 @@
 }
 
 @layer base {
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: clip; }
   body {
     @apply bg-bg-main text-text-main font-sans antialiased selection:bg-surface-sage selection:text-primary;
     background-image: radial-gradient(circle at 15% 0%, rgba(189,242,110,.11), transparent 24rem);
