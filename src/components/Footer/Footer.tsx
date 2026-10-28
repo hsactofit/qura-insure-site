@@ -38,28 +38,28 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-bold mb-6">Products</h4>
             <ul className="space-y-4 text-sm">
-              <li><Link href="#products" className="text-link-muted hover:text-cta transition-colors">Term Life Insurance</Link></li>
-              <li><Link href="#products" className="text-link-muted hover:text-cta transition-colors">Health Insurance</Link></li>
-              <li><Link href="#products" className="text-link-muted hover:text-cta transition-colors">Corporate Plans</Link></li>
+              <li><Link href="/#products" className="text-link-muted hover:text-cta transition-colors">Term Life Insurance</Link></li>
+              <li><Link href="/#products" className="text-link-muted hover:text-cta transition-colors">Health Insurance</Link></li>
+              <li><Link href="/#products" className="text-link-muted hover:text-cta transition-colors">Corporate Plans</Link></li>
             </ul>
           </div>
           
           <div>
             <h4 className="text-white font-bold mb-6">Company</h4>
             <ul className="space-y-4 text-sm">
-              <li><Link href="#team" className="text-link-muted hover:text-cta transition-colors">About Us</Link></li>
-              <li><Link href="#contact" className="text-link-muted hover:text-cta transition-colors">Careers</Link></li>
-              <li><Link href="#why-us" className="text-link-muted hover:text-cta transition-colors">Blog</Link></li>
-              <li><Link href="#contact" className="text-link-muted hover:text-cta transition-colors">Contact</Link></li>
+              <li><Link href="/#team" className="text-link-muted hover:text-cta transition-colors">About Us</Link></li>
+              <li><Link href="/#contact" className="text-link-muted hover:text-cta transition-colors">Careers</Link></li>
+              <li><Link href="/blog" className="text-link-muted hover:text-cta transition-colors">Blog</Link></li>
+              <li><Link href="/#contact" className="text-link-muted hover:text-cta transition-colors">Contact</Link></li>
             </ul>
           </div>
           
           <div>
             <h4 className="text-white font-bold mb-6">Legal</h4>
             <ul className="space-y-4 text-sm">
-              <li><Link href="#faq" className="text-link-muted hover:text-cta transition-colors">Privacy Policy</Link></li>
-              <li><Link href="#faq" className="text-link-muted hover:text-cta transition-colors">Terms of Service</Link></li>
-              <li><Link href="#faq" className="text-link-muted hover:text-cta transition-colors">Refund Policy</Link></li>
+              <li><Link href="/#faq" className="text-link-muted hover:text-cta transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/#faq" className="text-link-muted hover:text-cta transition-colors">Terms of Service</Link></li>
+              <li><Link href="/#faq" className="text-link-muted hover:text-cta transition-colors">Refund Policy</Link></li>
             </ul>
           </div>
           
