@@ -67,7 +67,7 @@ export default function Navbar() {
 
           <div className="hidden md:flex items-center gap-3">
             <Link
-              href="#contact"
+              href="/#contact"
               className="px-6 py-3 bg-primary text-white hover:bg-dark text-sm font-semibold rounded-full transition-all duration-300 shadow-lg shadow-primary/15 hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98]"
             >
               Book a free call
@@ -131,7 +131,7 @@ export default function Navbar() {
                 Sign in
               </button>
               <Link
-                href="#contact"
+                href="/#contact"
                 className="text-center py-3 text-base font-medium text-text-inverse bg-cta hover:bg-cta-hover text-primary transition-colors rounded-lg shadow-sm"
                 onClick={() => setMobileMenuOpen(false)}
               >
