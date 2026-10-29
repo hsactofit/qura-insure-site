@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Inclusive_Sans, Zalando_Sans_Expanded } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
+import { RANKMESH_BEACON_URL } from "@/lib/rankmesh/config.server";
 
 const inclusiveSans = Inclusive_Sans({
   weight: ["300", "400", "500", "600", "700"],
@@ -48,6 +50,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <Script src={RANKMESH_BEACON_URL} strategy="afterInteractive" />
       </body>
     </html>
   );

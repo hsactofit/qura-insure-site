@@ -1,13 +1,31 @@
-import { NextResponse } from "next/server";
+import { NextResponse, type NextFetchEvent, type NextRequest } from "next/server";
+import { AI_BOTS, RANKMESH_BOT_TRACK_URL, RANKMESH_PROJECT_ID } from "@/lib/rankmesh/config.server";
 import { isContentUnavailable } from "@/lib/rankmesh/content-store";
 import { contentStore } from "@/lib/rankmesh/store.server";
 
 /**
+ * All pages: report AI crawler visits to RankMesh in the background.
+ *
  * Blog routes: hydrate/refresh the in-memory snapshot before rendering, and
  * answer 503 (pages cannot set that status themselves) when no snapshot has
  * ever been loaded and RankMesh is unreachable.
  */
-export async function proxy() {
+export async function proxy(req: NextRequest, event: NextFetchEvent) {
+  const { pathname } = req.nextUrl;
+  const ua = req.headers.get("user-agent") ?? "";
+  if (AI_BOTS.some((bot) => ua.includes(bot))) {
+    event.waitUntil(
+      fetch(RANKMESH_BOT_TRACK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ project_id: RANKMESH_PROJECT_ID, page: pathname, ua, timestamp: Date.now() }),
+        signal: AbortSignal.timeout(5000),
+      }).catch(() => {}),
+    );
+  }
+
+  if (pathname !== "/blog" && !pathname.startsWith("/blog/")) return NextResponse.next();
+
   try {
     await contentStore.ensureFreshSnapshot();
   } catch (error) {
@@ -24,7 +42,7 @@ export async function proxy() {
   return NextResponse.next();
 }
 
-export const config = { matcher: ["/blog", "/blog/:path*"] };
+export const config = { matcher: ["/((?!_next|api|favicon|.*\\..*).*)"] };
 
 const UNAVAILABLE_HTML = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">

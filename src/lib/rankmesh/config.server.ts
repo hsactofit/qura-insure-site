@@ -23,6 +23,17 @@ export const RANKMESH_POSTS_ENDPOINT =
 
 export const RANKMESH_LOCALE = "en";
 
+export const RANKMESH_PROJECT_ID = "1ccb3eed-610c-40e3-9a7a-6a546a82bf49";
+export const RANKMESH_BEACON_URL = `https://rankmeshapi.krickbiz.digital/projects/${RANKMESH_PROJECT_ID}/analytics/beacon.js`;
+export const RANKMESH_BOT_TRACK_URL = "https://rankmeshapi.krickbiz.digital/track/bot";
+
+/** User-agent substrings of AI crawlers reported to RankMesh. */
+export const AI_BOTS = [
+  "GPTBot", "OAI-SearchBot", "ChatGPT-User", "PerplexityBot", "Perplexity-User",
+  "ClaudeBot", "Claude-User", "anthropic-ai", "Google-Extended", "Applebot-Extended",
+  "Amazonbot", "Bytespider", "meta-externalagent", "cohere-ai", "YouBot",
+];
+
 /** Production origin used for canonical URLs and the sitemap (never the request Host). */
 export const SITE_URL = "https://qurainsure.com";
 export const SITE_NAME = "Qura Insure";
