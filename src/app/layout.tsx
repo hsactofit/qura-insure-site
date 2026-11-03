@@ -51,6 +51,19 @@ export default function RootLayout({
         </main>
         <Footer />
         <Script src={RANKMESH_BEACON_URL} strategy="afterInteractive" />
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-87PDS2ZV3J"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-87PDS2ZV3J');
+          `}
+        </Script>
       </body>
     </html>
   );
