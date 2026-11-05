@@ -35,7 +35,7 @@ export default function SignInDialog({ open, onClose }: { open: boolean; onClose
       onClose={onClose}
       onClick={(e) => e.target === ref.current && onClose()}
       aria-labelledby="signin-title"
-      className="fixed inset-0 m-auto h-fit max-h-[calc(100dvh-2rem)] w-[min(28rem,calc(100vw-2rem))] max-w-none overflow-y-auto rounded-3xl border border-border-subtle bg-surface p-0 text-text-main shadow-[0_30px_80px_rgba(10,35,66,.28)] backdrop:bg-primary/45 backdrop:backdrop-blur-sm"
+      className="fixed inset-0 m-auto h-fit max-h-[calc(100dvh-2rem)] w-[min(28rem,calc(100vw-2rem))] max-w-none overflow-y-auto rounded-3xl border border-border-subtle bg-surface p-0 text-text-main shadow-[0_30px_80px_rgba(17,37,65,.28)] backdrop:bg-primary/45 backdrop:backdrop-blur-sm"
     >
       <div className="p-6 sm:p-8">
         <div className="mb-6 flex items-start justify-between gap-4">

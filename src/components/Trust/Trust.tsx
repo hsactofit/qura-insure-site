@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+
 
 const providerLogos: { name: string; src: string }[] = [
   // TODO: replace with real partner/underwriter logos once supplied by the client

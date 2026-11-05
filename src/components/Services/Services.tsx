@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Shield, HeartPulse, Building, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+
 
 export default function Services() {
   const containerRef = useRef(null);
@@ -64,7 +64,7 @@ export default function Services() {
                 Term Life Insurance
               </h3>
               <p className="text-text-muted text-lg leading-relaxed mb-8 max-w-md">
-                Secure your family's financial future with comprehensive term life coverage. We strip away the jargon to give you transparent protection.
+                Secure your family&apos;s financial future with comprehensive term life coverage. We strip away the jargon to give you transparent protection.
               </p>
               
               <ul className="space-y-3 mb-10">

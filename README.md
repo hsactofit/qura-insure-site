@@ -18,7 +18,15 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project uses `next/font/local` to self-host QURA's approved Inclusive Sans and Zalando Sans Expanded fonts, including their italic variants. The variable TTFs and their SIL Open Font License files are in `src/app/fonts`, sourced from the Google Fonts repository. Builds do not fetch fonts from Google.
+
+## Brand and booking configuration
+
+The brand implementation follows the supplied QURA Brand Book v0.1 (cover labelled August 2027). Colour tokens use the embedded RGB swatches from page 37, with tints from page 38; the book does not print hex specifications. Confirm any later palette revision against the designer's master artwork. Logo filenames follow the book: primary is horizontal, secondary is stacked.
+
+Set `NEXT_PUBLIC_BOOKING_URL` to the approved booking page, `mailto:` address, or `tel:` destination and rebuild to enable direct appointment links. When it is unset, the contact section explains that booking is not yet available and offers the FAQ; it does not display a nonfunctional booking button. Placeholder social, careers and legal destinations have been removed. Add approved destinations and legal documents when supplied.
+
+See [the completed changes](output/brand-fixes.md) for the implementation summary and verification results.
 
 ## Learn More
 

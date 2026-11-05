@@ -139,7 +139,7 @@ export default function ImageContent() {
               No jargon. No hidden clauses. Just clarity.
             </h2>
             <p className="text-lg text-text-muted mb-8 font-medium">
-              Insurance documents are notoriously difficult to read. Our advisors break down complex policies into simple, understandable terms so you know exactly what you're buying.
+              Insurance documents are notoriously difficult to read. Our advisors break down complex policies into simple, understandable terms so you know exactly what you&apos;re buying.
             </p>
             
             <ul className="space-y-4">

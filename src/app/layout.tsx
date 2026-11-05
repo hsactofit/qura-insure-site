@@ -1,38 +1,42 @@
 import type { Metadata } from "next";
-import { Inclusive_Sans, Zalando_Sans_Expanded } from "next/font/google";
+import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import { RANKMESH_BEACON_URL } from "@/lib/rankmesh/config.server";
 
-const inclusiveSans = Inclusive_Sans({
-  weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
+const inclusiveSans = localFont({
+  src: [
+    { path: "./fonts/InclusiveSans.ttf", weight: "300 700", style: "normal" },
+    { path: "./fonts/InclusiveSans-Italic.ttf", weight: "300 700", style: "italic" },
+  ],
+  display: "swap",
   variable: "--font-inclusive-sans",
 });
 
-const zalandoSansExpanded = Zalando_Sans_Expanded({
-  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
+const zalandoSansExpanded = localFont({
+  src: [
+    { path: "./fonts/ZalandoSansExpanded.ttf", weight: "200 900", style: "normal" },
+    { path: "./fonts/ZalandoSansExpanded-Italic.ttf", weight: "200 900", style: "italic" },
+  ],
+  display: "swap",
   variable: "--font-zalando-sans-expanded",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
-  title: "Qura Insure | Insurance that actually makes sense",
-  description: "Get the best insurance coverage with expert advice and seamless experience.",
+  title: "Qura Insure | Confidence, Curated.",
+  description: "Research-led insurance advisory. Thoughtfully curated options, clear explanations, and personalised guidance for confident decisions.",
   openGraph: {
-    title: "Qura Insure | Insurance that actually makes sense",
-    description: "Get the best insurance coverage with expert advice and seamless experience.",
-    images: [{ url: "/og.png", width: 1680, height: 945, alt: "Qura Insure" }],
+    title: "Qura Insure | Confidence, Curated.",
+    description: "Research-led insurance advisory. Thoughtfully curated options, clear explanations, and personalised guidance for confident decisions.",
+    images: [{ url: "/og.png", width: 1680, height: 945, alt: "QURA INSURE — Confidence, Curated." }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Qura Insure | Insurance that actually makes sense",
-    description: "Get the best insurance coverage with expert advice and seamless experience.",
+    title: "Qura Insure | Confidence, Curated.",
+    description: "Research-led insurance advisory. Thoughtfully curated options, clear explanations, and personalised guidance for confident decisions.",
     images: ["/og.png"],
   },
 };

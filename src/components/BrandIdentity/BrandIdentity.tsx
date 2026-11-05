@@ -2,20 +2,20 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, Compass, HelpCircle, Layers, Lightbulb, Shield, Sparkles, Target } from "lucide-react";
+import { ArrowRight, CheckCircle2, Compass, HelpCircle, Layers, Lightbulb, Shield } from "lucide-react";
 import QuraCornerBrackets from "@/components/Common/QuraCornerBrackets";
 
 const brandPillars = [
   {
     title: "Research",
     tagline: "Evidence before opinion",
-    desc: "We analyze hundreds of policy terms, exclusions, and claim ratios so you never have to guess.",
+    desc: "We examine policy terms, exclusions, and claims information to explain what each recommendation means for you.",
     icon: SearchIcon,
   },
   {
     title: "Curation",
     tagline: "The right options, thoughtfully selected",
-    desc: "We filter out low-value clutter and present only top-tier plans that match your exact life stage.",
+    desc: "We evaluate policy terms and select suitable options around your needs, responsibilities, and life stage.",
     icon: Layers,
   },
   {
@@ -30,6 +30,20 @@ const brandPillars = [
     desc: "Personalized advice before buying, dedicated support during issuance, and advocacy during claims.",
     icon: Compass,
   },
+  {
+    title: "Confidence",
+    tagline: "Turning understanding into informed action",
+    desc: "Understand why a recommendation fits, weigh the trade-offs, and take your next step with confidence.",
+    icon: Shield,
+  },
+];
+
+const coreValues = [
+  { title: "Integrity", description: "Doing what is right, even when no one is watching." },
+  { title: "Transparency", description: "Making every recommendation honest, open, and easy to understand." },
+  { title: "Empathy", description: "Putting people and their needs before products." },
+  { title: "Expertise", description: "Bringing knowledge, research, and experience to every decision." },
+  { title: "Responsibility", description: "Taking ownership of every recommendation and its impact." },
 ];
 
 function SearchIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -67,13 +81,13 @@ const reveal = {
 
 export default function BrandIdentity() {
   return (
-    <section id="why-us" className="relative py-28 md:py-36 bg-bg-main overflow-hidden">
+    <section id="our-approach" className="relative py-28 md:py-36 bg-bg-main overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
 
         {/* 1. Core Brand Manifesto Header */}
         <motion.div {...reveal} className="text-center max-w-4xl mx-auto flex flex-col items-center">
           <Image
-            src="/logos/Colour Primary Logo.svg"
+            src="/logos/Colour Secondary Logo.svg"
             alt="QURA INSURE Primary Logo"
             width={160}
             height={140}
@@ -82,7 +96,7 @@ export default function BrandIdentity() {
           />
           <span className="text-sm font-bold uppercase tracking-[.2em] text-secondary">The QURA Identity</span>
           <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-[-.04em] md:text-6xl text-primary font-heading">
-            Confidence isn&apos;t found. <span className="font-editorial text-cta bg-primary px-3 py-1 rounded-xl inline-block mt-2 md:mt-0">It&apos;s curated.</span>
+            Confidence isn&apos;t found. <span className="font-brand-emphasis text-cta bg-primary px-3 py-1 rounded-xl inline-block mt-2 md:mt-0">It&apos;s curated.</span>
           </h2>
           <p className="mt-6 text-xl leading-relaxed text-secondary max-w-2xl mx-auto">
             Insurance has become increasingly accessible, but making the right decision has become increasingly difficult. QURA exists to transform complexity into clarity.
@@ -103,7 +117,7 @@ export default function BrandIdentity() {
               <h3 className="mt-6 text-3xl font-semibold leading-snug font-heading">
                 We don&apos;t sell insurance.
               </h3>
-              <p className="mt-3 text-2xl font-editorial text-cta">
+              <p className="mt-3 text-2xl font-brand-emphasis text-cta">
                 We help people choose it.
               </p>
             </div>
@@ -125,12 +139,12 @@ export default function BrandIdentity() {
               <h3 className="mt-6 text-3xl font-semibold leading-snug font-heading text-primary">
                 We don&apos;t compare.
               </h3>
-              <p className="mt-3 text-2xl font-editorial text-primary font-bold">
+              <p className="mt-3 text-2xl font-brand-emphasis text-primary font-bold">
                 We curate clarity.
               </p>
             </div>
             <div className="mt-8 text-sm text-primary/80 border-t border-primary/15 pt-5 font-medium">
-              Translating 1000+ policy variations into 1 right plan.
+              Thoughtful research. Suitable options. A clear recommendation.
             </div>
           </motion.div>
 
@@ -147,7 +161,7 @@ export default function BrandIdentity() {
               <h3 className="mt-6 text-3xl font-semibold leading-snug font-heading">
                 We don&apos;t create urgency.
               </h3>
-              <p className="mt-3 text-2xl font-editorial text-cta">
+              <p className="mt-3 text-2xl font-brand-emphasis text-cta">
                 We create confidence.
               </p>
             </div>
@@ -163,7 +177,7 @@ export default function BrandIdentity() {
           <motion.div {...reveal} className="max-w-3xl">
             <span className="text-xs font-bold uppercase tracking-[.2em] text-cta">Customer Transformation</span>
             <h3 className="mt-3 text-3xl font-semibold text-white md:text-5xl font-heading">
-              From uncertainty to <span className="font-editorial text-cta">understanding.</span>
+              From uncertainty to <span className="font-brand-emphasis text-cta">understanding.</span>
             </h3>
             <p className="mt-4 text-lg text-white/80">
               Understanding why you are protected matters just as much as being protected.
@@ -218,7 +232,7 @@ export default function BrandIdentity() {
           <motion.div {...reveal} className="text-center max-w-3xl mx-auto">
             <span className="text-xs font-bold uppercase tracking-[.2em] text-secondary">The Problem & Solution</span>
             <h3 className="mt-3 text-3xl font-semibold text-primary md:text-5xl font-heading">
-              Why traditional insurance <span className="font-editorial text-secondary">fails.</span>
+              Why choosing insurance can feel <span className="font-brand-emphasis text-secondary">overwhelming.</span>
             </h3>
             <p className="mt-4 text-lg text-secondary">
               Consumers have never had more information, yet confidence continues to decline. QURA exists to transform chaos into confidence.
@@ -348,7 +362,7 @@ export default function BrandIdentity() {
             <div>
               <span className="text-xs font-bold uppercase tracking-[.2em] text-cta">Logo Story & Symbolism</span>
               <h3 className="mt-3 text-3xl font-semibold text-white md:text-5xl font-heading">
-                Inspired by the <span className="font-editorial text-cta">compass needle.</span>
+                Inspired by the <span className="font-brand-emphasis text-cta">compass needle.</span>
               </h3>
               <p className="mt-5 text-lg leading-relaxed text-white/85">
                 Finding the right insurance isn&apos;t about having more options—it&apos;s about having the right direction. Inspired by a compass needle, the QURA symbol represents guidance, confidence, and purposeful decision-making.
@@ -371,7 +385,7 @@ export default function BrandIdentity() {
             </div>
             <div className="flex flex-col items-center justify-center p-8 bg-white/5 rounded-2xl border border-white/10 backdrop-blur">
               <Image
-                src="/logos/White Primary Logo.svg"
+                src="/logos/White Secondary Logo.svg"
                 alt="QURA INSURE Logo Symbolism"
                 width={280}
                 height={280}
@@ -389,11 +403,11 @@ export default function BrandIdentity() {
           <motion.div {...reveal} className="text-center max-w-3xl mx-auto">
             <span className="text-xs font-bold uppercase tracking-[.2em] text-secondary">Our Foundation</span>
             <h3 className="mt-3 text-3xl font-semibold text-primary md:text-5xl font-heading">
-              Built on 4 core <span className="font-editorial text-secondary">brand pillars</span>
+              Built on 5 core <span className="font-brand-emphasis text-secondary">brand pillars</span>
             </h3>
           </motion.div>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-5">
             {brandPillars.map((pillar, index) => {
               const IconComp = pillar.icon;
               return (
@@ -411,7 +425,7 @@ export default function BrandIdentity() {
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-cta shadow-md transition-transform duration-300 group-hover/pillar:scale-110 group-hover/pillar:bg-cta group-hover/pillar:text-primary">
                       <IconComp className="w-6 h-6" />
                     </div>
-                    <h4 className="mt-6 text-2xl font-semibold text-primary font-heading transition-colors group-hover/pillar:text-primary">{pillar.title}</h4>
+                    <h4 className="mt-6 text-xl font-semibold text-primary font-heading transition-colors group-hover/pillar:text-primary">{pillar.title}</h4>
                     <div className="mt-1 text-xs font-bold uppercase tracking-[.14em] text-secondary">{pillar.tagline}</div>
                     <p className="mt-4 text-sm leading-relaxed text-secondary">{pillar.desc}</p>
                   </div>
@@ -421,6 +435,17 @@ export default function BrandIdentity() {
           </div>
         </div>
 
+        <div className="mt-24 border-t border-border-subtle pt-16">
+          <h3 className="text-3xl font-semibold md:text-5xl">The values behind every recommendation</h3>
+          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {coreValues.map((value) => (
+              <div key={value.title}>
+                <h4 className="text-xl font-bold">{value.title}</h4>
+                <p className="mt-3 leading-relaxed text-secondary">{value.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

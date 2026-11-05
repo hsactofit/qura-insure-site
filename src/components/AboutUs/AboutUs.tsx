@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Award, Briefcase, Building2, CheckCircle2, ShieldCheck, UserCheck } from "lucide-react";
+import { Award, Building2, CheckCircle2, ShieldCheck, UserCheck } from "lucide-react";
 import QuraCornerBrackets from "@/components/Common/QuraCornerBrackets";
 import { IRDAI_REGISTRATION, isRegistrationComplete } from "@/data/content";
 
@@ -99,7 +99,7 @@ export default function AboutUs() {
           <div>
             <span className="text-sm font-bold uppercase tracking-[.2em] text-cta">About Qura Insure</span>
             <h2 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight tracking-[-.04em] md:text-6xl">
-              Experience you can trust. <span className="font-editorial text-cta">People you can reach.</span>
+              Experience you can trust. <span className="font-brand-emphasis text-cta">People you can reach.</span>
             </h2>
           </div>
           <p className="max-w-md text-lg leading-relaxed text-white/65">
@@ -232,7 +232,7 @@ export default function AboutUs() {
                           person.name === "Jigar Maniar" ? "object-cover object-[center_10%] scale-105" : "object-contain object-bottom"
                         } transition duration-700 group-hover:scale-[1.07]`}
                       />
-                      <div className="absolute top-3 right-3 z-10 drop-shadow-xl">
+                      <div className="absolute top-3 right-3 z-10 p-2">
                         <Image src="/logos/Colour Logomark.svg" alt="QURA Logomark" width={40} height={40} className="h-8 w-8 md:h-10 md:w-10" />
                       </div>
                       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-primary/40 to-transparent" />

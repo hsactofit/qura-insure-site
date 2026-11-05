@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { LogIn, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { NAV_LINKS } from "@/data/content";
+import { BOOKING_URL, NAV_LINKS } from "@/data/content";
 import { cn } from "@/lib/utils";
 import SignInDialog from "./SignInDialog";
 
@@ -38,21 +38,21 @@ export default function Navbar() {
       )}
     >
       <div className="container mx-auto px-6 max-w-7xl">
-        <div className={cn("flex items-center justify-between rounded-full border px-4 md:px-6 transition-all duration-300", isScrolled ? "bg-white/92 backdrop-blur-xl border-white/80 shadow-[0_16px_45px_rgba(11,36,66,.14)] py-2.5" : "bg-white/90 backdrop-blur-md border-white/80 shadow-[0_10px_35px_rgba(11,36,66,.10)] py-3")}>
-          <Link href="/" className="relative z-50 flex items-center ml-2 md:ml-3 transition-transform duration-300 hover:scale-[1.02] active:scale-95">
+        <div className={cn("flex items-center justify-between rounded-full border px-4 md:px-6 transition-all duration-300", isScrolled ? "bg-white/92 backdrop-blur-xl border-white/80 shadow-[0_16px_45px_rgba(17,37,65,.14)] py-2.5" : "bg-white/90 backdrop-blur-md border-white/80 shadow-[0_10px_35px_rgba(17,37,65,.10)] py-3")}>
+          <Link href="/" className="relative z-50 flex items-center ml-2 p-3 transition-transform duration-300 hover:scale-[1.02] active:scale-95">
             <Image
-              src="/logos/Colour Secondary Logo.svg"
+              src="/logos/Colour Primary Logo.svg"
               alt="Qura Insure Horizontal Logo"
               width={160}
               height={46}
-              className="h-8 md:h-9 lg:h-10 w-auto transition-all duration-300"
+              className="h-9 lg:h-10 w-auto transition-all duration-300"
               style={{ width: "auto" }}
               priority
             />
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-5 lg:gap-7">
+          <nav className="hidden xl:flex items-center gap-5 lg:gap-7">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.name}
@@ -65,12 +65,12 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden xl:flex items-center gap-3">
             <Link
-              href="/#contact"
+              href={BOOKING_URL ?? "/#contact"}
               className="px-6 py-3 bg-primary text-white hover:bg-dark text-sm font-semibold rounded-full transition-all duration-300 shadow-lg shadow-primary/15 hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98]"
             >
-              Book a free call
+              Talk to an advisor
             </Link>
             <button
               type="button"
@@ -85,7 +85,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden relative z-50 p-2 -mr-2 text-primary rounded-lg hover:bg-bg-main transition-colors"
+            className="xl:hidden relative z-50 p-2 -mr-2 text-primary rounded-lg hover:bg-bg-main transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -102,7 +102,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-[calc(100%+12px)] left-6 right-6 bg-surface rounded-3xl border border-border-subtle shadow-2xl px-6 py-8 flex flex-col gap-6 md:hidden max-h-[calc(100vh-100px)] overflow-y-auto"
+            className="absolute top-[calc(100%+12px)] left-6 right-6 bg-surface rounded-3xl border border-border-subtle shadow-2xl px-6 py-8 flex flex-col gap-6 xl:hidden max-h-[calc(100vh-100px)] overflow-y-auto"
           >
             <nav className="flex flex-col gap-6">
               {NAV_LINKS.map((link) => (
@@ -131,11 +131,11 @@ export default function Navbar() {
                 Sign in
               </button>
               <Link
-                href="/#contact"
+                href={BOOKING_URL ?? "/#contact"}
                 className="text-center py-3 text-base font-medium text-text-inverse bg-cta hover:bg-cta-hover text-primary transition-colors rounded-lg shadow-sm"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Book a free call
+                Talk to an advisor
               </Link>
             </div>
           </motion.div>

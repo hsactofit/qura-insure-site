@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { PROCESS_STEPS } from "@/data/content";
-import Image from "next/image";
+
 import { Check, ShieldCheck, HeartPulse, ShieldAlert } from "lucide-react";
 
 export default function Process() {

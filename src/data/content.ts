@@ -1,3 +1,6 @@
+// Supply the approved appointment destination before enabling direct booking.
+export const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL?.trim() || null;
+
 export const NAV_LINKS = [
   { name: "Products", href: "/#products" },
   { name: "How it Works", href: "/#how-it-works" },
@@ -37,7 +40,7 @@ export const PROCESS_STEPS = [
   {
     step: "02",
     title: "Expert Recommendations",
-    description: "Our advisors curate the best policies from top insurers, explaining the pros and cons clearly.",
+    description: "Our advisors research suitable policies, explaining their benefits, exclusions, and trade-offs clearly.",
   },
   {
     step: "03",
@@ -46,7 +49,7 @@ export const PROCESS_STEPS = [
   },
   {
     step: "04",
-    title: "Lifetime Support",
+    title: "Ongoing Support",
     description: "From claim settlements to policy renewals, we are always by your side.",
   },
 ];
@@ -64,7 +67,7 @@ export const BENEFITS = [
   },
   {
     title: "Claim Assistance",
-    description: "Our dedicated claims team ensures you get your money when you need it the most.",
+    description: "Our claims team helps you prepare documents, understand the process, and follow up with your insurer. Claims are assessed by the insurer under your policy terms.",
     icon: "LifeBuoy",
   },
   {
@@ -81,11 +84,11 @@ export const FAQS = [
   },
   {
     question: "Why shouldn't I just buy directly from the insurer?",
-    answer: "Buying through us costs exactly the same as buying directly. However, we provide unbiased advice, help you compare across insurers, and offer dedicated lifetime claims support.",
+    answer: "Buying through us costs exactly the same as buying directly. However, we provide unbiased advice, help you compare across insurers, and offer ongoing claims guidance.",
   },
   {
     question: "How long does the policy issuance take?",
-    answer: "Most health and term insurance policies are issued within 2-3 working days, provided all required documents and medical checks (if any) are completed.",
+    answer: "Issuance timelines depend on the insurer, the policy, underwriting, and any required documents or medical checks. Your advisor will explain the steps and help you track progress.",
   },
   {
     question: "Will you help me if my claim gets rejected?",

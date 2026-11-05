@@ -49,7 +49,7 @@ export default async function ArticlePage({ params }: PageProps<"/blog/[slug]">)
 
       {article.featuredImageUrl && (
         <div className="container mx-auto px-6 max-w-5xl mb-12">
-          <div className="aspect-[16/9] rounded-[2rem] overflow-hidden border border-border-subtle bg-surface-sage shadow-[0_24px_70px_rgba(11,36,66,.07)]">
+          <div className="aspect-[16/9] rounded-[2rem] overflow-hidden border border-border-subtle bg-surface-sage shadow-[0_24px_70px_rgba(17,37,65,.07)]">
             <BlogImage src={article.featuredImageUrl} alt={article.featuredImageAlt ?? ""} priority />
           </div>
         </div>

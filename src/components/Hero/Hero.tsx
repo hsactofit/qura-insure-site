@@ -62,7 +62,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 transition={{ duration: 0.6, delay: i * 0.1, ease: [0.2, 0.65, 0.3, 0.9] }}
-                className={word === "actually" || word === "makes" || word === "sense." ? "font-editorial text-accent" : "text-primary"}
+                className={word === "actually" || word === "makes" || word === "sense." ? "font-brand-emphasis text-accent" : "text-primary"}
               >
                 {word}
               </motion.span>
@@ -139,7 +139,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Main Dashboard Window */}
-          <div className="absolute inset-0 bg-white rounded-t-[2rem] md:rounded-t-[3rem] border-[8px] border-white shadow-[0_30px_90px_rgba(11,36,66,.22)] overflow-hidden flex flex-col">
+          <div className="absolute inset-0 bg-white rounded-t-[2rem] md:rounded-t-[3rem] border-[8px] border-white shadow-[0_30px_90px_rgba(17,37,65,.22)] overflow-hidden flex flex-col">
             {/* Window Header */}
             <div className="h-12 border-b border-border-subtle flex items-center px-6 bg-bg-main gap-2 shrink-0">
                <div className="flex gap-1.5">

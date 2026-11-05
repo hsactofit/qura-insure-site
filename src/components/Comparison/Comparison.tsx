@@ -1,9 +1,9 @@
 ﻿"use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { X, Check } from "lucide-react";
-import { cn } from "@/lib/utils";
+
 
 const TRADITIONAL_ITEMS = [
   "Confusing jargon",
@@ -34,17 +34,6 @@ export default function Comparison() {
   const headingColor = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], ["#101A16", "#FFFFFF", "#FFFFFF", "#101A16"]);
   const subtextColor = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], ["#66716B", "#FFFFFFb3", "#FFFFFFb3", "#66716B"]);
 
-  // Staggered reveals for the checklist items (from 0.3 to 0.7 of scroll)
-  const itemOpacities = QURA_ITEMS.map((_, i) => {
-    const start = 0.3 + (i * 0.08);
-    return useTransform(scrollYProgress, [start, start + 0.1], [0, 1]);
-  });
-  
-  const itemY = QURA_ITEMS.map((_, i) => {
-    const start = 0.3 + (i * 0.08);
-    return useTransform(scrollYProgress, [start, start + 0.1], [20, 0]);
-  });
-
   return (
     <motion.section 
       ref={containerRef} 
@@ -66,7 +55,7 @@ export default function Comparison() {
         <div className="container mx-auto px-6 max-w-5xl relative z-10 w-full">
           <div className="text-center mb-16">
             <motion.h2 style={{ color: headingColor }} className="text-3xl md:text-5xl font-extrabold mb-6 tracking-tight">
-              Insurance doesn't have to be hard
+              Insurance doesn&apos;t have to be hard
             </motion.h2>
             <motion.p style={{ color: subtextColor }} className="text-lg font-medium">
               See why thousands are choosing the QURA way.
@@ -111,16 +100,7 @@ export default function Comparison() {
               <h3 className="text-xl font-bold text-primary mb-8 pb-4 border-b border-border-subtle">The QURA Way</h3>
               <ul className="space-y-6">
                 {QURA_ITEMS.map((item, i) => (
-                  <motion.li 
-                    key={i} 
-                    style={{ opacity: itemOpacities[i], y: itemY[i] }}
-                    className="flex items-center gap-4 text-primary"
-                  >
-                    <div className="w-6 h-6 rounded-full bg-cta text-primary flex items-center justify-center shrink-0 shadow-sm shadow-accent/30">
-                      <Check size={14} strokeWidth={3} />
-                    </div>
-                    <span className="font-bold text-lg">{item}</span>
-                  </motion.li>
+                  <ComparisonItem key={item} item={item} index={i} progress={scrollYProgress} />
                 ))}
               </ul>
             </motion.div>
@@ -128,5 +108,17 @@ export default function Comparison() {
         </div>
       </div>
     </motion.section>
+  );
+}
+
+function ComparisonItem({ item, index, progress }: { item: string; index: number; progress: MotionValue<number> }) {
+  const start = 0.3 + index * 0.08;
+  const opacity = useTransform(progress, [start, start + 0.1], [0, 1]);
+  const y = useTransform(progress, [start, start + 0.1], [20, 0]);
+  return (
+    <motion.li style={{ opacity, y }} className="flex items-center gap-4 text-primary">
+      <div className="w-6 h-6 rounded-full bg-cta text-primary flex items-center justify-center shrink-0 shadow-sm shadow-accent/30"><Check size={14} strokeWidth={3} /></div>
+      <span className="font-bold text-lg">{item}</span>
+    </motion.li>
   );
 }

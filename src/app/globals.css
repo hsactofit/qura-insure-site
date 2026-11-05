@@ -1,36 +1,36 @@
 @import "tailwindcss";
 
 @theme {
-  /* Official QURA INSURE Brand Palette (August 2026) */
-  --color-primary: #0A2342;       /* Navy Blue Primary */
-  --color-secondary: #4A697D;     /* Steel Blue Secondary */
-  --color-accent: #BDF26E;        /* Lime Green Accent */
-  --color-accent-hover: #CEF592;  /* Lime Green 75% Tint */
-  --color-ice-blue: #F2F8FF;      /* Ice Blue Light */
-  --color-dark: #232323;          /* Dark Charcoal */
+  /* QURA Brand Book v0.1 (cover: August 2027), embedded RGB swatches. */
+  --color-primary: #112541;       /* Navy Blue Primary */
+  --color-secondary: #3E6B7F;     /* Steel Blue Secondary */
+  --color-accent: #BEDB72;        /* Lime Green Accent */
+  --color-accent-hover: #CBE295;  /* Lime Green 75% Tint */
+  --color-ice-blue: #F4FAFD;      /* Ice Blue Light */
+  --color-dark: #202121;          /* Dark Charcoal */
 
-  --color-cta: #BDF26E;
-  --color-cta-hover: #CEF592;
+  --color-cta: #BEDB72;
+  --color-cta-hover: #CBE295;
 
   /* Brand Tints */
-  --color-navy-75: #475A71;
-  --color-navy-50: #8591A1;
-  --color-navy-25: #C2C8D0;
+  --color-navy-75: #395972;
+  --color-navy-50: #7896A3;
+  --color-navy-25: #C1CED5;
 
-  --color-lime-75: #CEF592;
-  --color-lime-50: #DEF9B7;
-  --color-lime-25: #EFFCDB;
+  --color-lime-75: #CBE295;
+  --color-lime-50: #DEECB9;
+  --color-lime-25: #F1F6DE;
 
   /* Neutrals */
-  --color-bg-main: #F2F8FF;       /* Ice Blue Light background */
+  --color-bg-main: #F4FAFD;       /* Ice Blue Light background */
   --color-surface: #FFFFFF;       /* Pure White */
-  --color-surface-sage: #EFFCDB;  /* Lime 25% Tint */
+  --color-surface-sage: #F1F6DE;  /* Lime 25% Tint */
 
-  --color-text-main: #0A2342;
-  --color-text-muted: #4A697D;
+  --color-text-main: #112541;
+  --color-text-muted: #3E6B7F;
   --color-text-inverse: #FFFFFF;
 
-  --color-border-subtle: #C2C8D0;
+  --color-border-subtle: #C1CED5;
 
   --font-sans: var(--font-inclusive-sans), "Inclusive Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-heading: var(--font-zalando-sans-expanded), "Zalando Sans Expanded", sans-serif;
@@ -40,31 +40,30 @@
   html { scroll-behavior: smooth; overflow-x: clip; }
   body {
     @apply bg-bg-main text-text-main font-sans antialiased selection:bg-surface-sage selection:text-primary;
-    background-image: radial-gradient(circle at 15% 0%, rgba(189,242,110,.11), transparent 24rem);
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     letter-spacing: -0.03em;
   }
   a, button { outline-offset: 4px; }
-  :focus-visible { outline: 3px solid #8BA637; }
+  :focus-visible { outline: 3px solid #112541; }
 }
 
 @layer utilities {
   .text-balance { text-wrap: balance; }
   .bg-dot-pattern {
-    background-image: radial-gradient(circle, #CAD3DC 1px, transparent 1px);
+    background-image: radial-gradient(circle, #C1CED5 1px, transparent 1px);
     background-size: 24px 24px;
   }
   .bg-grid-pattern {
-    background-image: linear-gradient(to right, rgba(192,218,111,.12) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(192,218,111,.12) 1px, transparent 1px);
+    background-image: linear-gradient(to right, rgba(190,219,114,.12) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(190,219,114,.12) 1px, transparent 1px);
     background-size: 40px 40px;
   }
   .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   .hide-scrollbar::-webkit-scrollbar { display: none; }
-  .font-editorial { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-weight: 500; }
-  .section-shell { border-radius: 2rem; border: 1px solid var(--color-border-subtle); background: rgba(255,255,255,.76); box-shadow: 0 24px 70px rgba(11,36,66,.07); }
+  .font-brand-emphasis { font-family: var(--font-heading); font-style: italic; font-weight: 700; }
+  .section-shell { border-radius: 2rem; border: 1px solid var(--color-border-subtle); background: rgba(255,255,255,.76); box-shadow: 0 24px 70px rgba(17,37,65,.07); }
 }
 
 @keyframes qura-drift {
@@ -73,8 +72,8 @@
 }
 
 @keyframes qura-glow {
-  0%, 100% { box-shadow: 0 20px 60px rgba(11,36,66,.08); }
-  50% { box-shadow: 0 28px 80px rgba(192,218,111,.24); }
+  0%, 100% { box-shadow: 0 20px 60px rgba(17,37,65,.08); }
+  50% { box-shadow: 0 28px 80px rgba(190,219,114,.24); }
 }
 
 .qura-drift { animation: qura-drift 7s ease-in-out infinite; }

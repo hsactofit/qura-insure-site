@@ -1,8 +1,8 @@
 ﻿"use client";
 
 import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { Shield, HeartPulse, Building, Lock, PhoneOff, Scale, LifeBuoy, BadgeCheck, User } from "lucide-react";
+import { motion, useScroll, useSpring } from "framer-motion";
+import { Shield, PhoneOff, Scale, LifeBuoy, BadgeCheck, User } from "lucide-react";
 import { BENEFITS } from "@/data/content";
 import { cn } from "@/lib/utils";
 
@@ -43,10 +43,10 @@ export default function Benefits() {
           className="text-center max-w-2xl mx-auto mb-20"
         >
           <h2 className="text-3xl md:text-5xl font-extrabold text-primary mb-6 tracking-tight leading-[1.1]">
-            Why you'll love <br /> working with us
+            Why you&apos;ll love <br /> working with us
           </h2>
           <p className="text-lg text-text-muted font-medium">
-            We've redesigned the insurance experience from the ground up to be exactly what it should be: transparent, helpful, and stress-free.
+            We&apos;ve redesigned the insurance experience from the ground up to be exactly what it should be: transparent, helpful, and stress-free.
           </p>
         </motion.div>
 

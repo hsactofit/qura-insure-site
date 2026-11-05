@@ -40,7 +40,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps<"/blog">
         <header className="max-w-3xl mb-14">
           <p className="text-sm font-bold uppercase tracking-[.18em] text-secondary mb-4">Qura Insure Blog</p>
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-[-.05em] text-primary leading-[1.02] mb-6 text-balance">
-            Insurance, <span className="font-editorial text-secondary">explained</span> simply.
+            Insurance, <span className="font-brand-emphasis text-secondary">explained</span> simply.
           </h1>
           <p className="text-lg md:text-xl text-text-muted font-medium leading-relaxed">{DESCRIPTION}</p>
         </header>
@@ -57,7 +57,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps<"/blog">
               const date = formatDate(article.publishedAt);
               return (
                 <li key={article.id}>
-                  <article className="group relative h-full flex flex-col rounded-[1.75rem] border border-border-subtle bg-white/80 shadow-[0_24px_70px_rgba(11,36,66,.07)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_28px_80px_rgba(11,36,66,.12)] focus-within:ring-2 focus-within:ring-accent">
+                  <article className="group relative h-full flex flex-col rounded-[1.75rem] border border-border-subtle bg-white/80 shadow-[0_24px_70px_rgba(17,37,65,.07)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_28px_80px_rgba(17,37,65,.12)] focus-within:ring-2 focus-within:ring-accent">
                     <div className="aspect-[16/9] bg-surface-sage overflow-hidden">
                       {article.featuredImageUrl && (
                         <BlogImage
