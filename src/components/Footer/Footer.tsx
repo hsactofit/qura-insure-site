@@ -5,7 +5,7 @@ import { IRDAI_REGISTRATION, isRegistrationComplete } from "@/data/content";
 export default function Footer() {
   return (
     <footer className="bg-primary text-surface-sage pt-20 pb-10 border-t border-white/10">
-      <div className="container mx-auto px-6 max-w-7xl">
+      <div className="mx-auto w-full max-w-7xl px-6 md:px-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           
           <div className="col-span-1 md:col-span-2 lg:col-span-1">
@@ -55,8 +55,8 @@ export default function Footer() {
         </div>
         
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
-          <p>&copy; {new Date().getFullYear()} Qura Insure. All rights reserved.</p>
-          <p>
+          <p className="text-center md:text-left">&copy; {new Date().getFullYear()} Qura Insure. All rights reserved.</p>
+          <p className="text-center md:text-right">
             {isRegistrationComplete() &&
               `IRDAI Corporate Agent (${IRDAI_REGISTRATION.category}) Reg. No. ${IRDAI_REGISTRATION.registrationNumber}, valid till ${IRDAI_REGISTRATION.validTill}. `}
             Insurance is the subject matter of solicitation.

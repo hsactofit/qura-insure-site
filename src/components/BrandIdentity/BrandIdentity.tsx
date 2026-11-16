@@ -104,12 +104,12 @@ export default function BrandIdentity() {
         </motion.div>
 
         {/* 2. Signature Visual Banner Grid (With Corner Brackets) */}
-        <div className="mt-16 grid gap-8 md:grid-cols-3">
+        <div className="mt-16 grid gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
           {/* Card 1: Navy Card with White Brackets */}
           <motion.div
             {...reveal}
             whileHover={{ y: -8 }}
-            className="group relative overflow-hidden rounded-none bg-primary p-9 text-white shadow-xl min-h-[320px] flex flex-col justify-between"
+            className="group relative overflow-hidden rounded-none bg-primary p-7 sm:p-9 text-white shadow-xl min-h-[280px] sm:min-h-[320px] flex flex-col justify-between"
           >
             <QuraCornerBrackets color="white" size="md" />
             <div>
@@ -131,7 +131,7 @@ export default function BrandIdentity() {
             {...reveal}
             transition={{ delay: 0.1 }}
             whileHover={{ y: -8 }}
-            className="group relative overflow-hidden rounded-none bg-cta p-9 text-primary shadow-xl min-h-[320px] flex flex-col justify-between"
+            className="group relative overflow-hidden rounded-none bg-cta p-7 sm:p-9 text-primary shadow-xl min-h-[280px] sm:min-h-[320px] flex flex-col justify-between"
           >
             <QuraCornerBrackets color="navy" size="md" />
             <div>
@@ -153,7 +153,7 @@ export default function BrandIdentity() {
             {...reveal}
             transition={{ delay: 0.2 }}
             whileHover={{ y: -8 }}
-            className="group relative overflow-hidden rounded-none bg-primary p-9 text-white shadow-xl min-h-[320px] flex flex-col justify-between"
+            className="group relative overflow-hidden rounded-none bg-primary p-7 sm:p-9 text-white shadow-xl min-h-[280px] sm:min-h-[320px] flex flex-col justify-between"
           >
             <QuraCornerBrackets color="white" size="md" />
             <div>
@@ -172,7 +172,7 @@ export default function BrandIdentity() {
         </div>
 
         {/* 3. Customer Transformation (Before vs After QURA) */}
-        <div className="mt-24 rounded-none bg-primary p-8 md:p-14 text-white shadow-2xl relative overflow-hidden">
+        <div className="mt-16 md:mt-24 rounded-none bg-primary p-7 sm:p-8 md:p-14 text-white shadow-2xl relative overflow-hidden">
           <QuraCornerBrackets color="white" size="lg" />
           <motion.div {...reveal} className="max-w-3xl">
             <span className="text-xs font-bold uppercase tracking-[.2em] text-cta">Customer Transformation</span>
@@ -184,7 +184,7 @@ export default function BrandIdentity() {
             </p>
           </motion.div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {transformationItems.map((item, index) => (
               <motion.div
                 key={item.step}
@@ -228,7 +228,7 @@ export default function BrandIdentity() {
         </div>
 
         {/* 4. The Challenge: Chaos vs QURA Flow (Page 6 of Brand Book) */}
-        <div className="mt-24">
+        <div className="mt-16 md:mt-24">
           <motion.div {...reveal} className="text-center max-w-3xl mx-auto">
             <span className="text-xs font-bold uppercase tracking-[.2em] text-secondary">The Problem & Solution</span>
             <h3 className="mt-3 text-3xl font-semibold text-primary md:text-5xl font-heading">
@@ -310,8 +310,8 @@ export default function BrandIdentity() {
         </div>
 
         {/* 5. Purpose, Mission & Vision (Page 10 of Brand Book) */}
-        <div className="mt-24">
-          <div className="grid gap-6 md:grid-cols-3">
+        <div className="mt-16 md:mt-24">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <motion.div
               {...reveal}
               whileHover={{ y: -6, scale: 1.015 }}
@@ -356,7 +356,7 @@ export default function BrandIdentity() {
         </div>
 
         {/* 6. Logo Story & Compass Symbolism (Pages 32 & 34 of Brand Book) */}
-        <div className="mt-24 rounded-none bg-primary p-8 md:p-14 text-white shadow-2xl relative overflow-hidden">
+        <div className="mt-16 md:mt-24 rounded-none bg-primary p-7 sm:p-8 md:p-14 text-white shadow-2xl relative overflow-hidden">
           <QuraCornerBrackets color="white" size="lg" />
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
@@ -389,9 +389,9 @@ export default function BrandIdentity() {
                 alt="QURA INSURE Logo Symbolism"
                 width={280}
                 height={280}
-                className="h-56 w-auto drop-shadow-2xl"
+                className="h-40 w-auto drop-shadow-2xl sm:h-56"
               />
-              <div className="mt-6 text-center text-sm font-semibold text-cta tracking-widest uppercase">
+              <div className="mt-6 text-center text-xs sm:text-sm font-semibold text-cta tracking-widest uppercase">
                 Direction • Clarity • Protection
               </div>
             </div>
@@ -399,7 +399,7 @@ export default function BrandIdentity() {
         </div>
 
         {/* 7. Core Brand Pillars */}
-        <div className="mt-24">
+        <div className="mt-16 md:mt-24">
           <motion.div {...reveal} className="text-center max-w-3xl mx-auto">
             <span className="text-xs font-bold uppercase tracking-[.2em] text-secondary">Our Foundation</span>
             <h3 className="mt-3 text-3xl font-semibold text-primary md:text-5xl font-heading">
@@ -407,7 +407,7 @@ export default function BrandIdentity() {
             </h3>
           </motion.div>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-5">
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {brandPillars.map((pillar, index) => {
               const IconComp = pillar.icon;
               return (

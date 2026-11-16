@@ -37,9 +37,9 @@ export default function Navbar() {
         isScrolled ? "py-0" : "py-0"
       )}
     >
-      <div className="container mx-auto px-6 max-w-7xl">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-10">
         <div className={cn("flex items-center justify-between rounded-full border px-4 md:px-6 transition-all duration-300", isScrolled ? "bg-white/92 backdrop-blur-xl border-white/80 shadow-[0_16px_45px_rgba(17,37,65,.14)] py-2.5" : "bg-white/90 backdrop-blur-md border-white/80 shadow-[0_10px_35px_rgba(17,37,65,.10)] py-3")}>
-          <Link href="/" className="relative z-50 flex items-center ml-2 p-3 transition-transform duration-300 hover:scale-[1.02] active:scale-95">
+          <Link href="/" className="relative z-50 flex shrink-0 items-center ml-0 sm:ml-2 p-2 sm:p-3 transition-transform duration-300 hover:scale-[1.02] active:scale-95">
             <Image
               src="/logos/Colour Primary Logo.svg"
               alt="Qura Insure Horizontal Logo"
@@ -102,7 +102,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-[calc(100%+12px)] left-6 right-6 bg-surface rounded-3xl border border-border-subtle shadow-2xl px-6 py-8 flex flex-col gap-6 xl:hidden max-h-[calc(100vh-100px)] overflow-y-auto"
+            className="absolute top-[calc(100%+12px)] left-4 right-4 sm:left-6 sm:right-6 md:left-10 md:right-10 bg-surface rounded-3xl border border-border-subtle shadow-2xl px-6 py-8 flex flex-col gap-6 xl:hidden max-h-[calc(100dvh-100px)] overflow-y-auto"
           >
             <nav className="flex flex-col gap-6">
               {NAV_LINKS.map((link) => (

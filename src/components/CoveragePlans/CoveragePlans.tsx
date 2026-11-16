@@ -73,12 +73,12 @@ export default function CoveragePlans() {
           })}
         </div>
 
-        <div className="relative mt-6 min-h-[590px] overflow-hidden rounded-none md:rounded-sm bg-primary text-white shadow-[0_34px_90px_rgba(17,37,65,.18)]">
+        <div className="relative mt-6 overflow-hidden lg:min-h-[590px] rounded-none md:rounded-sm bg-primary text-white shadow-[0_34px_90px_rgba(17,37,65,.18)]">
           <QuraCornerBrackets color="lime" size="lg" />
           <div className="absolute inset-0 bg-grid-pattern opacity-[.08]" />
           <motion.div animate={{ x: [0, 35, 0], y: [0, -24, 0] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }} className="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-cta/15 blur-3xl" />
           <AnimatePresence mode="wait">
-            <motion.div key={plan.title} initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -18 }} transition={{ duration: .35 }} className="relative grid min-h-[590px] gap-10 p-7 md:p-12 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:p-16">
+            <motion.div key={plan.title} initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -18 }} transition={{ duration: .35 }} className="relative grid gap-10 p-7 md:p-12 lg:min-h-[590px] lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:p-16">
               <div>
                 <div className="flex items-center gap-3"><span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-cta text-primary"><Icon size={24} /></span><span className="text-xs font-bold uppercase tracking-[.2em] text-cta">{plan.label}</span></div>
                 <h3 className="mt-8 max-w-xl text-4xl font-semibold leading-[1.05] tracking-[-.04em] md:text-6xl">{plan.title}</h3>
@@ -88,12 +88,12 @@ export default function CoveragePlans() {
               </div>
 
               <motion.div initial={{ opacity: 0, scale: .94, rotate: 2 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ duration: .45 }} className="relative">
-                <div className="absolute -inset-5 rounded-[2rem] border border-white/10" />
+                <div className="absolute -inset-3 rounded-[2rem] border border-white/10 sm:-inset-5" />
                 <div className="relative overflow-hidden rounded-none md:rounded-sm bg-[#F4FAFD] p-7 text-primary shadow-2xl md:p-9">
                   <QuraCornerBrackets color="navy" size="md" />
                   <div className="flex items-center justify-between"><div><div className="text-xs font-bold uppercase tracking-[.18em] text-text-muted">Protection snapshot</div><div className="mt-2 text-sm font-semibold">Guidance from QURA</div></div></div>
                   <div className="my-8 h-px bg-primary/10" />
-                  <div className="text-4xl font-semibold tracking-[-.05em] md:text-6xl">{plan.figure}</div>
+                  <div className="text-4xl font-semibold tracking-[-.05em] md:text-6xl lg:text-5xl xl:text-6xl">{plan.figure}</div>
                   <div className="mt-2 text-sm text-text-muted">{plan.figureLabel}</div>
                   <div className="mt-9 rounded-2xl border border-primary/10 bg-white p-5"><div className="text-[10px] font-bold uppercase tracking-[.18em] text-text-muted">Ideal for</div><div className="mt-2 font-semibold leading-relaxed">{plan.idealFor}</div></div>
                   <p className="mt-7 text-sm leading-relaxed text-text-muted">Your advisor explains the benefits, exclusions, and trade-offs before you choose. Final cover and terms depend on the insurer and policy.</p>

@@ -108,7 +108,7 @@ export default function AboutUs() {
         </motion.div>
 
         {/* 1. Promoter & Founder Section */}
-        <motion.div {...reveal} className="relative mt-16 overflow-hidden rounded-none md:rounded-sm border border-cta/30 bg-white/[.07] p-8 backdrop-blur-md md:p-12 lg:p-14">
+        <motion.div {...reveal} className="relative mt-16 overflow-hidden rounded-none md:rounded-sm border border-cta/30 bg-white/[.07] p-6 sm:p-8 backdrop-blur-md md:p-12 lg:p-14">
           <QuraCornerBrackets color="lime" size="md" />
           <div className="grid gap-10 lg:grid-cols-[1.1fr_.9fr] lg:items-center">
             <div>
@@ -126,7 +126,7 @@ export default function AboutUs() {
                 ))}
               </div>
             </div>
-            <div className="rounded-[1.75rem] border border-white/10 bg-primary/60 p-7 text-white/85 shadow-xl">
+            <div className="rounded-[1.75rem] border border-white/10 bg-primary/60 p-6 sm:p-7 text-white/85 shadow-xl">
               <div className="text-xs font-bold uppercase tracking-[.18em] text-cta">Leadership Impact</div>
               <div className="mt-6 text-4xl font-bold text-white">35+ Years</div>
               <div className="mt-1 text-sm text-white/60">Financial Markets & Insurance Leadership</div>
@@ -147,7 +147,7 @@ export default function AboutUs() {
             <h3 className="mt-2 text-3xl font-semibold md:text-4xl">IRDAI Certified Officers</h3>
           </motion.div>
 
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {keyOfficers.map((officer, index) => {
               const IconComp = officer.badgeIcon;
               return (
@@ -161,9 +161,9 @@ export default function AboutUs() {
                   className="relative overflow-hidden rounded-none md:rounded-sm border border-white/10 bg-white/[.06] p-7 backdrop-blur-sm transition hover:border-cta/40 hover:bg-white/[.09]"
                 >
                   <QuraCornerBrackets color="lime" size="sm" />
-                  <div className="flex items-center justify-between">
-                    <span className="rounded-xl bg-cta/15 p-3 text-cta"><IconComp size={22} /></span>
-                    <span className="text-xs font-bold uppercase tracking-[.14em] text-cta">{officer.designation}</span>
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="shrink-0 rounded-xl bg-cta/15 p-3 text-cta"><IconComp size={22} /></span>
+                    <span className="text-right text-xs font-bold uppercase tracking-[.14em] text-cta">{officer.designation}</span>
                   </div>
                   <h4 className="mt-6 text-2xl font-semibold text-white">{officer.name}</h4>
                   <div className="mt-1 text-xs font-medium text-white/60">{officer.qualification}</div>
@@ -264,14 +264,14 @@ export default function AboutUs() {
         </div>
 
         {/* 4. Mandatory IRDAI Licensing & Documents */}
-        <motion.div {...reveal} className="mt-20 rounded-[2rem] border border-white/10 bg-white/[.04] p-8 md:p-12">
+        <motion.div {...reveal} className="mt-20 rounded-[2rem] border border-white/10 bg-white/[.04] p-6 sm:p-8 md:p-12">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
               <span className="text-xs font-bold uppercase tracking-[.2em] text-cta">Regulatory Compliance</span>
               <h3 className="mt-2 text-2xl font-semibold">Necessary IRDAI Certificates & Documentation</h3>
               <p className="mt-2 text-sm text-white/65">Full regulatory compliance in accordance with IRDAI guidelines.</p>
             </div>
-            <div className="flex items-center gap-2 rounded-full border border-cta/40 bg-cta/15 px-5 py-2.5 text-xs font-bold text-cta shrink-0">
+            <div className="flex w-fit items-center gap-2 rounded-full border border-cta/40 bg-cta/15 px-5 py-2.5 text-xs font-bold text-cta shrink-0">
               <ShieldCheck size={18} /> Verified Intermediary
             </div>
           </div>
