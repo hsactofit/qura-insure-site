@@ -2,9 +2,10 @@
 export const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL?.trim() || null;
 
 export const NAV_LINKS = [
-  { name: "Products", href: "/#products" },
+  { name: "Term Life", href: "/term-life-insurance" },
+  { name: "Health", href: "/health-insurance" },
+  { name: "Corporate", href: "/corporate-insurance" },
   { name: "How it Works", href: "/#how-it-works" },
-  { name: "Why Us", href: "/#why-us" },
   { name: "About Us", href: "/#team" },
   { name: "FAQ", href: "/#faq" },
   { name: "Blog", href: "/blog" },
@@ -15,19 +16,19 @@ export const SERVICES = [
     title: "Term Life Insurance",
     description: "Secure your family's financial future with comprehensive term life coverage tailored to your needs.",
     icon: "Shield",
-    href: "#",
+    href: "/term-life-insurance",
   },
   {
     title: "Health Insurance",
     description: "Access the best healthcare facilities without worrying about exorbitant medical bills.",
     icon: "HeartPulse",
-    href: "#",
+    href: "/health-insurance",
   },
   {
     title: "Corporate Plans",
     description: "Protect your employees with premium health and life coverage packages.",
     icon: "Building",
-    href: "#",
+    href: "/corporate-insurance",
   },
 ];
 
@@ -65,34 +66,37 @@ export const BENEFITS = [
     description: "We don't push products for higher commissions. We recommend what's best for you.",
     icon: "Scale",
   },
-  {
-    title: "Claim Assistance",
-    description: "Our claims team helps you prepare documents, understand the process, and follow up with your insurer. Claims are assessed by the insurer under your policy terms.",
-    icon: "LifeBuoy",
-  },
-  {
-    title: "Transparent Pricing",
-    description: "No hidden fees. You get the exact same price as buying directly from the insurer.",
-    icon: "BadgeCheck",
-  },
 ];
+
+/** Self-contained definition shown under the hero (40-60 words). */
+export const ABOUT_DEFINITION =
+  "Qura Insure is an IRDAI-registered insurance advisory based in India that helps individuals, families and businesses choose term life, health and corporate group insurance. Certified advisors compare plans across insurers, explain benefits, exclusions and waiting periods in plain language, and support policyholders through renewals and claims at no extra cost.";
+
+/** Merged pricing + claims passage answering "How does Qura Insure get paid and what support do I get?" */
+export const PRICING_AND_SUPPORT = {
+  question: "How does Qura Insure get paid and what support do I get?",
+  answer: [
+    "Qura Insure does not charge customers an advisory fee. As an IRDAI corporate agent, it is paid a commission by the insurer when a policy is issued, and that commission is already built into the insurer's filed premium. You therefore pay the same premium as you would when buying the same plan directly from the insurance company.",
+    "Support continues after purchase. When you need to claim, your advisor helps in four steps: confirming what the policy covers, preparing the claim form and documents the insurer asks for, submitting and tracking the claim with the insurer or its TPA, and escalating through the insurer's grievance process if a decision appears unjustified. The final claim decision always rests with the insurer under your policy terms.",
+  ],
+};
 
 export const FAQS = [
   {
     question: "Do you charge any advisory fees?",
-    answer: "No, our advisory services are completely free for you. We earn a standard commission from the insurance companies when you buy a policy through us, which does not affect your premium.",
+    answer: "No. Qura Insure charges no advisory fee for comparing plans, recommending cover or helping with claims. We earn a standard commission from the insurance company only when a policy is issued through us. That commission is already included in the insurer's premium, so you pay the same price as buying the identical policy directly from the insurer.",
   },
   {
     question: "Why shouldn't I just buy directly from the insurer?",
-    answer: "Buying through us costs exactly the same as buying directly. However, we provide unbiased advice, help you compare across insurers, and offer ongoing claims guidance.",
+    answer: "Buying through Qura Insure costs the same premium as buying directly, but you get more than one insurer's view. Our certified advisors compare plans across several insurers, explain exclusions, waiting periods and sub-limits in plain language, and stay with you after purchase to help with renewals, policy changes and claims, which a single insurer's sales team does not do.",
   },
   {
     question: "How long does the policy issuance take?",
-    answer: "Issuance timelines depend on the insurer, the policy, underwriting, and any required documents or medical checks. Your advisor will explain the steps and help you track progress.",
+    answer: "Policy issuance time depends on the insurer and the plan. Policies that need no medical tests are usually quicker once a complete proposal is accepted, while larger covers that need medical checks or underwriting review take longer. Your advisor tells you which documents and tests apply and tracks the proposal until the policy is issued.",
   },
   {
     question: "Will you help me if my claim gets rejected?",
-    answer: "Absolutely. We have a dedicated claims assistance team that will advocate on your behalf and help resolve any unjustified claim rejections.",
+    answer: "Yes. If an insurer rejects or partly settles your claim, your Qura Insure advisor reviews the decision against your policy wording, helps you gather any missing documents, and files a reconsideration or complaint with the insurer's grievance team. If the issue stays unresolved, we explain how to escalate to the Insurance Ombudsman or IRDAI's Bima Bharosa portal.",
   },
 ];
 

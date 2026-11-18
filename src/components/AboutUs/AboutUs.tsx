@@ -6,61 +6,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Award, Building2, CheckCircle2, ShieldCheck, UserCheck } from "lucide-react";
 import QuraCornerBrackets from "@/components/Common/QuraCornerBrackets";
 import { IRDAI_REGISTRATION, isRegistrationComplete } from "@/data/content";
+import Link from "next/link";
+import { keyOfficers, operationalLeaders, promoter, teamPath } from "@/data/team";
 
-const promoter = {
-  name: "Devendra Ghodnadikar",
-  role: "Promoter & Director",
-  qualification: "MBA",
-  experience: "35+ Years in Financial Markets",
-  bio: "Mr. Ghodnadikar holds an MBA and brings over 35 years of deep-rooted experience in financial markets, stock broking, and insurance. As a founding member since incorporation, he stands as the cornerstone of Qura Insure's foundation, embodying the profound expertise that forms the bedrock of our client-focused approach. His commitment to excellence ensures clients receive bespoke, dependable financial services.",
-  strengths: ["Financial Markets", "35+ Yrs Leadership", "Founding Director"],
-};
-
-const keyOfficers = [
-  {
-    name: "Harsh Shah",
-    designation: "Principal Officer (PO)",
-    qualification: "B.Com, pursuing MBA",
-    experience: "2 Years Experience",
-    detail: "Experienced in client servicing, backoffice operations, and vendor management. Leads IRDAI compliance and customer operations.",
-    badgeIcon: ShieldCheck,
-  },
-  {
-    name: "Harshad Nagtilak",
-    designation: "Specified Person (SP)",
-    qualification: "B.Com",
-    experience: "9+ Years Experience",
-    detail: "9+ years total experience in premier banking institutions (HDFC Bank, IDFC First Bank & Kotak Bank) as Relationship Manager & Wealth Manager.",
-    badgeIcon: Award,
-  },
-  {
-    name: "Siyaa Deshmukh",
-    designation: "Specified Person (SP)",
-    qualification: "B.Com",
-    experience: "2 Years Experience",
-    detail: "Specializes in backend client handling, policy servicing, and seamless customer support.",
-    badgeIcon: UserCheck,
-  },
-];
-
-const operationalLeaders = [
-  {
-    name: "Jigar Maniar",
-    role: "Sales Head",
-    image: "/team/jigar-maniar.jpeg",
-    intro: "Jigar brings more than 17 years of experience across contact-center management, insurance, refinancing, lead management, and MIS.",
-    detail: "He leads sales & client experience with a focus on efficient workflows and practical data-led decisions. His career includes work with Mercedes-Benz, Audi, Volkswagen, Kia, Hyundai, Honda Cars, Ashok Leyland, and Ducati.",
-    strengths: ["Sales Leadership", "17+ Yrs Experience", "Client Servicing"],
-  },
-  {
-    name: "Akanksha Patel",
-    role: "Operations Head",
-    image: "/team/aakansha-patel.jpeg",
-    intro: "Akanksha combines operations leadership with deep experience in data analysis, helping teams turn complex information into confident action.",
-    detail: "Her analytical approach improves operational efficiency and effectiveness across projects, translating data insights into reliable day-to-day decisions.",
-    strengths: ["Operations Strategy", "Data Analytics", "Team Development"],
-  },
-];
+const badgeIcons = { shield: ShieldCheck, award: Award, user: UserCheck };
 
 const certificates = [
   { title: "Principal Officer (PO) Certificate", desc: "IRDAI certified Principal Officer governance" },
@@ -115,11 +64,11 @@ export default function AboutUs() {
               <div className="inline-flex items-center gap-2 rounded-full bg-cta/20 px-4 py-1.5 text-xs font-bold uppercase tracking-[.18em] text-cta">
                 <Building2 size={15} /> Promoter & Management
               </div>
-              <h3 className="mt-6 text-3xl font-semibold tracking-[-.035em] md:text-5xl">{promoter.name}</h3>
-              <div className="mt-2 text-lg font-medium text-cta">{promoter.role} • <span className="text-white/80">{promoter.qualification}</span></div>
+              <h3 className="mt-6 text-3xl font-semibold tracking-[-.035em] md:text-5xl"><Link href={teamPath(promoter.slug)} className="hover:text-cta transition-colors">{promoter.name}</Link></h3>
+              <div className="mt-2 text-lg font-medium text-cta">{promoter.jobTitle} • <span className="text-white/80">{promoter.qualification}</span></div>
               <p className="mt-6 text-lg leading-relaxed text-white/90">{promoter.bio}</p>
               <div className="mt-8 flex flex-wrap gap-3">
-                {promoter.strengths.map((str) => (
+                {(promoter.strengths ?? []).map((str) => (
                   <span key={str} className="rounded-full border border-cta/30 bg-cta/10 px-4 py-2 text-sm font-semibold text-cta">
                     {str}
                   </span>
@@ -149,7 +98,7 @@ export default function AboutUs() {
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {keyOfficers.map((officer, index) => {
-              const IconComp = officer.badgeIcon;
+              const IconComp = badgeIcons[officer.badge];
               return (
                 <motion.div
                   key={officer.name}
@@ -163,14 +112,14 @@ export default function AboutUs() {
                   <QuraCornerBrackets color="lime" size="sm" />
                   <div className="flex items-center justify-between gap-3">
                     <span className="shrink-0 rounded-xl bg-cta/15 p-3 text-cta"><IconComp size={22} /></span>
-                    <span className="text-right text-xs font-bold uppercase tracking-[.14em] text-cta">{officer.designation}</span>
+                    <span className="text-right text-xs font-bold uppercase tracking-[.14em] text-cta">{officer.jobTitle}</span>
                   </div>
-                  <h4 className="mt-6 text-2xl font-semibold text-white">{officer.name}</h4>
+                  <h4 className="mt-6 text-2xl font-semibold text-white"><Link href={teamPath(officer.slug)} className="hover:text-cta transition-colors">{officer.name}</Link></h4>
                   <div className="mt-1 text-xs font-medium text-white/60">{officer.qualification}</div>
                   <div className="mt-4 rounded-xl bg-primary/40 px-3.5 py-2 text-xs font-semibold text-cta border border-white/5">
                     {officer.experience}
                   </div>
-                  <p className="mt-4 text-sm leading-relaxed text-white/75">{officer.detail}</p>
+                  <p className="mt-4 text-sm leading-relaxed text-white/75">{officer.bio}</p>
                 </motion.div>
               );
             })}
@@ -225,7 +174,7 @@ export default function AboutUs() {
                     <QuraCornerBrackets color="lime" size="md" />
                     <div className="relative h-[260px] lg:h-full overflow-hidden bg-white">
                       <Image
-                        src={person.image}
+                        src={person.image ?? ""}
                         alt={person.name}
                         fill
                         className={`${
@@ -237,19 +186,19 @@ export default function AboutUs() {
                       </div>
                       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-primary/40 to-transparent" />
                       <div className="absolute bottom-3 left-3 rounded-2xl bg-cta px-3 py-1.5 text-primary shadow-xl">
-                        <div className="text-[11px] font-bold uppercase tracking-[.16em]">{person.role}</div>
+                        <div className="text-[11px] font-bold uppercase tracking-[.16em]">{person.jobTitle}</div>
                       </div>
                     </div>
 
                     <div className="flex flex-col justify-between p-5 md:p-6 lg:p-8">
                       <div>
-                        <div className="text-[11px] font-bold uppercase tracking-[.2em] text-cta">{person.role}</div>
-                        <h3 className="mt-2 text-2xl font-semibold tracking-[-.035em] md:text-3xl">{person.name}</h3>
-                        <p className="mt-3 text-base leading-relaxed text-white/90">{person.intro}</p>
+                        <div className="text-[11px] font-bold uppercase tracking-[.2em] text-cta">{person.jobTitle}</div>
+                        <h3 className="mt-2 text-2xl font-semibold tracking-[-.035em] md:text-3xl"><Link href={teamPath(person.slug)} className="hover:text-cta transition-colors">{person.name}</Link></h3>
+                        <p className="mt-3 text-base leading-relaxed text-white/90">{person.bio}</p>
                         <p className="mt-2 text-xs leading-relaxed text-white/62">{person.detail}</p>
                       </div>
                       <div className="mt-4 flex flex-wrap gap-2">
-                        {person.strengths.map((strength) => (
+                        {(person.strengths ?? []).map((strength) => (
                           <span key={strength} className="rounded-full border border-white/15 bg-white/[.07] px-2.5 py-1 text-[11px] font-semibold text-white/80">
                             {strength}
                           </span>

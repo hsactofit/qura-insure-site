@@ -251,7 +251,7 @@ export default function BrandIdentity() {
               <h4 className="mt-3 text-2xl font-bold text-primary font-heading">Information Overload & Chaos</h4>
               <div className="mt-8 space-y-4">
                 {[
-                  { title: "CHAOS", desc: "250+ products & 1000+ policy variations" },
+                  { title: "CHAOS", desc: "Hundreds of plans across dozens of insurers" },
                   { title: "INFORMATION", desc: "Endless technical fine print & sales calls" },
                   { title: "CONFUSION", desc: "No context on what actually covers you" },
                   { title: "UNCERTAINTY", desc: "Fear of making a costly mistake" },
