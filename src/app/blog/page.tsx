@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { OG_IMAGE } from "@/data/site";
 import Link from "next/link";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import BlogImage from "@/components/Blog/BlogImage";
 import { BLOG_INDEX_PATH, SITE_NAME, SITE_URL, articlePath } from "@/lib/rankmesh/config.server";
-import { formatDate, getBlogSnapshot } from "@/lib/rankmesh/blog.server";
+import { blogIndexJsonLd, formatDate, getBlogSnapshot } from "@/lib/rankmesh/blog.server";
 
 // Rendered per request from the in-memory RankMesh snapshot; never prerendered.
 export const dynamic = "force-dynamic";
@@ -15,10 +16,11 @@ export async function generateMetadata({ searchParams }: PageProps<"/blog">): Pr
   const page = parsePage((await searchParams).page);
   const canonical = `${SITE_URL}${BLOG_INDEX_PATH}${page > 1 ? `?page=${page}` : ""}`;
   return {
-    title: { absolute: `Blog | ${SITE_NAME}` },
+    title: { absolute: `Insurance Guides & Blog | ${SITE_NAME}` },
     description: DESCRIPTION,
     alternates: { canonical },
-    openGraph: { type: "website", url: canonical, title: `Blog | ${SITE_NAME}`, description: DESCRIPTION },
+    openGraph: { type: "website", url: canonical, title: `Insurance Guides & Blog | ${SITE_NAME}`, description: DESCRIPTION, images: [OG_IMAGE] },
+    twitter: { card: "summary_large_image", title: `Insurance Guides & Blog | ${SITE_NAME}`, description: DESCRIPTION, images: ["/og.png"] },
   };
 }
 
@@ -32,9 +34,11 @@ export default async function BlogIndexPage({ searchParams }: PageProps<"/blog">
   const totalPages = Math.max(1, Math.ceil(articles.length / PAGE_SIZE));
   const page = Math.min(parsePage((await searchParams).page), totalPages);
   const visible = articles.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const canonical = `${SITE_URL}${BLOG_INDEX_PATH}${page > 1 ? `?page=${page}` : ""}`;
 
   return (
     <section className="relative pt-32 md:pt-40 pb-24 bg-bg-main">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: blogIndexJsonLd(visible, canonical, DESCRIPTION) }} />
       <div className="absolute inset-0 bg-dot-pattern opacity-[0.15] mix-blend-multiply pointer-events-none" />
       <div className="container mx-auto px-6 max-w-7xl relative">
         <header className="max-w-3xl mb-14">

@@ -5,11 +5,12 @@ import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import { RANKMESH_BEACON_URL } from "@/lib/rankmesh/config.server";
+import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/data/site";
 
 const inclusiveSans = localFont({
   src: [
-    { path: "./fonts/InclusiveSans.ttf", weight: "300 700", style: "normal" },
-    { path: "./fonts/InclusiveSans-Italic.ttf", weight: "300 700", style: "italic" },
+    { path: "./fonts/InclusiveSans.woff2", weight: "300 700", style: "normal" },
+    { path: "./fonts/InclusiveSans-Italic.woff2", weight: "300 700", style: "italic" },
   ],
   display: "swap",
   variable: "--font-inclusive-sans",
@@ -17,26 +18,35 @@ const inclusiveSans = localFont({
 
 const zalandoSansExpanded = localFont({
   src: [
-    { path: "./fonts/ZalandoSansExpanded.ttf", weight: "200 900", style: "normal" },
-    { path: "./fonts/ZalandoSansExpanded-Italic.ttf", weight: "200 900", style: "italic" },
+    { path: "./fonts/ZalandoSansExpanded.woff2", weight: "200 900", style: "normal" },
+    { path: "./fonts/ZalandoSansExpanded-Italic.woff2", weight: "200 900", style: "italic" },
   ],
   display: "swap",
   variable: "--font-zalando-sans-expanded",
 });
 
+const DEFAULT_TITLE = "Term Life & Health Insurance Advisors in India | Qura Insure";
+const DEFAULT_DESCRIPTION =
+  "Qura Insure helps Indian families and businesses compare term life, health and corporate insurance, with research-led advice and claims support. Confidence, Curated.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
-  title: "Qura Insure | Confidence, Curated.",
-  description: "Research-led insurance advisory. Thoughtfully curated options, clear explanations, and personalised guidance for confident decisions.",
+  // Absolute URLs (og:image, canonicals) must never resolve to localhost in production.
+  metadataBase: new URL(SITE_URL),
+  title: { default: DEFAULT_TITLE, template: `%s | ${SITE_NAME}` },
+  description: DEFAULT_DESCRIPTION,
+  applicationName: SITE_NAME,
   openGraph: {
-    title: "Qura Insure | Confidence, Curated.",
-    description: "Research-led insurance advisory. Thoughtfully curated options, clear explanations, and personalised guidance for confident decisions.",
-    images: [{ url: "/og.png", width: 1680, height: 945, alt: "QURA INSURE — Confidence, Curated." }],
+    type: "website",
+    siteName: SITE_NAME,
+    locale: "en_IN",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Qura Insure | Confidence, Curated.",
-    description: "Research-led insurance advisory. Thoughtfully curated options, clear explanations, and personalised guidance for confident decisions.",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
     images: ["/og.png"],
   },
 };
@@ -55,12 +65,12 @@ export default function RootLayout({
         </main>
         <Footer />
         <Script src={RANKMESH_BEACON_URL} strategy="afterInteractive" />
-        {/* Google tag (gtag.js) */}
+        {/* Google tag (gtag.js): loaded after the page is idle so it never competes with LCP. */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-87PDS2ZV3J"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}

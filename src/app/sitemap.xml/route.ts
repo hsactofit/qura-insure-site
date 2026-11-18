@@ -1,6 +1,8 @@
 import { isContentUnavailable } from "@/lib/rankmesh/content-store";
 import { BLOG_INDEX_PATH, SITE_URL, articlePath } from "@/lib/rankmesh/config.server";
 import { contentStore } from "@/lib/rankmesh/store.server";
+import { HOMEPAGE_LAST_MODIFIED, LEGAL_PAGES, SERVICE_PAGES, STATIC_PAGES_LAST_MODIFIED } from "@/data/site";
+import { TEAM, teamPath } from "@/data/team";
 
 export const dynamic = "force-dynamic";
 
@@ -22,7 +24,10 @@ export async function GET() {
   }
 
   const entries: { loc: string; lastmod: string | null }[] = [
-    { loc: `${SITE_URL}/`, lastmod: null },
+    { loc: `${SITE_URL}/`, lastmod: HOMEPAGE_LAST_MODIFIED },
+    ...SERVICE_PAGES.map(page => ({ loc: `${SITE_URL}${page.path}`, lastmod: STATIC_PAGES_LAST_MODIFIED })),
+    ...TEAM.map(member => ({ loc: `${SITE_URL}${teamPath(member.slug)}`, lastmod: STATIC_PAGES_LAST_MODIFIED })),
+    ...LEGAL_PAGES.map(page => ({ loc: `${SITE_URL}${page.path}`, lastmod: STATIC_PAGES_LAST_MODIFIED })),
     { loc: `${SITE_URL}${BLOG_INDEX_PATH}`, lastmod: isoDate(snapshot.articles[0]?.modifiedAt ?? snapshot.articles[0]?.publishedAt ?? null) },
     ...snapshot.articles.map(article => ({
       loc: `${SITE_URL}${articlePath(article.slug)}`,

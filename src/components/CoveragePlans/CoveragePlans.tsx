@@ -11,6 +11,7 @@ const plans = [
     number: "01",
     short: "Term Life",
     title: "Term Life Insurance",
+    href: "/term-life-insurance",
     label: "Income protection",
     icon: ShieldCheck,
     description: "Protect your family's lifestyle, goals, and financial commitments with high-value cover designed around your responsibilities.",
@@ -23,6 +24,7 @@ const plans = [
     number: "02",
     short: "Health",
     title: "Health Insurance",
+    href: "/health-insurance",
     label: "Medical security",
     icon: HeartPulse,
     description: "Stay prepared for rising healthcare costs with carefully researched plans, cashless treatment access, and practical claims support.",
@@ -35,6 +37,7 @@ const plans = [
     number: "03",
     short: "Corporate",
     title: "Corporate Plans",
+    href: "/corporate-insurance",
     label: "Employee wellbeing",
     icon: Building2,
     description: "Build benefits your team will genuinely value with flexible group health and life protection supported by simpler administration.",
@@ -85,6 +88,7 @@ export default function CoveragePlans() {
                 <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/68">{plan.description}</p>
                 <div className="mt-8 grid gap-3 sm:grid-cols-2">{plan.benefits.map((benefit, index) => <motion.div key={benefit} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: .12 + index * .07 }} className="flex items-center gap-3 text-sm font-semibold text-white/88"><span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-cta/35 bg-cta/10 text-cta"><Check size={14} /></span>{benefit}</motion.div>)}</div>
                 <Link href="#contact" className="group mt-10 inline-flex items-center gap-3 rounded-full bg-cta px-7 py-4 font-bold text-center text-primary transition hover:-translate-y-1 hover:bg-cta-hover">Get a curated recommendation <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" /></Link>
+                <Link href={plan.href} className="mt-4 ml-1 inline-flex items-center gap-2 font-semibold text-white underline decoration-cta decoration-2 underline-offset-4 hover:text-cta sm:ml-5">Learn about {plan.title.toLowerCase()}</Link>
               </div>
 
               <motion.div initial={{ opacity: 0, scale: .94, rotate: 2 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ duration: .45 }} className="relative">
