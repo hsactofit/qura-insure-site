@@ -1,15 +1,18 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Building2, Check, HeartPulse, ShieldCheck } from "lucide-react";
+import { ArrowRight, Building2, Car, Check, HeartPulse, ShieldCheck } from "lucide-react";
 import QuraCornerBrackets from "@/components/Common/QuraCornerBrackets";
 
+// Card photos: Unsplash (term: 1lKYd8M9MRE, corporate: cW4lLTavU80) and Pexels (health: 14558557, motor: 12937789, plate blurred), free licences.
 const plans = [
   {
     number: "01",
     short: "Term Life",
+    href: "/insurance/term-life",
     title: "Term Life Insurance",
     label: "Income protection",
     icon: ShieldCheck,
@@ -18,10 +21,12 @@ const plans = [
     figure: "Your needs",
     figureLabel: "guide your cover amount",
     idealFor: "Parents, homeowners and primary earners",
+    image: { src: "/qura-plan-term-family.jpg", alt: "A smiling family of four sitting together at home" },
   },
   {
     number: "02",
     short: "Health",
+    href: "/insurance/health",
     title: "Health Insurance",
     label: "Medical security",
     icon: HeartPulse,
@@ -30,10 +35,12 @@ const plans = [
     figure: "Claims support",
     figureLabel: "guidance when you need to claim",
     idealFor: "Individuals, couples and growing families",
+    image: { src: "/qura-plan-health-doctor.jpg", alt: "A doctor checking a patient with a stethoscope in a clinic" },
   },
   {
     number: "03",
     short: "Corporate",
+    href: "/insurance/corporate",
     title: "Corporate Plans",
     label: "Employee wellbeing",
     icon: Building2,
@@ -42,6 +49,21 @@ const plans = [
     figure: "One plan",
     figureLabel: "built for your workforce",
     idealFor: "Startups, SMEs and established teams",
+    image: { src: "/qura-plan-corporate-team.jpg", alt: "A team meeting in an office in Bengaluru" },
+  },
+  {
+    number: "04",
+    short: "Motor",
+    href: "/insurance/motor",
+    title: "Motor Insurance",
+    label: "Vehicle protection",
+    icon: Car,
+    description: "Cover your car or two-wheeler against accidents, theft and third-party liability, with the right add-ons and support when you need to claim.",
+    benefits: ["Comprehensive or third-party", "Zero depreciation add-on", "No-claim bonus protection", "Cashless garage network"],
+    figure: "Up to 50%",
+    figureLabel: "no-claim bonus on own-damage premium",
+    idealFor: "Car and two-wheeler owners, new or used",
+    image: { src: "/qura-plan-motor-car.jpg", alt: "A man standing through the sunroof of his SUV on a hill road" },
   },
 ];
 
@@ -59,12 +81,12 @@ export default function CoveragePlans() {
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-text-muted">Choose a protection goal to see what matters, who it suits, and how QURA researches and curates suitable options.</p>
         </motion.div>
 
-        <div role="tablist" aria-label="Insurance coverage types" className="mx-auto mt-14 grid max-w-4xl gap-3 rounded-[1.5rem] border border-primary/10 bg-white p-2 shadow-[0_16px_45px_rgba(17,37,65,.07)] sm:grid-cols-3">
+        <div role="tablist" aria-label="Insurance coverage types" className="mx-auto mt-14 grid max-w-5xl grid-cols-2 gap-3 rounded-[1.5rem] border border-primary/10 bg-white p-2 shadow-[0_16px_45px_rgba(17,37,65,.07)] lg:grid-cols-4">
           {plans.map((item, index) => {
             const TabIcon = item.icon;
             const selected = active === index;
             return (
-              <button key={item.title} role="tab" aria-selected={selected} onClick={() => setActive(index)} className={`relative flex items-center gap-3 overflow-hidden rounded-[1.1rem] px-5 py-4 text-left transition ${selected ? "text-white" : "text-primary hover:bg-bg-main"}`}>
+              <button key={item.title} role="tab" aria-selected={selected} onClick={() => setActive(index)} className={`relative flex items-center gap-2.5 overflow-hidden rounded-[1.1rem] px-3 py-3 sm:gap-3 sm:px-5 sm:py-4 text-left transition ${selected ? "text-white" : "text-primary hover:bg-bg-main"}`}>
                 {selected && <motion.div layoutId="coverage-tab" className="absolute inset-0 bg-primary" transition={{ type: "spring", stiffness: 320, damping: 30 }} />}
                 <span className={`relative flex h-10 w-10 items-center justify-center rounded-xl ${selected ? "bg-cta text-primary" : "bg-surface-sage text-primary"}`}><TabIcon size={20} /></span>
                 <span className="relative"><span className={`block text-[10px] font-bold tracking-[.18em] ${selected ? "text-cta" : "text-text-muted"}`}>{item.number}</span><span className="mt-1 block font-bold">{item.short}</span></span>
@@ -84,7 +106,10 @@ export default function CoveragePlans() {
                 <h3 className="mt-8 max-w-xl text-4xl font-semibold leading-[1.05] tracking-[-.04em] md:text-6xl">{plan.title}</h3>
                 <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/68">{plan.description}</p>
                 <div className="mt-8 grid gap-3 sm:grid-cols-2">{plan.benefits.map((benefit, index) => <motion.div key={benefit} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: .12 + index * .07 }} className="flex items-center gap-3 text-sm font-semibold text-white/88"><span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-cta/35 bg-cta/10 text-cta"><Check size={14} /></span>{benefit}</motion.div>)}</div>
-                <Link href="#contact" className="group mt-10 inline-flex items-center gap-3 rounded-full bg-cta px-7 py-4 font-bold text-center text-primary transition hover:-translate-y-1 hover:bg-cta-hover">Get a curated recommendation <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" /></Link>
+                <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
+                  <Link href="#contact" className="group inline-flex items-center gap-3 rounded-full bg-cta px-7 py-4 font-bold text-center text-primary transition hover:-translate-y-1 hover:bg-cta-hover">Get a curated recommendation <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" /></Link>
+                  <Link href={plan.href} className="font-semibold text-white/85 underline-offset-4 transition hover:text-cta hover:underline">Learn more about {plan.short.toLowerCase()} cover</Link>
+                </div>
               </div>
 
               <motion.div initial={{ opacity: 0, scale: .94, rotate: 2 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ duration: .45 }} className="relative">
@@ -92,7 +117,9 @@ export default function CoveragePlans() {
                 <div className="relative overflow-hidden rounded-none md:rounded-sm bg-[#F4FAFD] p-7 text-primary shadow-2xl md:p-9">
                   <QuraCornerBrackets color="navy" size="md" />
                   <div className="flex items-center justify-between"><div><div className="text-xs font-bold uppercase tracking-[.18em] text-text-muted">Protection snapshot</div><div className="mt-2 text-sm font-semibold">Guidance from QURA</div></div></div>
-                  <div className="my-8 h-px bg-primary/10" />
+                  <div className="relative my-6 aspect-[16/7] overflow-hidden rounded-2xl bg-primary/5">
+                    <Image src={plan.image.src} alt={plan.image.alt} fill sizes="(min-width: 1024px) 40vw, 90vw" className="object-cover" />
+                  </div>
                   <div className="text-4xl font-semibold tracking-[-.05em] md:text-6xl lg:text-5xl xl:text-6xl">{plan.figure}</div>
                   <div className="mt-2 text-sm text-text-muted">{plan.figureLabel}</div>
                   <div className="mt-9 rounded-2xl border border-primary/10 bg-white p-5"><div className="text-[10px] font-bold uppercase tracking-[.18em] text-text-muted">Ideal for</div><div className="mt-2 font-semibold leading-relaxed">{plan.idealFor}</div></div>

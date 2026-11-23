@@ -50,7 +50,7 @@ export default function QuraLanding() {
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/82 sm:mt-7 md:text-xl">Research-led insurance advice, thoughtfully curated around your family. Understand your options, why they fit, and what to do next.</p>
             <div className="mt-9 flex flex-wrap gap-4">
               <Link href="#contact" className="group inline-flex items-center gap-3 rounded-full bg-cta px-7 py-4 font-bold text-primary shadow-xl shadow-black/20 transition hover:-translate-y-1 hover:bg-cta-hover">Talk to a QURA expert <ArrowRight size={19} className="transition group-hover:translate-x-1" /></Link>
-              <Link href="#products" className="inline-flex items-center rounded-full border border-white/35 bg-white/10 px-7 py-4 font-semibold text-white backdrop-blur-md transition hover:bg-white/20">Explore coverage</Link>
+              <Link href="/tools/coverage-check" className="inline-flex items-center rounded-full border border-white/35 bg-white/10 px-7 py-4 font-semibold text-white backdrop-blur-md transition hover:bg-white/20">Explore coverage</Link>
             </div>
           </motion.div>
         </div>

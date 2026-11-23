@@ -28,9 +28,10 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-bold mb-6">Products</h4>
             <ul className="space-y-4 text-sm">
-              <li><Link href="/#products" className="text-surface-sage hover:text-cta transition-colors">Term Life Insurance</Link></li>
-              <li><Link href="/#products" className="text-surface-sage hover:text-cta transition-colors">Health Insurance</Link></li>
-              <li><Link href="/#products" className="text-surface-sage hover:text-cta transition-colors">Corporate Plans</Link></li>
+              <li><Link href="/insurance/term-life" className="text-surface-sage hover:text-cta transition-colors">Term Life Insurance</Link></li>
+              <li><Link href="/insurance/health" className="text-surface-sage hover:text-cta transition-colors">Health Insurance</Link></li>
+              <li><Link href="/insurance/corporate" className="text-surface-sage hover:text-cta transition-colors">Corporate Plans</Link></li>
+              <li><Link href="/insurance/motor" className="text-surface-sage hover:text-cta transition-colors">Motor Insurance</Link></li>
             </ul>
           </div>
           

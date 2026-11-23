@@ -2,12 +2,41 @@
 export const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL?.trim() || null;
 
 export const NAV_LINKS = [
-  { name: "Products", href: "/#products" },
-  { name: "How it Works", href: "/#how-it-works" },
-  { name: "Why Us", href: "/#why-us" },
-  { name: "About Us", href: "/#team" },
-  { name: "FAQ", href: "/#faq" },
   { name: "Blog", href: "/blog" },
+];
+
+// Each slug is a page under /insurance/[slug] (content in src/data/insurance.ts).
+export const INSURANCE_MENU = [
+  {
+    slug: "term-life",
+    title: "Term Life Insurance",
+    description: "Secure your family's financial future",
+    icon: "ShieldCheck",
+  },
+  {
+    slug: "health",
+    title: "Health Insurance",
+    description: "Medical cover for you and your family",
+    icon: "HeartPulse",
+  },
+  {
+    slug: "corporate",
+    title: "Corporate Plans",
+    description: "Group health and life cover for your team",
+    icon: "Building2",
+  },
+  {
+    slug: "motor",
+    title: "Motor Insurance",
+    description: "Car and two-wheeler protection",
+    icon: "Car",
+  },
+] as const;
+
+export const TOOLS_MENU = [
+  { name: "Coverage Check", href: "/tools/coverage-check" },
+  { name: "Claim Assistance", href: "/#contact" },
+  { name: "Insurance Guides", href: "/blog" },
 ];
 
 export const SERVICES = [
