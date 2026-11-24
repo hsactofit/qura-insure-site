@@ -55,7 +55,13 @@ export default function Footer() {
         </div>
         
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
-          <p className="text-center md:text-left">&copy; {new Date().getFullYear()} Qura Insure. All rights reserved.</p>
+          <div className="flex flex-col items-center gap-2 md:flex-row md:gap-6">
+            <p className="text-center md:text-left">&copy; {new Date().getFullYear()} Qura Insure. All rights reserved.</p>
+            <nav aria-label="Legal" className="flex gap-5">
+              <Link href="/privacy" className="text-surface-sage hover:text-cta transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="text-surface-sage hover:text-cta transition-colors">Terms of Use</Link>
+            </nav>
+          </div>
           <p className="text-center md:text-right">
             {isRegistrationComplete()
               ? `IRDAI Corporate Agent (${IRDAI_REGISTRATION.category}) Reg. No. ${IRDAI_REGISTRATION.registrationNumber}, valid till ${IRDAI_REGISTRATION.validTill}. `

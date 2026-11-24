@@ -24,7 +24,7 @@ export async function GET() {
 
   const entries: { loc: string; lastmod: string | null }[] = [
     { loc: `${SITE_URL}/`, lastmod: null },
-    ...[...INSURANCE_MENU.map(item => `/insurance/${item.slug}`), "/tools/coverage-check"].map(path => ({ loc: `${SITE_URL}${path}`, lastmod: null })),
+    ...[...INSURANCE_MENU.map(item => `/insurance/${item.slug}`), "/tools/coverage-check", "/privacy", "/terms"].map(path => ({ loc: `${SITE_URL}${path}`, lastmod: null })),
     { loc: `${SITE_URL}${BLOG_INDEX_PATH}`, lastmod: isoDate(snapshot.articles[0]?.modifiedAt ?? snapshot.articles[0]?.publishedAt ?? null) },
     ...snapshot.articles.map(article => ({
       loc: `${SITE_URL}${articlePath(article.slug)}`,

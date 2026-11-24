@@ -183,3 +183,19 @@ export const isRegistrationComplete = () =>
       IRDAI_REGISTRATION.validTill &&
       IRDAI_REGISTRATION.insurerPartners.length > 0,
   );
+
+// Business and grievance contact details shown on /privacy and /terms.
+// Fill these from the company's registration records. Empty fields are left
+// out, and the legal pages point people to the enquiry form instead.
+export const LEGAL_ENTITY = {
+  brandName: "Qura Insure",
+  legalName: "", // e.g. "Qura Insure Private Limited"
+  cin: "",
+  registeredAddress: "",
+  website: "https://qurainsure.com",
+  supportEmail: "",
+  supportPhone: "",
+  grievanceOfficer: { name: "", email: "", phone: "" },
+  jurisdictionCity: "", // courts with exclusive jurisdiction, e.g. "Mumbai"
+  lastUpdated: "24 November 2026",
+};

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Ambulance,
@@ -217,7 +218,11 @@ export default function EnquiryForm() {
                 </>
               )}
             </motion.button>
-            <p className="mt-3 text-center text-xs text-text-muted">No spam. We only use your details to call you back about insurance.</p>
+            <p className="mt-3 text-center text-xs text-text-muted">
+              No spam. By submitting, you agree that Qura may call, message or email you about your enquiry, as described in our{" "}
+              <Link href="/privacy" className="underline underline-offset-2 hover:text-primary">Privacy Policy</Link> and{" "}
+              <Link href="/terms" className="underline underline-offset-2 hover:text-primary">Terms</Link>.
+            </p>
           </motion.form>
         )}
       </AnimatePresence>
