@@ -85,7 +85,7 @@ function PillarAccordion() {
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
             style={{ flexGrow: isActive ? 2.6 : isDimmed ? 0.75 : 1 }}
-            className={`group/pillar relative flex min-w-0 cursor-pointer flex-col overflow-hidden border p-7 shadow-lg outline-none transition-[flex-grow,background-color,border-color,box-shadow] duration-500 ease-[cubic-bezier(.22,1,.36,1)] focus-visible:ring-2 focus-visible:ring-cta xl:basis-0 ${
+            className={`group/pillar relative flex min-w-0 cursor-pointer flex-col overflow-hidden border p-7 shadow-lg outline-none transition-[flex-grow,background-color,border-color,box-shadow] duration-500 ease-[cubic-bezier(.22,1,.36,1)] focus-visible:ring-2 focus-visible:ring-cta xl:basis-0 ${index === brandPillars.length - 1 ? "sm:col-span-2 xl:col-span-1" : ""} ${
               isActive ? "border-primary bg-primary text-white shadow-2xl" : "border-primary/10 bg-white text-primary"
             }`}
           >

@@ -74,7 +74,7 @@ export default function EnquiryForm() {
   const sending = status.kind === "sending";
 
   return (
-    <div className="relative w-full rounded-[1.75rem] bg-white p-6 text-left text-primary shadow-[0_30px_80px_rgba(0,0,0,.25)] sm:p-8">
+    <div className="relative w-full rounded-[1.5rem] bg-white p-5 text-left sm:rounded-[1.75rem] text-primary shadow-[0_30px_80px_rgba(0,0,0,.25)] sm:p-8">
       <AnimatePresence mode="wait" initial={false}>
         {status.kind === "sent" ? (
           <motion.div
@@ -122,8 +122,8 @@ export default function EnquiryForm() {
                       aria-pressed={selected}
                       onClick={() => setInterest(selected ? "" : value)}
                       whileTap={{ scale: 0.94 }}
-                      className={`flex items-center gap-2 rounded-xl border px-3 py-2.5 text-left text-sm font-semibold transition-colors ${
-                        value === "Not sure yet" ? "col-span-2 justify-center sm:col-span-3" : ""
+                      className={`flex min-w-0 items-center gap-2 rounded-xl border px-2.5 py-2.5 text-left text-[13px] font-semibold leading-tight transition-colors sm:px-3 sm:text-sm ${
+                        value === "Not sure yet" ? "sm:col-span-3 sm:justify-center" : ""
                       } ${
                         selected
                           ? "border-primary bg-primary text-white"
@@ -137,7 +137,7 @@ export default function EnquiryForm() {
                       >
                         <Icon size={15} />
                       </span>
-                      <span className="truncate">{label}</span>
+                      <span className="min-w-0 break-words">{label}</span>
                     </motion.button>
                   );
                 })}

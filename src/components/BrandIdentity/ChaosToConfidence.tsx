@@ -1,6 +1,20 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useSyncExternalStore } from "react";
+
+const WIDE_QUERY = "(min-width: 1024px)";
+/** True at the lg breakpoint and up, where problem and answer cards sit side by side. */
+function useIsWide() {
+  return useSyncExternalStore(
+    (onChange) => {
+      const mql = window.matchMedia(WIDE_QUERY);
+      mql.addEventListener("change", onChange);
+      return () => mql.removeEventListener("change", onChange);
+    },
+    () => window.matchMedia(WIDE_QUERY).matches,
+    () => true,
+  );
+}
 import { motion, useScroll, useSpring, useTransform, type MotionValue } from "framer-motion";
 import {
   AlertTriangle,
@@ -52,9 +66,11 @@ function PairRow({ pair, index }: { pair: (typeof PAIRS)[number]; index: number 
   const p = useSpring(scrollYProgress, { stiffness: 120, damping: 24 });
 
   const problemOpacity = useTransform(p, [0, 1], [1, 0.55]);
-  const problemX = useTransform(p, [0, 1], [0, -10]);
+  // Sideways slides only where the cards sit side by side; on phones they stack and would clip.
+  const isWide = useIsWide();
+  const problemX = useTransform(p, [0, 1], isWide ? [0, -10] : [0, 0]);
   const strike = useTransform(p, [0.3, 1], ["0%", "100%"]);
-  const answerX = useTransform(p, [0, 1], [40, 0]);
+  const answerX = useTransform(p, [0, 1], isWide ? [40, 0] : [0, 0]);
   const answerScale = useTransform(p, [0, 1], [0.96, 1]);
   const nodeScale = useTransform(p, [0.4, 1], [0.7, 1]);
 
@@ -62,7 +78,7 @@ function PairRow({ pair, index }: { pair: (typeof PAIRS)[number]; index: number 
   const AnswerIcon = pair.answer.icon;
 
   return (
-    <div ref={ref} className="group/row grid items-center gap-3 md:grid-cols-[1fr_72px_1fr] md:gap-0">
+    <div ref={ref} className="group/row grid items-center gap-3 lg:grid-cols-[1fr_72px_1fr] lg:gap-0">
       {/* Problem */}
       <motion.div
         style={{ opacity: problemOpacity, x: problemX }}
@@ -72,7 +88,7 @@ function PairRow({ pair, index }: { pair: (typeof PAIRS)[number]; index: number 
           <ProblemIcon size={20} />
         </span>
         <div className="min-w-0">
-          <div className="relative inline-block text-xs font-bold uppercase tracking-[.16em] text-rose-700">
+          <div className="relative inline-block whitespace-nowrap text-xs font-bold uppercase tracking-[.1em] text-rose-700 sm:tracking-[.16em]">
             {pair.problem.title}
             <motion.span style={{ width: strike }} className="absolute left-0 top-1/2 h-[2px] -translate-y-1/2 bg-rose-500" />
           </div>
@@ -84,11 +100,11 @@ function PairRow({ pair, index }: { pair: (typeof PAIRS)[number]; index: number 
       <div className="flex justify-center">
         <motion.span
           style={{ scale: nodeScale }}
-          className="relative z-10 hidden h-11 w-11 items-center justify-center rounded-full border-4 border-bg-main bg-primary text-xs font-bold text-cta shadow-md transition-transform duration-300 group-hover/row:scale-110 md:flex"
+          className="relative z-10 hidden h-11 w-11 items-center justify-center rounded-full border-4 border-bg-main bg-primary text-xs font-bold text-cta shadow-md transition-transform duration-300 group-hover/row:scale-110 lg:flex"
         >
           {String(index + 1).padStart(2, "0")}
         </motion.span>
-        <ArrowDown size={18} className="text-secondary md:hidden" />
+        <ArrowDown size={18} className="text-secondary lg:hidden" />
       </div>
 
       {/* QURA answer */}
@@ -111,7 +127,7 @@ function PairRow({ pair, index }: { pair: (typeof PAIRS)[number]; index: number 
 
 function Spine({ progress }: { progress: MotionValue<number> }) {
   return (
-    <div className="pointer-events-none absolute bottom-6 left-1/2 top-6 hidden w-1 -translate-x-1/2 rounded-full bg-primary/10 md:block">
+    <div className="pointer-events-none absolute bottom-6 left-1/2 top-6 hidden w-1 -translate-x-1/2 rounded-full bg-primary/10 lg:block">
       <motion.div style={{ scaleY: progress }} className="h-full w-full origin-top rounded-full bg-primary" />
     </div>
   );
@@ -127,7 +143,7 @@ export default function ChaosToConfidence() {
       <QuraCornerBrackets color="navy" size="md" />
 
       {/* Column headings */}
-      <div className="mb-8 hidden grid-cols-[1fr_72px_1fr] items-end md:grid">
+      <div className="mb-8 hidden grid-cols-[1fr_72px_1fr] items-end lg:grid">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <div className="text-xs font-bold uppercase tracking-[.2em] text-rose-600">The traditional path</div>
           <div className="mt-2 font-heading text-2xl font-bold text-primary">Information overload</div>
@@ -139,7 +155,7 @@ export default function ChaosToConfidence() {
         </motion.div>
       </div>
 
-      <div ref={listRef} className="relative space-y-6 md:space-y-5">
+      <div ref={listRef} className="relative space-y-6 lg:space-y-5">
         <Spine progress={progress} />
         {PAIRS.map((pair, index) => (
           <PairRow key={pair.problem.title} pair={pair} index={index} />

@@ -208,7 +208,7 @@ export default function QuraLanding() {
 
       <ScrollReveal>
       <section id="contact" className="px-4 pb-5 sm:px-6">
-        <div className="relative mx-auto max-w-[1500px] overflow-hidden rounded-[2rem] bg-primary px-6 py-14 text-white md:px-12 md:py-20">
+        <div className="relative mx-auto max-w-[1500px] overflow-hidden rounded-[2rem] bg-primary px-4 py-12 text-white sm:px-6 sm:py-14 md:px-12 md:py-20">
           <div className="absolute inset-0 bg-grid-pattern opacity-20" />
           <QuraCornerBrackets color="lime" size="lg" />
           <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
