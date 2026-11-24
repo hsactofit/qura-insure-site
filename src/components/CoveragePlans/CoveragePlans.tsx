@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Building2, Car, Check, HeartPulse, ShieldCheck } from "lucide-react";
+import { Ambulance, ArrowRight, Briefcase, Building2, Car, Check, HeartPulse, House, LockKeyhole, Plane, ShieldCheck } from "lucide-react";
 import QuraCornerBrackets from "@/components/Common/QuraCornerBrackets";
 
-// Card photos: Unsplash (term: 1lKYd8M9MRE, corporate: cW4lLTavU80) and Pexels (health: 14558557, motor: 12937789, plate blurred), free licences.
+// Card photos: Unsplash (term: 1lKYd8M9MRE, corporate: cW4lLTavU80, business: bAKYjjvAQIE, cyber: MFbp96h9r88,
+// accident: AlKE7i2yvuw) and Pexels (health: 14558557, motor: 12937789 plate blurred, home: 14825428, travel: 31804744), free licences.
 const plans = [
   {
     number: "01",
@@ -65,15 +66,101 @@ const plans = [
     idealFor: "Car and two-wheeler owners, new or used",
     image: { src: "/qura-plan-motor-car.jpg", alt: "A man standing through the sunroof of his SUV on a hill road" },
   },
+  {
+    number: "05",
+    short: "Home",
+    href: "/insurance/home",
+    title: "Home Insurance",
+    label: "Property protection",
+    icon: House,
+    description: "Protect your home and everything in it against fire, floods, earthquakes and burglary, whether you own it or rent it.",
+    benefits: ["Building and contents cover", "Natural disaster protection", "Cover for valuables", "Rebuilding-cost guidance"],
+    figure: "Rebuild cost",
+    figureLabel: "not market value, guides your cover",
+    idealFor: "Homeowners, tenants and families with a home loan",
+    image: { src: "/qura-plan-home-family.jpg", alt: "A multi-generation family together outside their home" },
+  },
+  {
+    number: "06",
+    short: "Travel",
+    href: "/insurance/travel",
+    title: "Travel Insurance",
+    label: "Trip protection",
+    icon: Plane,
+    description: "Travel with cover for medical emergencies, cancellations, lost baggage and passports, in India and abroad.",
+    benefits: ["Overseas medical cover", "Trip cancellation and delay", "Baggage and passport loss", "24×7 emergency assistance"],
+    figure: "€30,000",
+    figureLabel: "minimum medical cover for a Schengen visa",
+    idealFor: "Holidaymakers, students and frequent business travellers",
+    image: { src: "/qura-plan-travel-station.jpg", alt: "Passengers with luggage on a railway platform in India" },
+  },
+  {
+    number: "07",
+    short: "Business",
+    href: "/insurance/business",
+    title: "Business Insurance",
+    label: "Business continuity",
+    icon: Briefcase,
+    description: "Protect your premises, stock and income, and your liability to customers and the public, so one bad day doesn't close your business.",
+    benefits: ["Property and stock cover", "Business interruption", "Public and product liability", "Burglary and money cover"],
+    figure: "One package",
+    figureLabel: "built around how you operate",
+    idealFor: "Shops, offices, factories and professional firms",
+    image: { src: "/qura-plan-business-kirana.jpg", alt: "Shopkeepers at the counter of a neighbourhood kirana store" },
+  },
+  {
+    number: "08",
+    short: "Cyber",
+    href: "/insurance/cyber",
+    title: "Cyber Insurance",
+    label: "Digital protection",
+    icon: LockKeyhole,
+    description: "Cover against online fraud, identity theft and data breaches, for your bank accounts, UPI and cards, or your whole business.",
+    benefits: ["UPI and card fraud cover", "Identity theft support", "Ransomware and extortion", "Breach response for businesses"],
+    figure: "1930",
+    figureLabel: "national helpline to report cyber fraud",
+    idealFor: "Anyone banking online, and businesses holding customer data",
+    image: { src: "/qura-plan-cyber-phone.jpg", alt: "A young man using his smartphone on a metro train" },
+  },
+  {
+    number: "09",
+    short: "Accident",
+    href: "/insurance/personal-accident",
+    title: "Personal Accident Insurance",
+    label: "Accident protection",
+    icon: Ambulance,
+    description: "A lump sum for accidental death or disability, and a weekly benefit if an accident keeps you from working.",
+    benefits: ["Accidental death cover", "Permanent disability payouts", "Weekly income benefit", "Worldwide, 24×7 cover"],
+    figure: "Low cost",
+    figureLabel: "cover that works alongside term and health",
+    idealFor: "Commuters, two-wheeler riders and self-employed earners",
+    image: { src: "/qura-plan-accident-rider.jpg", alt: "A rider in a helmet and gloves on a motorcycle" },
+  },
 ];
 
 export default function CoveragePlans() {
   const [active, setActive] = useState(0);
+  const tabsRef = useRef<HTMLDivElement>(null);
+
+  // Select a tab and keep it visible when the strip scrolls on narrow screens.
+  const selectTab = (index: number, focus = false) => {
+    setActive(index);
+    const tab = tabsRef.current?.children[index] as HTMLElement | undefined;
+    tab?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    if (focus) tab?.focus();
+  };
+
+  const onTabKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    e.preventDefault();
+    const step = e.key === "ArrowRight" ? 1 : -1;
+    selectTab((active + step + plans.length) % plans.length, true);
+  };
   const plan = plans[active];
   const Icon = plan.icon;
 
   return (
-    <section id="products" className="overflow-hidden py-28 md:py-36">
+    <section id="products" className="overflow-hidden py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mx-auto max-w-3xl text-center">
           <span className="text-sm font-bold uppercase tracking-[.2em] text-secondary">Coverage, simplified</span>
@@ -81,18 +168,48 @@ export default function CoveragePlans() {
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-text-muted">Choose a protection goal to see what matters, who it suits, and how QURA researches and curates suitable options.</p>
         </motion.div>
 
-        <div role="tablist" aria-label="Insurance coverage types" className="mx-auto mt-14 grid max-w-5xl grid-cols-2 gap-3 rounded-[1.5rem] border border-primary/10 bg-white p-2 shadow-[0_16px_45px_rgba(17,37,65,.07)] lg:grid-cols-4">
-          {plans.map((item, index) => {
-            const TabIcon = item.icon;
-            const selected = active === index;
-            return (
-              <button key={item.title} role="tab" aria-selected={selected} onClick={() => setActive(index)} className={`relative flex items-center gap-2.5 overflow-hidden rounded-[1.1rem] px-3 py-3 sm:gap-3 sm:px-5 sm:py-4 text-left transition ${selected ? "text-white" : "text-primary hover:bg-bg-main"}`}>
-                {selected && <motion.div layoutId="coverage-tab" className="absolute inset-0 bg-primary" transition={{ type: "spring", stiffness: 320, damping: 30 }} />}
-                <span className={`relative flex h-10 w-10 items-center justify-center rounded-xl ${selected ? "bg-cta text-primary" : "bg-surface-sage text-primary"}`}><TabIcon size={20} /></span>
-                <span className="relative"><span className={`block text-[10px] font-bold tracking-[.18em] ${selected ? "text-cta" : "text-text-muted"}`}>{item.number}</span><span className="mt-1 block font-bold">{item.short}</span></span>
-              </button>
-            );
-          })}
+        <div className="mx-auto mt-10 max-w-7xl rounded-full border border-primary/10 bg-white p-1.5 shadow-[0_16px_45px_rgba(17,37,65,.07)]">
+          <div
+            ref={tabsRef}
+            role="tablist"
+            aria-label="Insurance coverage types"
+            onKeyDown={onTabKeyDown}
+            className="flex snap-x snap-mandatory gap-1 overflow-x-auto [scrollbar-width:none] xl:justify-between [&::-webkit-scrollbar]:hidden"
+          >
+            {plans.map((item, index) => {
+              const TabIcon = item.icon;
+              const selected = active === index;
+              return (
+                <motion.button
+                  key={item.title}
+                  role="tab"
+                  aria-selected={selected}
+                  tabIndex={selected ? 0 : -1}
+                  onClick={() => selectTab(index)}
+                  whileTap={{ scale: 0.94 }}
+                  className={`group relative flex shrink-0 snap-start items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold outline-none transition-colors focus-visible:ring-2 focus-visible:ring-cta ${
+                    selected ? "text-white" : "text-primary/75 hover:bg-bg-main hover:text-primary"
+                  }`}
+                >
+                  {selected && (
+                    <motion.span
+                      layoutId="coverage-tab"
+                      className="absolute inset-0 rounded-full bg-primary shadow-md"
+                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                    />
+                  )}
+                  <span
+                    className={`relative flex h-7 w-7 items-center justify-center rounded-full transition-colors ${
+                      selected ? "bg-cta text-primary" : "bg-surface-sage text-primary group-hover:bg-cta"
+                    }`}
+                  >
+                    <TabIcon size={15} />
+                  </span>
+                  <span className="relative whitespace-nowrap">{item.short}</span>
+                </motion.button>
+              );
+            })}
+          </div>
         </div>
 
         <div className="relative mt-6 overflow-hidden lg:min-h-[590px] rounded-none md:rounded-sm bg-primary text-white shadow-[0_34px_90px_rgba(17,37,65,.18)]">

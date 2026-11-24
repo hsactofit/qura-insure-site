@@ -1,9 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, Compass, HelpCircle, Layers, Lightbulb, Shield } from "lucide-react";
 import QuraCornerBrackets from "@/components/Common/QuraCornerBrackets";
+import ChaosToConfidence from "./ChaosToConfidence";
 
 const brandPillars = [
   {
@@ -37,6 +39,121 @@ const brandPillars = [
     icon: Shield,
   },
 ];
+
+// Extra detail revealed when a pillar card is expanded (same order as brandPillars).
+const pillarPoints = [
+  ["Policy wordings read clause by clause", "Exclusions and waiting periods flagged upfront", "Claim settlement records compared across insurers"],
+  ["A shortlist built around your life stage", "Only options that fit your needs and budget", "Trade-offs laid out side by side"],
+  ["Every term explained in plain language", "Fine print summarised before you buy", "No pressure and no sales scripts"],
+  ["One advisor from first call to claim", "Help with forms, medicals and issuance", "Claim follow-up with the insurer"],
+  ["Know exactly what you're covered for", "Understand why it fits you", "Review your cover as life changes"],
+];
+
+/**
+ * Brand pillars as an expanding accordion. On wide screens the hovered/focused card grows to show
+ * its detail points while the others shrink; on smaller screens cards expand in place on tap.
+ */
+function PillarAccordion() {
+  const [active, setActive] = useState<number | null>(null);
+
+  return (
+    <div
+      onMouseLeave={() => setActive(null)}
+      className="mt-14 grid gap-5 sm:grid-cols-2 xl:flex xl:h-[420px] xl:gap-4"
+    >
+      {brandPillars.map((pillar, index) => {
+        const IconComp = pillar.icon;
+        const isActive = active === index;
+        const isDimmed = active !== null && !isActive;
+        return (
+          <motion.div
+            key={pillar.title}
+            role="button"
+            tabIndex={0}
+            aria-expanded={isActive}
+            onMouseEnter={() => setActive(index)}
+            onFocus={() => setActive(index)}
+            onClick={() => setActive(isActive ? null : index)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                setActive(isActive ? null : index);
+              }
+            }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1 }}
+            style={{ flexGrow: isActive ? 2.6 : isDimmed ? 0.75 : 1 }}
+            className={`group/pillar relative flex min-w-0 cursor-pointer flex-col overflow-hidden border p-7 shadow-lg outline-none transition-[flex-grow,background-color,border-color,box-shadow] duration-500 ease-[cubic-bezier(.22,1,.36,1)] focus-visible:ring-2 focus-visible:ring-cta xl:basis-0 ${
+              isActive ? "border-primary bg-primary text-white shadow-2xl" : "border-primary/10 bg-white text-primary"
+            }`}
+          >
+            <QuraCornerBrackets color={isActive ? "lime" : "navy"} size="sm" />
+
+            <div className="flex items-start justify-between gap-3">
+              <motion.div
+                animate={{ rotate: isActive ? 360 : 0, scale: isActive ? 1.1 : 1 }}
+                transition={{ type: "spring", stiffness: 200, damping: 16 }}
+                className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl shadow-md transition-colors duration-300 ${
+                  isActive ? "bg-cta text-primary" : "bg-primary text-cta"
+                }`}
+              >
+                <IconComp className="h-6 w-6" />
+              </motion.div>
+              <span className={`text-xs font-bold tracking-[.18em] transition-colors ${isActive ? "text-cta" : "text-text-muted"}`}>
+                {String(index + 1).padStart(2, "0")}
+              </span>
+            </div>
+
+            <h4 className="mt-6 whitespace-nowrap font-heading text-xl font-semibold">{pillar.title}</h4>
+            <div className={`mt-1 text-xs font-bold uppercase tracking-[.14em] transition-colors ${isActive ? "text-cta" : "text-secondary"}`}>
+              {pillar.tagline}
+            </div>
+
+            <p
+              className={`mt-4 text-sm leading-relaxed transition-opacity duration-300 ${
+                isActive ? "text-white/80" : "text-secondary"
+              } ${isDimmed ? "xl:opacity-0" : "opacity-100"}`}
+            >
+              {pillar.desc}
+            </p>
+
+            <AnimatePresence initial={false}>
+              {isActive && (
+                <motion.div
+                  key="detail"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto", transition: { delay: 0.15, duration: 0.35 } }}
+                  exit={{ opacity: 0, height: 0, transition: { duration: 0.15 } }}
+                  className="overflow-hidden"
+                >
+                  <div className="mt-6 border-t border-white/15 pt-5">
+                    <div className="text-[10px] font-bold uppercase tracking-[.2em] text-cta">How we do it</div>
+                    <ul className="mt-3 space-y-2.5">
+                      {pillarPoints[index].map((point, i) => (
+                        <motion.li
+                          key={point}
+                          initial={{ opacity: 0, x: -12 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.25 + i * 0.08 }}
+                          className="flex items-start gap-2.5 text-sm text-white/90"
+                        >
+                          <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-cta" />
+                          {point}
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+}
 
 const coreValues = [
   { title: "Integrity", description: "Doing what is right, even when no one is watching." },
@@ -81,7 +198,7 @@ const reveal = {
 
 export default function BrandIdentity() {
   return (
-    <section id="our-approach" className="relative py-28 md:py-36 bg-bg-main overflow-hidden">
+    <section id="our-approach" className="relative py-16 md:py-24 bg-bg-main overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
 
         {/* 1. Core Brand Manifesto Header */}
@@ -172,7 +289,7 @@ export default function BrandIdentity() {
         </div>
 
         {/* 3. Customer Transformation (Before vs After QURA) */}
-        <div className="mt-16 md:mt-24 rounded-none bg-primary p-7 sm:p-8 md:p-14 text-white shadow-2xl relative overflow-hidden">
+        <div className="mt-12 md:mt-16 rounded-none bg-primary p-7 sm:p-8 md:p-14 text-white shadow-2xl relative overflow-hidden">
           <QuraCornerBrackets color="white" size="lg" />
           <motion.div {...reveal} className="max-w-3xl">
             <span className="text-xs font-bold uppercase tracking-[.2em] text-cta">Customer Transformation</span>
@@ -228,7 +345,7 @@ export default function BrandIdentity() {
         </div>
 
         {/* 4. The Challenge: Chaos vs QURA Flow (Page 6 of Brand Book) */}
-        <div className="mt-16 md:mt-24">
+        <div className="mt-12 md:mt-16">
           <motion.div {...reveal} className="text-center max-w-3xl mx-auto">
             <span className="text-xs font-bold uppercase tracking-[.2em] text-secondary">The Problem & Solution</span>
             <h3 className="mt-3 text-3xl font-semibold text-primary md:text-5xl font-heading">
@@ -239,78 +356,11 @@ export default function BrandIdentity() {
             </p>
           </motion.div>
 
-          <div className="mt-12 grid gap-8 md:grid-cols-2">
-            {/* Chaos Pathway */}
-            <motion.div
-              {...reveal}
-              whileHover={{ y: -6, scale: 1.01 }}
-              className="rounded-none bg-white p-8 md:p-10 border border-primary/10 shadow-lg relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-primary/30 group/card"
-            >
-              <QuraCornerBrackets color="navy" size="md" />
-              <div className="text-xs font-bold uppercase tracking-[.2em] text-red-600">The Traditional Path</div>
-              <h4 className="mt-3 text-2xl font-bold text-primary font-heading">Information Overload & Chaos</h4>
-              <div className="mt-8 space-y-4">
-                {[
-                  { title: "CHAOS", desc: "250+ products & 1000+ policy variations" },
-                  { title: "INFORMATION", desc: "Endless technical fine print & sales calls" },
-                  { title: "CONFUSION", desc: "No context on what actually covers you" },
-                  { title: "UNCERTAINTY", desc: "Fear of making a costly mistake" },
-                  { title: "BAD DECISIONS", desc: "Buying the wrong plan under pressure" },
-                ].map((step, idx) => (
-                  <motion.div
-                    key={step.title}
-                    whileHover={{ x: 6, scale: 1.015 }}
-                    transition={{ duration: 0.2 }}
-                    className="flex items-center gap-4 p-3.5 rounded-xl bg-red-50/60 border border-red-100/80 transition-all duration-300 hover:bg-red-100/90 hover:border-red-300 hover:shadow-md cursor-pointer group/step"
-                  >
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-red-100 text-xs font-bold text-red-700 transition-all duration-300 group-hover/step:bg-red-600 group-hover/step:text-white group-hover/step:scale-110">0{idx + 1}</span>
-                    <div>
-                      <div className="text-xs font-bold text-red-800 tracking-wider transition-colors group-hover/step:text-red-950">{step.title}</div>
-                      <div className="text-sm text-red-900/80 transition-colors group-hover/step:text-red-950">{step.desc}</div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* QURA Pathway */}
-            <motion.div
-              {...reveal}
-              transition={{ delay: 0.15 }}
-              whileHover={{ y: -6, scale: 1.01 }}
-              className="rounded-none bg-primary p-8 md:p-10 text-white shadow-xl relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-white/30 border border-transparent group/card"
-            >
-              <QuraCornerBrackets color="white" size="md" />
-              <div className="text-xs font-bold uppercase tracking-[.2em] text-cta">The QURA Way</div>
-              <h4 className="mt-3 text-2xl font-bold text-white font-heading">Thoughtful Curation & Clarity</h4>
-              <div className="mt-8 space-y-4">
-                {[
-                  { title: "RESEARCH", desc: "Evidence before opinion, analyzing top policies" },
-                  { title: "CURATION", desc: "Filtering out low-value clutter to top choices" },
-                  { title: "CLARITY", desc: "Plain language explanations of terms & exclusions" },
-                  { title: "GUIDANCE", desc: "Personalized advice tailored to your life stage" },
-                  { title: "CONFIDENCE", desc: "Deciding with complete understanding" },
-                ].map((step, idx) => (
-                  <motion.div
-                    key={step.title}
-                    whileHover={{ x: 6, scale: 1.015 }}
-                    transition={{ duration: 0.2 }}
-                    className="flex items-center gap-4 p-3.5 rounded-xl bg-white/10 border border-white/15 transition-all duration-300 hover:bg-white/20 hover:border-cta/50 hover:shadow-lg hover:shadow-black/20 cursor-pointer group/step"
-                  >
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cta text-xs font-bold text-primary transition-all duration-300 group-hover/step:scale-110 group-hover/step:bg-cta-hover group-hover/step:shadow-md">0{idx + 1}</span>
-                    <div>
-                      <div className="text-xs font-bold text-cta tracking-wider transition-colors group-hover/step:text-white">{step.title}</div>
-                      <div className="text-sm text-white/90 transition-colors group-hover/step:text-white">{step.desc}</div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
+          <ChaosToConfidence />
         </div>
 
         {/* 5. Purpose, Mission & Vision (Page 10 of Brand Book) */}
-        <div className="mt-16 md:mt-24">
+        <div className="mt-12 md:mt-16">
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <motion.div
               {...reveal}
@@ -356,7 +406,7 @@ export default function BrandIdentity() {
         </div>
 
         {/* 6. Logo Story & Compass Symbolism (Pages 32 & 34 of Brand Book) */}
-        <div className="mt-16 md:mt-24 rounded-none bg-primary p-7 sm:p-8 md:p-14 text-white shadow-2xl relative overflow-hidden">
+        <div className="mt-12 md:mt-16 rounded-none bg-primary p-7 sm:p-8 md:p-14 text-white shadow-2xl relative overflow-hidden">
           <QuraCornerBrackets color="white" size="lg" />
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
@@ -399,7 +449,7 @@ export default function BrandIdentity() {
         </div>
 
         {/* 7. Core Brand Pillars */}
-        <div className="mt-16 md:mt-24">
+        <div className="mt-12 md:mt-16">
           <motion.div {...reveal} className="text-center max-w-3xl mx-auto">
             <span className="text-xs font-bold uppercase tracking-[.2em] text-secondary">Our Foundation</span>
             <h3 className="mt-3 text-3xl font-semibold text-primary md:text-5xl font-heading">
@@ -407,35 +457,10 @@ export default function BrandIdentity() {
             </h3>
           </motion.div>
 
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-            {brandPillars.map((pillar, index) => {
-              const IconComp = pillar.icon;
-              return (
-                <motion.div
-                  key={pillar.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ y: -8, scale: 1.015 }}
-                  className="rounded-none border border-primary/10 bg-white p-7 shadow-lg flex flex-col justify-between transition-all duration-300 hover:border-primary/30 hover:shadow-2xl relative overflow-hidden group/pillar cursor-pointer"
-                >
-                  <QuraCornerBrackets color="navy" size="sm" />
-                  <div>
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-cta shadow-md transition-transform duration-300 group-hover/pillar:scale-110 group-hover/pillar:bg-cta group-hover/pillar:text-primary">
-                      <IconComp className="w-6 h-6" />
-                    </div>
-                    <h4 className="mt-6 text-xl font-semibold text-primary font-heading transition-colors group-hover/pillar:text-primary">{pillar.title}</h4>
-                    <div className="mt-1 text-xs font-bold uppercase tracking-[.14em] text-secondary">{pillar.tagline}</div>
-                    <p className="mt-4 text-sm leading-relaxed text-secondary">{pillar.desc}</p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+          <PillarAccordion />
         </div>
 
-        <div className="mt-24 border-t border-border-subtle pt-16">
+        <div className="mt-16 border-t border-border-subtle pt-12">
           <h3 className="text-3xl font-semibold md:text-5xl">The values behind every recommendation</h3>
           <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {coreValues.map((value) => (

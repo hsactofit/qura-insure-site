@@ -1,11 +1,14 @@
 import { CRM_ENQUIRY_URL, CRM_SITE_KEY } from "@/lib/crm/config.server";
+import { INSURANCE_MENU } from "@/data/content";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 const MOBILE_RE = /^(\+?91)?[6-9]\d{9}$/;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const INTERESTS = ["Term Life Insurance", "Health Insurance", "Corporate Plans", "Motor Insurance", "Not sure yet"];
+const INTERESTS: string[] = [...INSURANCE_MENU.map((item) => item.title), "Not sure yet"];
+// Values the CRM's productInterest field is known to accept. Newer plan types are passed in the message instead.
+const CRM_INTERESTS = ["Term Life Insurance", "Health Insurance", "Corporate Plans", "Motor Insurance"];
 
 // Light per-instance throttle: 5 enquiries per IP per 10 minutes.
 const WINDOW_MS = 10 * 60_000;
@@ -47,6 +50,10 @@ export async function POST(request: Request) {
   if (email && !EMAIL_RE.test(email)) return fail("Please enter a valid email address.");
   if (productInterest && !INTERESTS.includes(productInterest)) return fail("Please choose what you're interested in.");
 
+  const crmInterest = CRM_INTERESTS.includes(productInterest) ? productInterest : undefined;
+  const extraInterest = productInterest && !crmInterest && productInterest !== "Not sure yet" ? `Interested in: ${productInterest}` : "";
+  const fullMessage = [extraInterest, message].filter(Boolean).join("\n");
+
   const utm: Record<string, string> = {};
   if (body.utm && typeof body.utm === "object") {
     for (const [k, v] of Object.entries(body.utm as Record<string, unknown>)) {
@@ -62,8 +69,8 @@ export async function POST(request: Request) {
         name,
         mobile,
         email: email || undefined,
-        productInterest: productInterest && productInterest !== "Not sure yet" ? productInterest : undefined,
-        message: message || undefined,
+        productInterest: crmInterest,
+        message: fullMessage || undefined,
         page: str(body.page, 300) || undefined,
         utm,
       }),

@@ -1,21 +1,21 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { ArrowRight, Briefcase, Building2, Handshake, User, X } from "lucide-react";
-import { cn } from "@/lib/utils";
-
-const CLIENT_APP_URL = process.env.NEXT_PUBLIC_CLIENT_APP_URL ?? "https://qura-client-panel.vercel.app";
-const CRM_APP_URL = process.env.NEXT_PUBLIC_CRM_APP_URL ?? "https://qura-crrm-panel.vercel.app";
+import { ArrowRight, Briefcase, User, X } from "lucide-react";
 
 const OPTIONS = [
   {
     title: "Client login",
     description: "Your policies, claims and advisor in one place.",
     icon: User,
-    href: `${CLIENT_APP_URL}/auth/login`,
+    href: "https://client.qurainsure.com",
   },
-  { title: "Corporate login", description: "Group cover for your employees.", icon: Building2, href: null },
-  { title: "Partner login", description: "For agents and distribution partners.", icon: Handshake, href: null },
+  {
+    title: "Employee login",
+    description: "For the Qura team.",
+    icon: Briefcase,
+    href: "https://crm.qurainsure.com/login",
+  },
 ];
 
 /** Sign-in chooser. Uses the native <dialog> (focus containment, Escape to close, inert page). */
@@ -55,59 +55,25 @@ export default function SignInDialog({ open, onClose }: { open: boolean; onClose
           </button>
         </div>
 
-        <ul className="flex flex-col gap-3">
-          {OPTIONS.map(({ title, description, icon: Icon, href }) => {
-            const body = (
-              <>
-                <span
-                  className={cn(
-                    "flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl",
-                    href ? "bg-accent text-primary" : "bg-bg-main text-navy-50"
-                  )}
-                >
+        <ul className="grid auto-rows-fr gap-3">
+          {OPTIONS.map(({ title, description, icon: Icon, href }) => (
+            <li key={title}>
+              <a
+                href={href}
+                className="group flex h-full items-center gap-4 rounded-2xl border border-border-subtle p-4 text-primary transition-all hover:border-primary hover:bg-surface-sage"
+              >
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-accent text-primary">
                   <Icon size={20} />
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="flex items-center gap-2 font-semibold">
-                    {title}
-                    {!href && (
-                      <span className="rounded-full bg-bg-main px-2 py-0.5 text-[11px] font-medium text-text-muted">Coming soon</span>
-                    )}
-                  </span>
+                  <span className="block font-semibold">{title}</span>
                   <span className="block text-sm text-text-muted">{description}</span>
                 </span>
-                {href && <ArrowRight size={18} className="shrink-0 text-primary transition-transform group-hover:translate-x-0.5" />}
-              </>
-            );
-            return (
-              <li key={title}>
-                {href ? (
-                  <a
-                    href={href}
-                    className="group flex items-center gap-4 rounded-2xl border border-border-subtle p-4 text-primary transition-all hover:border-primary hover:bg-surface-sage"
-                  >
-                    {body}
-                  </a>
-                ) : (
-                  <div
-                    aria-disabled="true"
-                    className="flex cursor-not-allowed items-center gap-4 rounded-2xl border border-dashed border-border-subtle p-4 text-navy-50"
-                  >
-                    {body}
-                  </div>
-                )}
-              </li>
-            );
-          })}
+                <ArrowRight size={18} className="shrink-0 text-primary transition-transform group-hover:translate-x-0.5" />
+              </a>
+            </li>
+          ))}
         </ul>
-
-        <p className="mt-6 flex items-center justify-center gap-1.5 text-xs text-text-muted">
-          <Briefcase size={13} />
-          Qura team?
-          <a href={`${CRM_APP_URL}/login`} className="font-semibold text-primary underline-offset-2 hover:underline">
-            Employee login
-          </a>
-        </p>
       </div>
     </dialog>
   );

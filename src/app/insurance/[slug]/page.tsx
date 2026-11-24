@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Building2, Calculator, Car, Check, ChevronDown, HeartPulse, ShieldCheck, X } from "lucide-react";
+import { Ambulance, ArrowRight, Briefcase, Building2, Calculator, Car, Check, ChevronDown, HeartPulse, House, LockKeyhole, Plane, ShieldCheck, X } from "lucide-react";
 import QuraCornerBrackets from "@/components/Common/QuraCornerBrackets";
 import { INSURANCE_PRODUCTS, getInsuranceProduct } from "@/data/insurance";
 
-const ICONS = { ShieldCheck, HeartPulse, Building2, Car };
+const ICONS = { ShieldCheck, HeartPulse, Building2, Car, House, Plane, Briefcase, LockKeyhole, Ambulance };
 
 export const dynamicParams = false;
 
@@ -29,7 +29,6 @@ export async function generateMetadata({ params }: PageProps<"/insurance/[slug]"
 export default async function InsuranceProductPage({ params }: PageProps<"/insurance/[slug]">) {
   const product = getInsuranceProduct((await params).slug);
   if (!product) notFound();
-  const Icon = ICONS[product.icon];
   const others = INSURANCE_PRODUCTS.filter((p) => p.slug !== product.slug);
 
   return (
@@ -38,10 +37,7 @@ export default async function InsuranceProductPage({ params }: PageProps<"/insur
       <section className="relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-24">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 md:px-10 lg:grid-cols-[1.05fr_.95fr]">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/10 bg-white px-4 py-2 text-sm font-semibold shadow-sm">
-              <Icon size={17} className="text-secondary" /> {product.eyebrow}
-            </div>
-            <h1 className="mt-6 text-[clamp(2.2rem,6vw,4.5rem)] font-semibold leading-[1.04] tracking-[-.045em]">
+            <h1 className="text-[clamp(2.2rem,6vw,4.5rem)] font-semibold leading-[1.04] tracking-[-.045em]">
               {product.headline} <span className="font-brand-emphasis text-secondary">{product.headlineEmphasis}</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-text-muted">{product.intro}</p>
@@ -112,7 +108,7 @@ export default async function InsuranceProductPage({ params }: PageProps<"/insur
             <QuraCornerBrackets color="lime" size="lg" />
             <div className="relative grid gap-10 lg:grid-cols-[.9fr_1.1fr]">
               <div>
-                <span className="text-sm font-bold uppercase tracking-[.2em] text-cta">{product.slug === "corporate" ? "Our process" : "Sizing your cover"}</span>
+                <span className="text-sm font-bold uppercase tracking-[.2em] text-cta">{product.slug === "corporate" || product.slug === "business" ? "Our process" : "Sizing your cover"}</span>
                 <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-[-.03em] md:text-5xl">{product.sizing.title}</h2>
                 {product.sizing.toolCta && (
                   <Link href="/tools/coverage-check" className="group mt-8 inline-flex items-center gap-3 rounded-full bg-cta px-7 py-4 font-bold text-primary transition hover:-translate-y-1 hover:bg-cta-hover">
@@ -152,7 +148,7 @@ export default async function InsuranceProductPage({ params }: PageProps<"/insur
       <section className="py-20 md:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 md:px-10 lg:grid-cols-2">
           <div>
-            <SectionHeading eyebrow={product.slug === "corporate" ? "Enhancements" : product.slug === "motor" ? "Add-ons" : "Riders & add-ons"} title="Strengthen your cover" />
+            <SectionHeading eyebrow={product.slug === "corporate" || product.slug === "business" ? "Enhancements" : product.slug === "term-life" ? "Riders & add-ons" : "Add-ons"} title="Strengthen your cover" />
             <div className="mt-10 space-y-4">
               {product.addOns.map((item) => (
                 <div key={item.title} className="rounded-2xl border border-primary/10 bg-white p-5">

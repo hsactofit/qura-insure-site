@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { IRDAI_REGISTRATION, isRegistrationComplete } from "@/data/content";
+import { INSURANCE_MENU, IRDAI_REGISTRATION, isRegistrationComplete } from "@/data/content";
 
 export default function Footer() {
   return (
@@ -28,10 +28,9 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-bold mb-6">Products</h4>
             <ul className="space-y-4 text-sm">
-              <li><Link href="/insurance/term-life" className="text-surface-sage hover:text-cta transition-colors">Term Life Insurance</Link></li>
-              <li><Link href="/insurance/health" className="text-surface-sage hover:text-cta transition-colors">Health Insurance</Link></li>
-              <li><Link href="/insurance/corporate" className="text-surface-sage hover:text-cta transition-colors">Corporate Plans</Link></li>
-              <li><Link href="/insurance/motor" className="text-surface-sage hover:text-cta transition-colors">Motor Insurance</Link></li>
+              {INSURANCE_MENU.map((item) => (
+                <li key={item.slug}><Link href={`/insurance/${item.slug}`} className="text-surface-sage hover:text-cta transition-colors">{item.title}</Link></li>
+              ))}
             </ul>
           </div>
           
@@ -58,8 +57,9 @@ export default function Footer() {
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
           <p className="text-center md:text-left">&copy; {new Date().getFullYear()} Qura Insure. All rights reserved.</p>
           <p className="text-center md:text-right">
-            {isRegistrationComplete() &&
-              `IRDAI Corporate Agent (${IRDAI_REGISTRATION.category}) Reg. No. ${IRDAI_REGISTRATION.registrationNumber}, valid till ${IRDAI_REGISTRATION.validTill}. `}
+            {isRegistrationComplete()
+              ? `IRDAI Corporate Agent (${IRDAI_REGISTRATION.category}) Reg. No. ${IRDAI_REGISTRATION.registrationNumber}, valid till ${IRDAI_REGISTRATION.validTill}. `
+              : IRDAI_REGISTRATION.registrationNumber && `IRDAI Registration No. ${IRDAI_REGISTRATION.registrationNumber}. `}
             Insurance is the subject matter of solicitation.
           </p>
         </div>

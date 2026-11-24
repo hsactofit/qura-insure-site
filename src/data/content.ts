@@ -31,6 +31,36 @@ export const INSURANCE_MENU = [
     description: "Car and two-wheeler protection",
     icon: "Car",
   },
+  {
+    slug: "home",
+    title: "Home Insurance",
+    description: "Protect your home and belongings",
+    icon: "House",
+  },
+  {
+    slug: "travel",
+    title: "Travel Insurance",
+    description: "Medical and trip cover, in India and abroad",
+    icon: "Plane",
+  },
+  {
+    slug: "business",
+    title: "Business Insurance",
+    description: "Property, liability and income cover for your business",
+    icon: "Briefcase",
+  },
+  {
+    slug: "cyber",
+    title: "Cyber Insurance",
+    description: "Cover against online fraud and data breaches",
+    icon: "LockKeyhole",
+  },
+  {
+    slug: "personal-accident",
+    title: "Personal Accident Insurance",
+    description: "Payouts for accidental death and disability",
+    icon: "Ambulance",
+  },
 ] as const;
 
 export const TOOLS_MENU = [
@@ -138,7 +168,7 @@ export const IRDAI_REGISTRATION: {
   validTill: string;
   insurerPartners: { name: string; line: "Life" | "General" | "Health" }[];
 } = {
-  registrationNumber: "",
+  registrationNumber: "CA1139",
   category: "",
   validFrom: "",
   validTill: "",

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Award, Building2, CheckCircle2, ShieldCheck, UserCheck } from "lucide-react";
+import { Award, CheckCircle2, ShieldCheck, UserCheck } from "lucide-react";
 import QuraCornerBrackets from "@/components/Common/QuraCornerBrackets";
 import { IRDAI_REGISTRATION, isRegistrationComplete } from "@/data/content";
 
@@ -85,7 +85,7 @@ export default function AboutUs() {
   }, []);
 
   return (
-    <section id="team" className="relative overflow-hidden bg-primary py-28 text-white md:py-36">
+    <section id="team" className="relative overflow-hidden bg-primary py-16 text-white md:py-24">
       <div className="absolute inset-0 bg-grid-pattern opacity-[.06]" />
       <motion.div
         animate={{ x: [0, 70, 0], y: [0, -30, 0] }}
@@ -108,14 +108,11 @@ export default function AboutUs() {
         </motion.div>
 
         {/* 1. Promoter & Founder Section */}
-        <motion.div {...reveal} className="relative mt-16 overflow-hidden rounded-none md:rounded-sm border border-cta/30 bg-white/[.07] p-6 sm:p-8 backdrop-blur-md md:p-12 lg:p-14">
+        <motion.div {...reveal} className="relative mt-12 overflow-hidden rounded-none md:rounded-sm border border-cta/30 bg-white/[.07] p-6 sm:p-8 backdrop-blur-md md:p-12 lg:p-14">
           <QuraCornerBrackets color="lime" size="md" />
           <div className="grid gap-10 lg:grid-cols-[1.1fr_.9fr] lg:items-center">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-cta/20 px-4 py-1.5 text-xs font-bold uppercase tracking-[.18em] text-cta">
-                <Building2 size={15} /> Promoter & Management
-              </div>
-              <h3 className="mt-6 text-3xl font-semibold tracking-[-.035em] md:text-5xl">{promoter.name}</h3>
+              <h3 className="text-3xl font-semibold tracking-[-.035em] md:text-5xl">{promoter.name}</h3>
               <div className="mt-2 text-lg font-medium text-cta">{promoter.role} • <span className="text-white/80">{promoter.qualification}</span></div>
               <p className="mt-6 text-lg leading-relaxed text-white/90">{promoter.bio}</p>
               <div className="mt-8 flex flex-wrap gap-3">
@@ -178,7 +175,7 @@ export default function AboutUs() {
         </div>
 
         {/* 3. Operational Team Infinite Slider (4 Seconds Loop) */}
-        <div className="mt-20">
+        <div className="mt-14">
           <motion.div {...reveal} className="mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
             <div>
               <span className="text-xs font-bold uppercase tracking-[.2em] text-cta">Execution & Service</span>
@@ -264,16 +261,20 @@ export default function AboutUs() {
         </div>
 
         {/* 4. Mandatory IRDAI Licensing & Documents */}
-        <motion.div {...reveal} className="mt-20 rounded-[2rem] border border-white/10 bg-white/[.04] p-6 sm:p-8 md:p-12">
+        <motion.div {...reveal} className="mt-14 rounded-[2rem] border border-white/10 bg-white/[.04] p-6 sm:p-8 md:p-12">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
               <span className="text-xs font-bold uppercase tracking-[.2em] text-cta">Regulatory Compliance</span>
               <h3 className="mt-2 text-2xl font-semibold">Necessary IRDAI Certificates & Documentation</h3>
               <p className="mt-2 text-sm text-white/65">Full regulatory compliance in accordance with IRDAI guidelines.</p>
             </div>
-            <div className="flex w-fit items-center gap-2 rounded-full border border-cta/40 bg-cta/15 px-5 py-2.5 text-xs font-bold text-cta shrink-0">
-              <ShieldCheck size={18} /> Verified Intermediary
-            </div>
+            <div className="flex shrink-0 flex-wrap items-center gap-3">
+              {IRDAI_REGISTRATION.registrationNumber && (
+                <div className="rounded-2xl border border-cta/40 bg-primary/60 px-5 py-3">
+                  <div className="text-[10px] font-bold uppercase tracking-[.18em] text-white/60">IRDAI Registration No.</div>
+                  <div className="mt-0.5 text-xl font-semibold tracking-wide text-cta">{IRDAI_REGISTRATION.registrationNumber}</div>
+                </div>
+              )}            </div>
           </div>
 
           {isRegistrationComplete() && (

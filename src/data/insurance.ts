@@ -7,8 +7,8 @@ export type InsuranceFaq = { question: string; answer: string };
 export type InsuranceSource = { name: string; url: string };
 
 export type InsuranceProduct = {
-  slug: "term-life" | "health" | "corporate" | "motor";
-  icon: "ShieldCheck" | "HeartPulse" | "Building2" | "Car";
+  slug: "term-life" | "health" | "corporate" | "motor" | "home" | "travel" | "business" | "cyber" | "personal-accident";
+  icon: "ShieldCheck" | "HeartPulse" | "Building2" | "Car" | "House" | "Plane" | "Briefcase" | "LockKeyhole" | "Ambulance";
   name: string;
   eyebrow: string;
   headline: string;
@@ -346,6 +346,399 @@ export const INSURANCE_PRODUCTS: InsuranceProduct[] = [
       IRDAI,
       { name: "Ministry of Road Transport & Highways — Motor Vehicles Act", url: "https://morth.nic.in" },
       { name: "GST Council", url: "https://gstcouncil.gov.in" },
+    ],
+  },
+  {
+    slug: "home",
+    icon: "House",
+    name: "Home Insurance",
+    eyebrow: "Property protection",
+    headline: "The home you built,",
+    headlineEmphasis: "protected properly.",
+    intro:
+      "Home insurance pays to repair or rebuild your house and replace your belongings after fire, floods, earthquakes, burglary and other events. Whether you own or rent, it protects what is often a family's biggest asset for a small yearly premium.",
+    metaDescription:
+      "Home insurance in India explained: Bharat Griha Raksha, building vs contents cover, what's covered, how to set the sum insured, and add-ons for valuables.",
+    image: { src: "/qura-plan-home-family.jpg", alt: "A multi-generation family together outside their home" },
+    stats: [
+      { value: "Apr 2021", label: "Bharat Griha Raksha became the standard home policy every general insurer must offer", source: "IRDAI" },
+      { value: "20%", label: "Of the building sum insured, up to ₹10 lakh, covers general contents in Bharat Griha Raksha without a list of items", source: "IRDAI — Bharat Griha Raksha policy wording" },
+      { value: "Owners & tenants", label: "Owners can insure building and contents. Tenants can insure just their contents", source: "Typical home policy terms" },
+      { value: "Multi-year", label: "Policies can be bought for several years at once, locking in the premium", source: "Typical home policy terms" },
+    ],
+    covered: [
+      { title: "Fire and allied perils", text: "Fire, lightning, explosion, aircraft damage, riots and malicious damage." },
+      { title: "Natural disasters", text: "Earthquake, flood, storm, cyclone, landslide and subsidence." },
+      { title: "Contents", text: "Furniture, appliances, electronics and other household items, with jewellery and valuables covered if declared." },
+      { title: "Burglary and theft", text: "Loss of contents from break-ins, usually as an add-on to the base policy." },
+    ],
+    notCovered: [
+      "Wear and tear, gradual deterioration and poor maintenance.",
+      "Damage while the home has been left unoccupied for a long period, beyond the limit in your policy.",
+      "Jewellery, art and cash unless specifically declared and covered.",
+      "Losses from war, nuclear risk or intentional damage.",
+    ],
+    keyTerms: [
+      { term: "Building cover", text: "Pays to repair or rebuild the structure. Based on construction cost, not market value, so land isn't included." },
+      { term: "Contents cover", text: "Pays to repair or replace household items and personal belongings." },
+      { term: "Reinstatement value", text: "The cost of rebuilding at today's prices. Insuring for this avoids a reduced payout." },
+      { term: "Under-insurance", text: "If the sum insured is lower than the real value, claims may be paid only in proportion." },
+      { term: "Rent for alternative accommodation", text: "Pays your rent while your home is being repaired after an insured loss." },
+      { term: "Valuables schedule", text: "A list of declared high-value items like jewellery or art, each with its own sum insured." },
+    ],
+    addOns: [
+      { title: "Burglary and theft", text: "Covers loss of contents from break-ins and theft." },
+      { title: "Jewellery and valuables", text: "Covers declared items, sometimes outside the home as well." },
+      { title: "Portable electronics", text: "Laptops, phones and cameras against accidental damage and theft." },
+      { title: "Public liability", text: "Covers your legal liability if a visitor is injured or a neighbour's property is damaged." },
+    ],
+    sizing: {
+      title: "How much home cover do you need?",
+      points: [
+        "Insure the building for its rebuilding cost: built-up area multiplied by the current construction cost per square foot.",
+        "Don't use market value. It includes land, which can't be destroyed.",
+        "List your contents room by room and add up their replacement cost.",
+        "Declare jewellery, art and other valuables separately, with bills or valuations.",
+        "Review the sum insured after renovations, extensions or big purchases.",
+      ],
+    },
+    tax: [
+      { title: "Self-occupied homes", text: "Home insurance premiums for your own home aren't tax-deductible." },
+      { title: "Let-out property", text: "Premiums are covered by the 30% standard deduction on rental income, not claimed separately." },
+      { title: "GST", text: "Home insurance premiums attract 18% GST." },
+    ],
+    checklist: [
+      "Insure the building for rebuilding cost, not market value.",
+      "Check that earthquake and flood are included if you live in a high-risk zone.",
+      "Declare valuables with bills or valuations so claims aren't disputed.",
+      "Keep photos and receipts of major items stored safely online.",
+      "If you have a home loan, check whether the lender's policy covers contents. Most cover only the building.",
+      "Renew before expiry and update the sum insured as costs rise.",
+    ],
+    faqs: [
+      { question: "My bank already insured my home. Is that enough?", answer: "Usually not. Lender policies typically cover only the building, up to the loan amount, and protect the bank first. You'll still need cover for contents and for the full rebuilding cost." },
+      { question: "Can tenants buy home insurance?", answer: "Yes. Tenants can insure their own contents and valuables, even though the building belongs to the landlord." },
+      { question: "Is my house covered for earthquakes and floods?", answer: "Standard policies like Bharat Griha Raksha include earthquake, flood, storm and landslide. Always check the policy wording for your plan." },
+      { question: "How are claims settled?", answer: "Report the loss to the insurer quickly, file an FIR for theft or burglary, and keep the damaged items for the surveyor. The insurer assesses the loss and pays for repair or replacement, minus any excess." },
+    ],
+    sources: [IRDAI, INCOME_TAX, { name: "GST Council", url: "https://gstcouncil.gov.in" }],
+  },
+  {
+    slug: "travel",
+    icon: "Plane",
+    name: "Travel Insurance",
+    eyebrow: "Trip protection",
+    headline: "Travel far, knowing",
+    headlineEmphasis: "you're covered.",
+    intro:
+      "Travel insurance covers medical emergencies, trip cancellations, lost baggage and other problems while you're away. Treatment abroad can cost many times more than in India, and some countries require cover before they issue a visa.",
+    metaDescription:
+      "Travel insurance for Indians explained: medical cover abroad, Schengen visa requirements, trip cancellation, baggage, single vs multi-trip, and what's excluded.",
+    image: { src: "/qura-plan-travel-station.jpg", alt: "Passengers with luggage on a railway platform in India" },
+    stats: [
+      { value: "€30,000", label: "Minimum medical cover required for a Schengen visa", source: "EU Visa Code" },
+      { value: "24×7", label: "Emergency assistance helpline offered with international travel policies", source: "Typical travel policy terms" },
+      { value: "Single / annual", label: "Buy cover for one trip, or an annual multi-trip plan if you travel often", source: "Typical travel policy terms" },
+      { value: "18%", label: "GST on travel insurance premiums", source: "GST Council" },
+    ],
+    covered: [
+      { title: "Medical emergencies", text: "Hospitalisation, treatment and emergency dental care for illness or injury during the trip." },
+      { title: "Emergency evacuation", text: "Medical evacuation and, if needed, repatriation to India." },
+      { title: "Trip problems", text: "Cancellation, interruption, missed connections and flight delays, as listed in your plan." },
+      { title: "Baggage and documents", text: "Lost or delayed checked baggage and the cost of replacing a lost passport." },
+    ],
+    notCovered: [
+      "Pre-existing conditions, unless the plan covers them or for life-threatening emergencies only.",
+      "Adventure sports such as scuba diving or skiing, unless you've added cover for them.",
+      "Incidents under the influence of alcohol or drugs.",
+      "Travelling against medical advice, or to get treatment abroad.",
+    ],
+    keyTerms: [
+      { term: "Sum insured", text: "The maximum medical payout. Choose higher cover for countries like the US and Canada." },
+      { term: "Cashless hospitalisation", text: "The insurer's assistance partner pays the hospital directly, so you don't have to pay upfront." },
+      { term: "Deductible", text: "The amount you pay before the insurer pays, applied to each claim in many plans." },
+      { term: "Trip cancellation", text: "Refunds non-refundable bookings if you cancel for a covered reason, such as illness or a family emergency." },
+      { term: "Single-trip vs multi-trip", text: "Single-trip covers one journey. Multi-trip covers every trip in a year, with a maximum length for each trip." },
+      { term: "Personal liability", text: "Covers your legal liability if you accidentally injure someone or damage their property abroad." },
+    ],
+    addOns: [
+      { title: "Adventure sports", text: "Covers injuries from listed activities like skiing, trekking or scuba diving." },
+      { title: "Pre-existing conditions", text: "Extends cover to known conditions, sometimes up to a limit." },
+      { title: "Home burglary while away", text: "Covers your home in India while you're travelling." },
+      { title: "Student and senior plans", text: "Plans built for long stays abroad or for travellers over 60." },
+    ],
+    sizing: {
+      title: "How to choose the right travel cover",
+      points: [
+        "Pick a medical sum insured that matches your destination: higher for the US, Canada and Europe.",
+        "Check the visa requirements for your destination, such as the €30,000 minimum for Schengen countries.",
+        "Cover the full length of your trip, including any extensions.",
+        "Add trip cancellation if you've paid for expensive non-refundable bookings.",
+        "Consider an annual multi-trip plan if you travel abroad more than two or three times a year.",
+      ],
+    },
+    tax: [
+      { title: "Personal travel", text: "Premiums for personal trips aren't tax-deductible." },
+      { title: "Business travel", text: "Premiums for business trips are generally deductible as a business expense." },
+      { title: "GST", text: "Travel insurance premiums attract 18% GST." },
+    ],
+    checklist: [
+      "Buy cover as soon as you book, so trip cancellation applies from the start.",
+      "Disclose pre-existing conditions and check how they're covered.",
+      "Save the insurer's emergency helpline number and policy number on your phone.",
+      "Carry a printed or digital copy of the policy, as visa officers may ask for it.",
+      "Keep receipts, medical reports and airline letters for any claim.",
+      "Check that planned activities like trekking or skiing are covered.",
+    ],
+    faqs: [
+      { question: "Is travel insurance mandatory?", answer: "For some destinations, yes. Schengen countries require at least €30,000 of medical cover for a visa, and several other countries require proof of insurance. Even where it isn't required, it's strongly recommended." },
+      { question: "Does my health policy cover me abroad?", answer: "Most Indian health policies cover treatment only in India. Some premium plans include global cover, but often only for planned treatment or with limits, so check before relying on it." },
+      { question: "Do I need travel insurance for trips within India?", answer: "It's optional. Domestic travel plans cover trip cancellation, baggage and accidents, which can be useful for expensive or long trips." },
+      { question: "How do I claim when I'm abroad?", answer: "Call the insurer's 24×7 assistance number first. They can arrange cashless treatment at a network hospital, or guide you on documents for a reimbursement claim." },
+    ],
+    sources: [
+      IRDAI,
+      { name: "European Commission — Schengen visa requirements", url: "https://home-affairs.ec.europa.eu" },
+      { name: "GST Council", url: "https://gstcouncil.gov.in" },
+    ],
+  },
+  {
+    slug: "business",
+    icon: "Briefcase",
+    name: "Business Insurance",
+    eyebrow: "Business continuity",
+    headline: "Keep your business running,",
+    headlineEmphasis: "whatever happens.",
+    intro:
+      "Business insurance protects your premises, stock, machinery and income, and your liability to customers, employees and the public. We help shops, offices, factories and professional firms build cover that fits how they actually operate.",
+    metaDescription:
+      "Business insurance in India: fire and property cover, Bharat Sookshma and Laghu Udyam Suraksha, business interruption, liability, and how to build the right package.",
+    image: { src: "/qura-plan-business-kirana.jpg", alt: "Shopkeepers at the counter of a neighbourhood kirana store" },
+    stats: [
+      { value: "₹5 crore", label: "Maximum sum insured for Bharat Sookshma Udyam Suraksha, the standard policy for micro enterprises", source: "IRDAI" },
+      { value: "₹5–50 crore", label: "Sum insured range for Bharat Laghu Udyam Suraksha, the standard policy for small enterprises", source: "IRDAI" },
+      { value: "Mandatory", label: "Public liability insurance for businesses handling hazardous substances", source: "Public Liability Insurance Act, 1991" },
+      { value: "18%", label: "GST on business insurance premiums, usually claimable as input tax credit", source: "GST Council" },
+    ],
+    covered: [
+      { title: "Property", text: "Buildings, plant, machinery, stock, furniture and fittings against fire, natural disasters and other perils." },
+      { title: "Business interruption", text: "Lost profit and fixed costs while you recover from an insured property loss." },
+      { title: "Liability", text: "Claims from customers, visitors or the public for injury or property damage, and product liability." },
+      { title: "Money and theft", text: "Cash in transit and on the premises, burglary, and employee dishonesty (fidelity)." },
+    ],
+    notCovered: [
+      "Gradual wear and tear, and machinery breakdown unless you add cover for it.",
+      "Losses from stock or assets you didn't declare, or that are under-insured.",
+      "Contractual liabilities you accepted beyond what the law requires.",
+      "Fines, penalties and deliberate acts.",
+    ],
+    keyTerms: [
+      { term: "Fire and special perils", text: "The core property policy for businesses, covering fire, natural disasters, riots and more." },
+      { term: "Business interruption", text: "Also called consequential loss. It pays lost profit after an insured property loss." },
+      { term: "Indemnity period", text: "How long business interruption cover pays while you get back to normal, for example 6 or 12 months." },
+      { term: "Declaration policy", text: "For stock that changes in value. You declare levels monthly and pay premium on the average." },
+      { term: "Professional indemnity", text: "Covers claims of negligence or errors in the professional services you provide." },
+      { term: "Employees' compensation", text: "Covers your liability for employee injury or death at work under the Employees' Compensation Act, 1923." },
+    ],
+    addOns: [
+      { title: "Machinery breakdown", text: "Repairs or replaces critical machinery after sudden breakdown." },
+      { title: "Marine cargo", text: "Protects goods in transit by road, rail, sea or air." },
+      { title: "Directors' and officers' liability", text: "Protects directors' personal assets from claims about their management decisions." },
+      { title: "Cyber cover", text: "Covers data breaches, ransomware and business email fraud." },
+    ],
+    sizing: {
+      title: "How we build your business cover",
+      points: [
+        "Understand your business: premises, assets, stock, revenue, contracts and risks.",
+        "Value assets at replacement cost, and stock at its highest likely level or on a declaration basis.",
+        "Estimate how long recovery would take to set the business interruption cover.",
+        "Add the liability covers your contracts, clients and regulators require.",
+        "Compare quotes across insurers, then review cover every year as the business grows.",
+      ],
+    },
+    tax: [
+      { title: "Business expense", text: "Premiums are generally deductible as a business expense under Section 37(1)." },
+      { title: "GST", text: "Premiums attract 18% GST, which registered businesses can usually claim as input tax credit, subject to GST rules." },
+    ],
+    checklist: [
+      "Insure assets at replacement cost so claims aren't reduced for under-insurance.",
+      "Include business interruption. Many businesses fail after a fire because of lost income, not the damage itself.",
+      "Declare all locations, including warehouses and stock held elsewhere.",
+      "Check client contracts for the insurance they require.",
+      "Keep stock records and asset registers up to date and stored off-site.",
+      "Review cover every year and when you add premises or major assets.",
+    ],
+    faqs: [
+      { question: "Which policy does a small business need first?", answer: "Most start with a property policy covering fire and natural disasters, plus burglary. Add business interruption and liability cover based on your size, contracts and risks." },
+      { question: "What are Bharat Sookshma and Laghu Udyam Suraksha?", answer: "They're standard property policies introduced by IRDAI in 2021 for micro and small enterprises. They make it easier to compare cover across insurers." },
+      { question: "Do I need insurance for my employees?", answer: "Employers can be liable under the Employees' Compensation Act for work-related injuries. An employees' compensation policy covers this, and group health cover is a valued extra benefit." },
+      { question: "Can I get one policy for everything?", answer: "Many insurers offer packaged policies for shops, offices and SMEs that combine property, burglary, money and liability cover in one place." },
+    ],
+    sources: [
+      IRDAI,
+      { name: "Ministry of Environment — Public Liability Insurance Act, 1991", url: "https://moef.gov.in" },
+      { name: "GST Council", url: "https://gstcouncil.gov.in" },
+    ],
+  },
+  {
+    slug: "cyber",
+    icon: "LockKeyhole",
+    name: "Cyber Insurance",
+    eyebrow: "Digital protection",
+    headline: "Your money and data,",
+    headlineEmphasis: "safe online.",
+    intro:
+      "Cyber insurance covers financial loss from online fraud, identity theft, data breaches and ransomware. Individual plans protect your bank accounts, UPI and cards. Business plans pay for breach response, legal costs and lost income.",
+    metaDescription:
+      "Cyber insurance in India for individuals and businesses: online fraud, identity theft, ransomware, data breach costs, the DPDP Act, and how to claim.",
+    image: { src: "/qura-plan-cyber-phone.jpg", alt: "A young man using his smartphone on a metro train" },
+    stats: [
+      { value: "1930", label: "National cyber crime helpline for reporting online financial fraud", source: "Ministry of Home Affairs — I4C" },
+      { value: "6 hours", label: "Deadline for organisations to report specified cyber incidents to CERT-In", source: "CERT-In Directions, April 2022" },
+      { value: "₹250 crore", label: "Maximum penalty for failing to protect personal data", source: "Digital Personal Data Protection Act, 2023" },
+      { value: "3 days", label: "Report an unauthorised electronic transaction to your bank within 3 working days to limit your liability", source: "RBI circular on customer liability, 2017" },
+    ],
+    covered: [
+      { title: "Online financial fraud", text: "Unauthorised transactions from your bank account, cards, UPI or e-wallets." },
+      { title: "Identity theft", text: "Costs to restore your identity and records, and legal costs after misuse of your personal data." },
+      { title: "Cyber extortion and ransomware", text: "Response costs and, where the law allows, ransom demands after an attack." },
+      { title: "Data breach response", text: "For businesses: forensics, customer notification, legal advice and liability claims." },
+    ],
+    notCovered: [
+      "Losses where you knowingly shared your OTP, PIN or password, in many policies.",
+      "Losses you don't report to the police, your bank and the insurer within the time limits.",
+      "Fixing security weaknesses or upgrading systems after an incident.",
+      "Losses from incidents that started before the policy began.",
+    ],
+    keyTerms: [
+      { term: "First-party cover", text: "Your own losses, such as stolen money, recovery costs and lost income." },
+      { term: "Third-party cover", text: "Claims against you from others, such as customers whose data was leaked." },
+      { term: "Phishing and spoofing", text: "Fake emails, messages or websites designed to trick you into sharing details or sending money." },
+      { term: "Social media cover", text: "Legal costs to deal with cyber bullying, stalking or defamation online." },
+      { term: "Waiting period", text: "Some plans don't cover incidents in the first few days after purchase." },
+      { term: "Sub-limit", text: "A lower limit for a particular type of loss within the overall sum insured." },
+    ],
+    addOns: [
+      { title: "Family cover", text: "Extends protection to your spouse, children and parents." },
+      { title: "Counselling support", text: "Pays for psychological counselling after cyber bullying or identity theft." },
+      { title: "Business interruption", text: "For businesses: lost income while systems are down after an attack." },
+      { title: "Social engineering fraud", text: "For businesses: payments made to fraudsters impersonating suppliers or executives." },
+    ],
+    sizing: {
+      title: "How much cyber cover do you need?",
+      points: [
+        "For individuals, start with the balance you typically keep across bank accounts, cards and wallets.",
+        "Add more if you handle large transactions online or manage accounts for family members.",
+        "For businesses, estimate breach response costs and the income you'd lose per day of downtime.",
+        "Consider the number of customer records you hold and your obligations under the DPDP Act.",
+        "Check sub-limits for the risks that matter most to you, such as UPI fraud or ransomware.",
+      ],
+    },
+    tax: [
+      { title: "Individuals", text: "Premiums for personal cyber cover aren't tax-deductible." },
+      { title: "Businesses", text: "Premiums are generally deductible as a business expense under Section 37(1)." },
+      { title: "GST", text: "Cyber insurance premiums attract 18% GST." },
+    ],
+    checklist: [
+      "Report fraud immediately to 1930 or cybercrime.gov.in, and to your bank.",
+      "Check that UPI and e-wallet fraud are covered, not just cards and net banking.",
+      "Look at sub-limits for each type of loss, not just the headline sum insured.",
+      "Turn on two-factor authentication and keep devices updated. Some policies require it.",
+      "For businesses, keep offline backups and an incident response plan.",
+      "Keep records of every report, complaint number and bank communication for your claim.",
+    ],
+    faqs: [
+      { question: "Won't my bank refund fraudulent transactions?", answer: "Under RBI rules, your liability is zero if a fraud is due to the bank's fault, or a third-party breach reported within 3 working days. Delays, or fraud where you shared details, can leave you bearing the loss. Cyber insurance helps cover those gaps." },
+      { question: "Is cyber insurance only for businesses?", answer: "No. Individual and family cyber plans are widely available and affordable. They cover online fraud, identity theft and cyber bullying." },
+      { question: "Does it cover UPI fraud?", answer: "Many individual plans do. Check the wording for UPI and e-wallet cover, and any sub-limit on it." },
+      { question: "What should I do if I'm a victim?", answer: "Call 1930 or report on cybercrime.gov.in straight away, inform your bank to block cards and accounts, file a police complaint, and then notify your insurer with the reference numbers." },
+    ],
+    sources: [
+      IRDAI,
+      { name: "National Cyber Crime Reporting Portal", url: "https://cybercrime.gov.in" },
+      { name: "CERT-In — Indian Computer Emergency Response Team", url: "https://www.cert-in.org.in" },
+      { name: "MeitY — Digital Personal Data Protection Act, 2023", url: "https://www.meity.gov.in" },
+      { name: "Reserve Bank of India", url: "https://www.rbi.org.in" },
+    ],
+  },
+  {
+    slug: "personal-accident",
+    icon: "Ambulance",
+    name: "Personal Accident Insurance",
+    eyebrow: "Accident protection",
+    headline: "When accidents happen,",
+    headlineEmphasis: "your income doesn't stop.",
+    intro:
+      "Personal accident insurance pays a lump sum if an accident causes death or disability, and a weekly benefit if you can't work for a while. It's low-cost cover that works alongside your health and term life policies.",
+    metaDescription:
+      "Personal accident insurance in India explained: accidental death, permanent and temporary disability, Saral Suraksha Bima, PMSBY, and how much cover you need.",
+    image: { src: "/qura-plan-accident-rider.jpg", alt: "A rider in a helmet and gloves on a motorcycle" },
+    stats: [
+      { value: "1.68 lakh", label: "Deaths from road accidents in India in 2022", source: "MoRTH — Road Accidents in India 2022" },
+      { value: "₹2.5L–₹1Cr", label: "Sum insured range for Saral Suraksha Bima, the standard personal accident policy", source: "IRDAI" },
+      { value: "₹20 / year", label: "Premium for ₹2 lakh of accidental death cover under PMSBY, for ages 18–70", source: "Pradhan Mantri Suraksha Bima Yojana" },
+      { value: "Worldwide", label: "Most personal accident policies cover accidents anywhere, at any time", source: "Typical policy terms" },
+    ],
+    covered: [
+      { title: "Accidental death", text: "100% of the sum insured is paid to your nominee." },
+      { title: "Permanent total disability", text: "A lump sum if an accident leaves you permanently unable to work, such as losing both eyes or limbs." },
+      { title: "Permanent partial disability", text: "A percentage of the sum insured for partial disabilities, as listed in the policy." },
+      { title: "Temporary total disability", text: "A weekly benefit while an accident keeps you from working, in plans that include it." },
+    ],
+    notCovered: [
+      "Death or disability from illness. That's what term and health insurance are for.",
+      "Self-inflicted injury, and accidents under the influence of alcohol or drugs.",
+      "Hazardous sports and activities, unless declared and covered.",
+      "Accidents while committing a crime, and war or nuclear risks.",
+    ],
+    keyTerms: [
+      { term: "Sum insured", text: "The amount paid for accidental death. Disability payouts are a percentage of it." },
+      { term: "Disability table", text: "The schedule in the policy that sets how much is paid for each type of disability." },
+      { term: "Weekly benefit", text: "A fixed amount paid each week during temporary total disability, up to a maximum number of weeks." },
+      { term: "Occupation class", text: "Your job's risk level, which affects premium and cover." },
+      { term: "Cumulative bonus", text: "An increase in sum insured for each claim-free year, in some plans." },
+      { term: "Education benefit", text: "An extra payout for children's education after accidental death or permanent disability." },
+    ],
+    addOns: [
+      { title: "Accidental hospitalisation", text: "Pays medical bills for treatment after an accident." },
+      { title: "Loan protector", text: "Pays outstanding EMIs after accidental death or disability." },
+      { title: "Family cover", text: "Extends cover to your spouse and children." },
+      { title: "Adventure sports", text: "Extends cover to declared adventure activities." },
+    ],
+    sizing: {
+      title: "How much accident cover do you need?",
+      points: [
+        "Start with enough to replace your income for several years if you couldn't work again.",
+        "Add outstanding loans so your family isn't left with debt.",
+        "Include a weekly benefit if you're self-employed or have no paid sick leave.",
+        "Check any accident cover you already have through your employer, credit card or PMSBY.",
+        "Insurers usually cap cover as a multiple of income, so disclose your income accurately.",
+      ],
+    },
+    tax: [
+      { title: "Income tax", text: "Personal accident premiums don't qualify for deductions under Section 80C or 80D." },
+      { title: "Business expense", text: "Premiums paid by employers for employees are generally deductible as a business expense." },
+      { title: "GST", text: "GST treatment can differ from life and health policies, so check the final premium with your insurer." },
+    ],
+    checklist: [
+      "Make sure the plan covers temporary disability if you rely on your monthly income.",
+      "Read the disability table to see what's paid for each type of injury.",
+      "Declare your occupation and any risky hobbies accurately.",
+      "Don't rely only on employer cover. It ends when you change jobs.",
+      "Enrol in PMSBY through your bank for low-cost basic cover, and buy more on top.",
+      "Keep hospital records, FIRs and medical certificates for any claim.",
+    ],
+    faqs: [
+      { question: "I already have term insurance. Do I need accident cover?", answer: "Term insurance pays on death but not for disability. Personal accident cover pays if an accident leaves you unable to work, which can be financially harder for a family than death." },
+      { question: "Is personal accident the same as health insurance?", answer: "No. Health insurance pays hospital bills. Personal accident pays a fixed lump sum or weekly benefit for death or disability, however much the treatment costs." },
+      { question: "Can I hold more than one accident policy?", answer: "Yes. Personal accident policies are benefit policies, so each one pays its full benefit, as long as you disclose existing cover." },
+      { question: "What is PMSBY?", answer: "Pradhan Mantri Suraksha Bima Yojana is a government scheme offering ₹2 lakh of accidental death and permanent total disability cover for ₹20 a year, auto-debited from your bank account." },
+    ],
+    sources: [
+      IRDAI,
+      { name: "Ministry of Road Transport & Highways — Road Accidents in India", url: "https://morth.nic.in" },
+      { name: "Jan Suraksha — Pradhan Mantri Suraksha Bima Yojana", url: "https://jansuraksha.gov.in" },
+      INCOME_TAX,
     ],
   },
 ];
